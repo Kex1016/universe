@@ -35,8 +35,9 @@ for file in "${FILES[@]}"; do
 done
 
 # Get the Ezkea Cachix thingy
-echo "Getting the ezkea cachix for the anime game..."
-sudo nix-shell -p cachix --run "cachix use ezkea"
+# NOT IN USE. I don't play gacha anymore.
+# echo "Getting the ezkea cachix for the anime game..."
+# sudo nix-shell -p cachix --run "cachix use ezkea"
 
 # Build the new configuration
 echo "Building new configuration"
