@@ -24,7 +24,7 @@ in
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "Mainframe";
+  networking.hostName = "coven";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -80,10 +80,10 @@ in
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.michiru = {
+  users.users.majo = {
     isNormalUser = true;
-    description = "Michiru";
-    extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" ];
+    description = "Majo";
+    extraGroups = [ "networkmanager" "wheel" "disk" "power" "video" "docker" ];
   };
 
   nixpkgs.config = {
@@ -99,11 +99,12 @@ in
     };
   };
 
-  networking.extraHosts = ''
-    127.0.0.1 localhost
-    192.168.1.5 Homura
-    192.168.1.30 Home
-  '';
+  # This is done with my DNS server instead.
+  # networking.extraHosts = ''
+  #   127.0.0.1 localhost
+  #   192.168.1.5 Homura
+  #   192.168.1.30 Home
+  # '';
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -120,16 +121,19 @@ in
     driSupport32Bit = true;
   };
 
-  # NVIDIA
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
+  # AMD
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
+  # NVIDIA (I now have an AMD card.)
+#   services.xserver.videoDrivers = [ "nvidia" ];
+#   hardware.nvidia = {
+#     modesetting.enable = true;
+#     powerManagement.enable = false;
+#     powerManagement.finegrained = false;
+#     open = false;
+#     nvidiaSettings = true;
+#     package = config.boot.kernelPackages.nvidiaPackages.stable;
+#   };
 
   # BLUETOOTH
   hardware.bluetooth.enable = true;

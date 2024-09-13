@@ -33,6 +33,7 @@
     # Communication
     protonmail-bridge
     thunderbird
+    chatterino2
     # Development Tools
     git
     neovim
@@ -69,13 +70,14 @@
     bottles
     # Graphics
     unstable.aseprite
+    unstable.kdenlive
     # Multimedia
     spotify
     mpv
     # System Utilities
     gnome.gnome-disk-utility
     vesktop
-    unstable.webcord-vencord
+    # unstable.webcord-vencord
     fuse-overlayfs
     bubblewrap
     gst-libav
@@ -87,7 +89,7 @@
     kcalc
     droidcam
     libpng
-    neofetch
+    fastfetch
     # CLI replacements
     eza
     bat
@@ -122,7 +124,7 @@
   # Auto updates
   system.autoUpgrade = {
     enable = true;
-    channel = "https://nixos.org/channels/nixos-23.11";
+    channel = "https://nixos.org/channels/nixos-24.05";
   };
 
   # AppImage integration
