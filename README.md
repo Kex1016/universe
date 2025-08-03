@@ -1,0 +1,3 @@
+# my hyprland config.
+
+wip.
