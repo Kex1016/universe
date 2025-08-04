@@ -150,7 +150,7 @@ fi
 # Copy configuration files using rsync (current directory to home directory excluding install.sh and .git)
 # only overwriting and creating!!!!!
 echo "Copying configuration files..."
-rsync -av --exclude='install.sh' --exclude='.git' "$SCRIPT_DIR/dots" "$HOME/"
+rsync -av --exclude='install.sh' --exclude='.git' "$SCRIPT_DIR/dots/" "$HOME/"
 
 # Prompt the user for their preferred shell
 echo "Which shell do you prefer? (bash/zsh/fish)"
