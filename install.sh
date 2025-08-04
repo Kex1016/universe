@@ -114,12 +114,12 @@ for file in "${RP_GTK_FILES[@]}"; do
 done
 # Extract and install the GTK themes
 mkdir -p "$HOME/.themes"
-tar -xzf "gtk3.tar.gz" -C "$HOME/.themes"
+tar -xzf "gtk3.tar.gz" -C "$HOME/.themes" --warning=no-unknown-keyword
 mkdir -p "$HOME/.config/gtk-4.0"
-tar -xzf "gtk4.tar.gz" -C "$HOME/.config/gtk-4.0"
+tar -xzf "gtk4.tar.gz" -C "$HOME/.config/gtk-4.0" --warning=no-unknown-keyword
 mv "$HOME/.config/gtk-4.0/rose-pine.css" "$HOME/.config/gtk-4.0/gtk.css"
 mkdir -p "$HOME/.icons"
-tar -xzf "rose-pine-icons.tar.gz" -C "$HOME/.icons"
+tar -xzf "rose-pine-icons.tar.gz" -C "$HOME/.icons" --warning=no-unknown-keyword
 # Set the GTK theme
 echo "Setting GTK theme to Rosé Pine..."
 echo "gtk-theme-name='Rose Pine'" >> "$HOME/.config/gtk-3.0/settings.ini"
