@@ -133,10 +133,12 @@ echo "gtk-icon-theme-name='Rose Pine'" >> "$HOME/.config/gtk-4.0/settings.ini"
 # Install Starship
 echo "Installing Starship..."
 curl -sS https://starship.rs/install.sh | sh
-# Configure Starship with the Rosé Pine theme
-echo "Getting Rosé Pine for Starship..."
-STARSHIP_THEME_URL="https://raw.githubusercontent.com/rose-pine/starship/refs/heads/main/rose-pine.toml"
-curl -o "$HOME/.config/starship.toml" "$STARSHIP_THEME_URL"
+if [[ $? -eq 0 ]]; then
+    # Configure Starship with the Rosé Pine theme
+    echo "Getting Rosé Pine for Starship..."
+    STARSHIP_THEME_URL="https://raw.githubusercontent.com/rose-pine/starship/refs/heads/main/rose-pine.toml"
+    curl -o "$HOME/.config/starship.toml" "$STARSHIP_THEME_URL"
+fi
 
 # optional packages
 echo "Do you want to install optional packages? (y/n)"
@@ -177,6 +179,9 @@ case "$SHELL_CHOICE" in
             yay -S --needed zsh
         fi
 
+        # Create Zsh config directory if it doesn't exist
+        mkdir -p "$HOME/.config/zsh"
+
         if ! grep -q "source \$HOME/.config/starship.toml" "$HOME/.zshrc"; then
             echo "source \$HOME/.config/starship.toml" >> "$HOME/.zshrc"
         fi
@@ -191,6 +196,9 @@ case "$SHELL_CHOICE" in
         if ! command -v fish &> /dev/null; then
             yay -S --needed fish
         fi
+
+        # Create Fish config directory if it doesn't exist
+        mkdir -p "$HOME/.config/fish"
 
         if ! grep -q "starship init fish | source" "$HOME/.config/fish/config.fish"; then
             echo "starship init fish | source" >> "$HOME/.config/fish/config.fish"
