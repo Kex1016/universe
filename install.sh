@@ -133,12 +133,6 @@ echo "gtk-icon-theme-name='Rose Pine'" >> "$HOME/.config/gtk-4.0/settings.ini"
 # Install Starship
 echo "Installing Starship..."
 curl -sS https://starship.rs/install.sh | sh
-if [[ $? -eq 0 ]]; then
-    # Configure Starship with the Rosé Pine theme
-    echo "Getting Rosé Pine for Starship..."
-    STARSHIP_THEME_URL="https://raw.githubusercontent.com/rose-pine/starship/refs/heads/main/rose-pine.toml"
-    curl -o "$HOME/.config/starship.toml" "$STARSHIP_THEME_URL"
-fi
 
 # optional packages
 echo "Do you want to install optional packages? (y/n)"
