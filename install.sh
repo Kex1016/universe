@@ -15,7 +15,7 @@ cd "$SCRIPT_TMP_DIR"
 
 # Set up bare minimum packages
 echo "Setting up bare minimum packages..."
-sudo pacman -S --needed base-devel git
+sudo pacman -S --needed base-devel git rsync
 
 # Set up yay if not already installed
 if ! command -v yay &> /dev/null; then
@@ -31,7 +31,6 @@ fi
 # Install base deps
 echo "Installing dependencies..."
 BASE_PACKAGES=(
-    "rsync"
     "hyprland"
     "hyprpicker"
     "hyprpaper"
@@ -67,7 +66,6 @@ BASE_PACKAGES=(
     "nemo-seahorse"
     "nemo-compare"
     "playerctl"
-    "github-cli"
 )
 yay -S --needed "${BASE_PACKAGES[@]}"
 if [[ $? -ne 0 ]]; then
@@ -75,12 +73,13 @@ if [[ $? -ne 0 ]]; then
     exit 1
 fi
 
-# Prompt the use to login to GitHub CLI
-echo "Please log in to GitHub CLI if you haven't already."
-gh auth login
-if [[ $? -ne 0 ]]; then
-    echo "Error: GitHub CLI login failed."
-    exit 1
+# Install login manager
+echo "Installing ly..."
+if ! command -v ly &> /dev/null; then
+    yay -S --needed ly
+    sudo systemctl enable ly.service
+else
+    echo "Ly is already installed."
 fi
 
 # Install the Rosé Pine GTK theme
@@ -90,12 +89,29 @@ ROSE_PINE_PACKAGES=(
     "gtk4"
     "rose-pine-icons"
 )
-ROSE_PINE_VERSION=$(gh release list -R rose-pine/gtk | grep -oP 'v\d+\.\d+\.\d+' | head -n 1)
+ROSE_PINE_VERSION=$(curl -s https://api.github.com/repos/rose-pine/gtk/releases/latest | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
 if [[ -z "$ROSE_PINE_VERSION" ]]; then
     echo "Error: Could not determine the latest Rosé Pine GTK version."
     exit 1
 fi
-gh release download -R rose-pine/gtk "$ROSE_PINE_VERSION" --pattern 'gtk3.tar.gz' --pattern 'gtk4.tar.gz' --pattern 'rose-pine-icons.tar.gz'
+RP_GTK_FILES=(
+    "gtk3.tar.gz"
+    "gtk4.tar.gz"
+    "rose-pine-icons.tar.gz"
+)
+RP_GTK_URL="https://github.com/rose-pine/gtk/releases/download/$ROSE_PINE_VERSION"
+for file in "${RP_GTK_FILES[@]}"; do
+    if [[ ! -f "$file" ]]; then
+        echo "Downloading $file..."
+        curl -LO "$RP_GTK_URL/$file"
+        if [[ $? -ne 0 ]]; then
+            echo "Error: Failed to download $file."
+            exit 1
+        fi
+    else
+        echo "$file already exists, skipping download."
+    fi
+done
 # Extract and install the GTK themes
 mkdir -p "$HOME/.themes"
 tar -xzf "gtk3.tar.gz" -C "$HOME/.themes"
