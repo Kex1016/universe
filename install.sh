@@ -169,7 +169,7 @@ case "$SHELL_CHOICE" in
         fi
 
         if ! grep -q "set shell" "$HOME/.config/kitty/kitty.conf"; then
-            echo "set shell $SHELL" >> "$HOME/.config/kitty/kitty.conf"
+            echo "set shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
         fi
         ;;
     zsh)
@@ -187,7 +187,7 @@ case "$SHELL_CHOICE" in
         fi
 
         if ! grep -q "set shell" "$HOME/.config/kitty/kitty.conf"; then
-            echo "set shell $SHELL" >> "$HOME/.config/kitty/kitty.conf"
+            echo "set shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
         fi
         ;;
     fish)
@@ -205,7 +205,7 @@ case "$SHELL_CHOICE" in
         fi
 
         if ! grep -q "set shell" "$HOME/.config/kitty/kitty.conf"; then
-            echo "set shell $SHELL" >> "$HOME/.config/kitty/kitty.conf"
+            echo "set shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
         fi
         ;;
     *)
