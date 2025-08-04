@@ -17,12 +17,16 @@ cd "$SCRIPT_TMP_DIR"
 echo "Setting up bare minimum packages..."
 sudo pacman -S --needed base-devel git
 
-# Set up paru
-sudo pacman -S --needed base-devel
-git clone https://aur.archlinux.org/paru.git
-cd paru
-makepkg -si
-cd "$SCRIPT_DIR"
+# Set up yay if not already installed
+if ! command -v yay &> /dev/null; then
+    sudo pacman -S --needed base-devel
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si
+    cd "$SCRIPT_DIR"
+else
+    echo "Yay is already installed."
+fi
 
 # Install base deps
 echo "Installing dependencies..."
@@ -65,7 +69,7 @@ BASE_PACKAGES=(
     "playerctl"
     "github-cli"
 )
-paru -S --needed "${BASE_PACKAGES[@]}"
+yay -S --needed "${BASE_PACKAGES[@]}"
 if [[ $? -ne 0 ]]; then
     echo "Error: Failed to install base packages."
     exit 1
@@ -133,7 +137,7 @@ case "$SHELL_CHOICE" in
         echo "Setting up Zsh..."
         # Install Zsh if not already installed
         if ! command -v zsh &> /dev/null; then
-            sudo paru -S --needed zsh
+            yay -S --needed zsh
         fi
 
         if ! grep -q "source \$HOME/.config/starship.toml" "$HOME/.zshrc"; then
@@ -148,7 +152,7 @@ case "$SHELL_CHOICE" in
         echo "Setting up Fish..."
         # Install Fish if not already installed
         if ! command -v fish &> /dev/null; then
-            sudo paru -S --needed fish
+            yay -S --needed fish
         fi
 
         if ! grep -q "starship init fish | source" "$HOME/.config/fish/config.fish"; then
@@ -171,7 +175,7 @@ if [[ "$INSTALL_ADDITIONAL" == "y" || "$INSTALL_ADDITIONAL" == "Y" ]]; then
     ADDITIONAL_PACKAGES=(
         "equibop-bin"
     )
-    paru -S --needed "${ADDITIONAL_PACKAGES[@]}"
+    yay -S --needed "${ADDITIONAL_PACKAGES[@]}"
 else
     echo "Skipping additional packages installation."
 fi
