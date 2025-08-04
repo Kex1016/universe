@@ -135,12 +135,30 @@ echo "Getting Rosé Pine for Starship..."
 STARSHIP_THEME_URL="https://raw.githubusercontent.com/rose-pine/starship/refs/heads/main/rose-pine.toml"
 curl -o "$HOME/.config/starship.toml" "$STARSHIP_THEME_URL"
 
+# optional packages
+echo "Do you want to install optional packages? (y/n)"
+read -r INSTALL_ADDITIONAL
+if [[ "$INSTALL_ADDITIONAL" == "y" || "$INSTALL_ADDITIONAL" == "Y" ]]; then
+    ADDITIONAL_PACKAGES=(
+        "equibop-bin"
+    )
+    yay -S --needed "${ADDITIONAL_PACKAGES[@]}"
+else
+    echo "Skipping additional packages installation."
+fi
+
+# Copy configuration files using rsync (current directory to home directory excluding install.sh and .git)
+# only overwriting and creating!!!!!
+echo "Copying configuration files..."
+rsync -av --exclude='install.sh' --exclude='.git' "$SCRIPT_DIR/dots" "$HOME/"
+
 # Prompt the user for their preferred shell
 echo "Which shell do you prefer? (bash/zsh/fish)"
 read -r SHELL_CHOICE
 case "$SHELL_CHOICE" in
     bash)
         echo "Setting up Bash..."
+        # Create required directories if they don't exist
         if ! grep -q "source \$HOME/.config/starship.toml" "$HOME/.bashrc"; then
             echo "source \$HOME/.config/starship.toml" >> "$HOME/.bashrc"
         fi
@@ -183,22 +201,6 @@ case "$SHELL_CHOICE" in
         echo "Unsupported shell: $SHELL_CHOICE. Please set up Starship manually."
         ;;
 esac
-
-# optional packages
-echo "Do you want to install optional packages? (y/n)"
-read -r INSTALL_ADDITIONAL
-if [[ "$INSTALL_ADDITIONAL" == "y" || "$INSTALL_ADDITIONAL" == "Y" ]]; then
-    ADDITIONAL_PACKAGES=(
-        "equibop-bin"
-    )
-    yay -S --needed "${ADDITIONAL_PACKAGES[@]}"
-else
-    echo "Skipping additional packages installation."
-fi
-
-# Copy configuration files using rsync (current directory to home directory excluding install.sh and .git)
-echo "Copying configuration files..."
-rsync -av --exclude='install.sh' --exclude='.git' --exclude='README.md' "$SCRIPT_DIR/" "$HOME/"
 
 echo "Installation complete! Do you want to reboot now? (y/N)"
 read -r REBOOT_CHOICE

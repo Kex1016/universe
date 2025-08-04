@@ -1,6 +1,6 @@
 git pull
 echo "Copying configuration files..."
-rsync -av --exclude='install.sh' --exclude='.git' --exclude='README.md' "$SCRIPT_DIR/" "$HOME/"
+rsync -av --exclude='install.sh' --exclude='.git' --exclude='README.md' "$SCRIPT_DIR/dots" "$HOME/"
 
 echo "Installation complete! Do you want to reboot now? (y/N)"
 read -r REBOOT_CHOICE
