@@ -66,6 +66,9 @@ BASE_PACKAGES=(
     "nemo-seahorse"
     "nemo-compare"
     "playerctl"
+    "kitty"
+    "mpv"
+    "neovim"
 )
 yay -S --needed "${BASE_PACKAGES[@]}"
 if [[ $? -ne 0 ]]; then
