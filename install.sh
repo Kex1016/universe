@@ -253,18 +253,6 @@ case "$SHELL_CHOICE" in
             yay --noconfirm -S --needed fish
         fi
 
-        # Create Fish config directory if it doesn't exist
-        mkdir -p "$HOME/.config/fish"
-        mkdir -p "$HOME/.config/fish/conf.d"
-
-        if ! grep -q "starship init fish | source" "$HOME/.config/fish/config.fish"; then
-            echo "starship init fish | source" >> "$HOME/.config/fish/config.fish"
-        fi
-
-        if ! grep -q "zoxide init fish" "$HOME/.config/fish/config.fish"; then
-            echo "zoxide init --cmd cd fish | source" >> "$HOME/.config/fish/conf.d/zoxide.fish"
-        fi
-
         if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
             echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
         fi
