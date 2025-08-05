@@ -365,6 +365,39 @@ esac
 #  Ly
 sudo cp -rv "$SCRIPT_DIR/root/ly.ini" /etc/ly/config.ini
 
+# Set GTK3 settings
+cat <<EOF > "$HOME/.config/gtk-3.0/settings.ini"
+[Settings]
+gtk-theme-name=rose-pine-gtk
+gtk-icon-theme-name=rose-pine-icons
+gtk-font-name=IBM Plex Sans 11
+gtk-cursor-theme-name=BreezeX-RosePine-Linux
+gtk-cursor-theme-size=24
+gtk-toolbar-style=GTK_TOOLBAR_BOTH
+gtk-toolbar-icon-size=GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-button-images=1
+gtk-menu-images=1
+gtk-enable-event-sounds=1
+gtk-enable-input-feedback-sounds=0
+gtk-xft-antialias=1
+gtk-xft-hinting=1
+gtk-xft-hintstyle=hintslight
+gtk-xft-rgba=rgb
+gtk-application-prefer-dark-theme=1
+gtk-enable-animations=0
+EOF
+
+# Set GTK4 settings
+cat <<EOF > "$HOME/.config/gtk-4.0/settings.ini"
+[Settings]
+gtk-theme-name=rose-pine-gtk
+gtk-icon-theme-name=rose-pine-icons
+gtk-font-name=IBM Plex Sans 11
+gtk-cursor-theme-name=BreezeX-RosePine-Linux
+gtk-cursor-theme-size=24
+gtk-application-prefer-dark-theme=1
+EOF
+
 echo "Installation complete! Do you want to reboot now? (y/N)"
 read -r REBOOT_CHOICE
 if [[ "$REBOOT_CHOICE" == "y" || "$REBOOT_CHOICE" == "Y" ]]; then
