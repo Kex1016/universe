@@ -22,19 +22,19 @@
   ],
 
   "custom/left-arrow": {
-    "format": " ",
+    "format": "",
     "tooltip": false,
   },
   "custom/right-arrow": {
-    "format": "",
+    "format": "",
     "tooltip": false,
   },
 
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
-      "default": "",
-      "active": "",
+      "default": "",
+      "active": "",
     },
     "persistent-workspaces": {
       "*": 4,
