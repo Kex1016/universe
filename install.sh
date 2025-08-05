@@ -257,7 +257,7 @@ if [[ "$INSTALL_ADDITIONAL" == "y" || "$INSTALL_ADDITIONAL" == "Y" ]]; then
     ADDITIONAL_PACKAGES=(
         "equibop-bin"
         "spotify"
-        "zen-browser"
+        "zen-browser-bin"
         "zed"
         "visual-studio-code-bin"
         "steam"
