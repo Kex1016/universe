@@ -162,8 +162,8 @@ case "$SHELL_CHOICE" in
             echo "source \$HOME/.config/starship.toml" >> "$HOME/.bashrc"
         fi
 
-        if ! grep -q "set shell" "$HOME/.config/kitty/kitty.conf"; then
-            echo "set shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
+        if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
+            echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
         fi
         ;;
     zsh)
@@ -180,8 +180,8 @@ case "$SHELL_CHOICE" in
             echo "source \$HOME/.config/starship.toml" >> "$HOME/.zshrc"
         fi
 
-        if ! grep -q "set shell" "$HOME/.config/kitty/kitty.conf"; then
-            echo "set shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
+        if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
+            echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
         fi
         ;;
     fish)
@@ -198,8 +198,8 @@ case "$SHELL_CHOICE" in
             echo "starship init fish | source" >> "$HOME/.config/fish/config.fish"
         fi
 
-        if ! grep -q "set shell" "$HOME/.config/kitty/kitty.conf"; then
-            echo "set shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
+        if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
+            echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
         fi
         ;;
     *)
