@@ -261,7 +261,7 @@ if [[ "$INSTALL_ADDITIONAL" == "y" || "$INSTALL_ADDITIONAL" == "Y" ]]; then
         "visual-studio-code-bin"
         "steam"
         "steam-native-runtime"
-        "sgdboop"
+        "sgdboop-bin"
     )
     yay --noconfirm -S --needed "${ADDITIONAL_PACKAGES[@]}"
     if [[ $? -ne 0 ]]; then
