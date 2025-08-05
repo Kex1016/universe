@@ -70,7 +70,7 @@ BASE_PACKAGES=(
     "mpv"
     "neovim"
 )
-yay -S --needed "${BASE_PACKAGES[@]}"
+yay --noconfirm -S --needed "${BASE_PACKAGES[@]}"
 if [[ $? -ne 0 ]]; then
     echo "Error: Failed to install base packages."
     exit 1
@@ -79,11 +79,49 @@ fi
 # Install login manager
 echo "Installing ly..."
 if ! command -v ly &> /dev/null; then
-    yay -S --needed ly
+    yay --noconfirm -S --needed ly
     sudo systemctl enable ly.service
 else
     echo "Ly is already installed."
 fi
+
+# Set up XDG environment variables
+echo "Setting up XDG environment variables..."
+mkdir -v -p "$HOME/.config/environment.d"
+echo "XDG_CONFIG_HOME=$HOME/.config" > "$HOME/.config/environment.d/xdg.conf"
+echo "XDG_DATA_HOME=$HOME/.local/share" >> "$HOME/.config/environment.d/xdg.conf"
+echo "XDG_CACHE_HOME=$HOME/.cache" >> "$HOME/.config/environment.d/xdg.conf"
+echo "XDG_STATE_HOME=$HOME/.local/state" >> "$HOME/.config/environment.d/xdg.conf"
+echo "XDG_RUNTIME_DIR=$HOME/.local/run" >> "$HOME/.config/environment.d/xdg.conf"
+# Set up home directory environment variables (Desktop, Documents, Downloads, Music, Pictures, Videos)
+echo "Setting up home directory environment variables..."
+echo "XDG_DESKTOP_DIR=$HOME/Desktop" > "$HOME/.config/environment.d/xdg-home.conf"
+echo "XDG_DOCUMENTS_DIR=$HOME/Documents" >> "$HOME/.config/environment.d/xdg-home.conf"
+echo "XDG_DOWNLOAD_DIR=$HOME/Downloads" >> "$HOME/.config/environment.d/xdg-home.conf"
+echo "XDG_MUSIC_DIR=$HOME/Music" >> "$HOME/.config/environment.d/xdg-home.conf"
+echo "XDG_PICTURES_DIR=$HOME/Pictures" >> "$HOME/.config/environment.d/xdg-home.conf"
+echo "XDG_VIDEOS_DIR=$HOME/Videos" >> "$HOME/.config/environment.d/xdg-home.conf"
+# Create necessary directories
+SCRIPT_HOME_DIRS=(
+    "$HOME/.local/share/applications"
+    "$HOME/.config/gtk-3.0"
+    "$HOME/.config/gtk-4.0"
+    "$HOME/.config"
+    "$HOME/.local/share"
+    "$HOME/.cache"
+    "$HOME/.local/state"
+    "$HOME/.local/run"
+    "$HOME/.local/bin"
+    "$HOME/Desktop"
+    "$HOME/Documents"
+    "$HOME/Downloads"
+    "$HOME/Music"
+    "$HOME/Pictures"
+    "$HOME/Videos"
+)
+for dir in "${SCRIPT_HOME_DIRS[@]}"; do
+    mkdir -v -p "$dir"
+done
 
 # Install the Rosé Pine GTK theme
 echo "Installing Rosé Pine GTK theme..."
@@ -115,6 +153,7 @@ for file in "${RP_GTK_FILES[@]}"; do
         echo "$file already exists, skipping download."
     fi
 done
+
 # Extract and install the GTK themes
 mkdir -p "$HOME/.themes"
 tar -xzf "gtk3.tar.gz" -C "$HOME/.themes" --warning=no-unknown-keyword
@@ -141,7 +180,7 @@ if [[ "$INSTALL_ADDITIONAL" == "y" || "$INSTALL_ADDITIONAL" == "Y" ]]; then
     ADDITIONAL_PACKAGES=(
         "equibop-bin"
     )
-    yay -S --needed "${ADDITIONAL_PACKAGES[@]}"
+    yay --noconfirm -S --needed "${ADDITIONAL_PACKAGES[@]}"
 else
     echo "Skipping additional packages installation."
 fi
@@ -151,15 +190,34 @@ fi
 echo "Copying configuration files..."
 rsync -av --exclude='install.sh' --exclude='.git' "$SCRIPT_DIR/dots/" "$HOME/"
 
+# Install cli tools
+echo "Installing CLI tools..."
+CLI_TOOLS=(
+    "bat"
+    "fd"
+    "fzf"
+    "ripgrep"
+    "tree-sitter-cli"
+    "exa"
+    "fastfetch"
+    "btop"
+    "zoxide"
+)
+yay --noconfirm -S --needed "${CLI_TOOLS[@]}"
+
 # Prompt the user for their preferred shell
 echo "Which shell do you prefer? (bash/zsh/fish)"
 read -r SHELL_CHOICE
 case "$SHELL_CHOICE" in
     bash)
         echo "Setting up Bash..."
-        # Create required directories if they don't exist
+
         if ! grep -q "source \$HOME/.config/starship.toml" "$HOME/.bashrc"; then
             echo "source \$HOME/.config/starship.toml" >> "$HOME/.bashrc"
+        fi
+
+        if ! grep -q "zoxide init bash" "$HOME/.bashrc"; then
+            echo "eval \"\$\(zoxide init --cmd cd bash\)\"" >> "$HOME/.bashrc"
         fi
 
         if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
@@ -170,7 +228,7 @@ case "$SHELL_CHOICE" in
         echo "Setting up Zsh..."
         # Install Zsh if not already installed
         if ! command -v zsh &> /dev/null; then
-            yay -S --needed zsh
+            yay --noconfirm -S --needed zsh
         fi
 
         # Create Zsh config directory if it doesn't exist
@@ -178,6 +236,10 @@ case "$SHELL_CHOICE" in
 
         if ! grep -q "source \$HOME/.config/starship.toml" "$HOME/.zshrc"; then
             echo "source \$HOME/.config/starship.toml" >> "$HOME/.zshrc"
+        fi
+
+        if ! grep -q "zoxide init zsh" "$HOME/.zshrc"; then
+            echo "eval \"\$\(zoxide init --cmd cd zsh\)\"" >> "$HOME/.zshrc"
         fi
 
         if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
@@ -188,14 +250,19 @@ case "$SHELL_CHOICE" in
         echo "Setting up Fish..."
         # Install Fish if not already installed
         if ! command -v fish &> /dev/null; then
-            yay -S --needed fish
+            yay --noconfirm -S --needed fish
         fi
 
         # Create Fish config directory if it doesn't exist
         mkdir -p "$HOME/.config/fish"
+        mkdir -p "$HOME/.config/fish/conf.d"
 
         if ! grep -q "starship init fish | source" "$HOME/.config/fish/config.fish"; then
             echo "starship init fish | source" >> "$HOME/.config/fish/config.fish"
+        fi
+
+        if ! grep -q "zoxide init fish" "$HOME/.config/fish/config.fish"; then
+            echo "zoxide init --cmd cd fish | source" >> "$HOME/.config/fish/conf.d/zoxide.fish"
         fi
 
         if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
@@ -206,6 +273,12 @@ case "$SHELL_CHOICE" in
         echo "Unsupported shell: $SHELL_CHOICE. Please set up Starship manually."
         ;;
 esac
+
+# Download fonts
+
+# Copy root stuff
+#  Ly
+sudo cp -rv "$SCRIPT_DIR/root/ly.ini" /etc/ly/config.ini
 
 echo "Installation complete! Do you want to reboot now? (y/N)"
 read -r REBOOT_CHOICE
