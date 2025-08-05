@@ -1,0 +1,11 @@
+# Fish aliases
+alias ls='exa --icons --group-directories-first'
+alias ll='ls -la'
+alias la='ls -A'
+alias l='ls -CF'
+alias cat='bat --style=plain --color=always'
+alias grep='rg'
+alias fzf='fzf --ansi --preview "bat --style=numbers --color=always --line-range :500 {}"'
+alias tree='tree-sitter parse --color=always'
+alias fd='fd --color=always'
+alias btop='btop --theme=dark'
