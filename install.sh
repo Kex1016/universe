@@ -291,6 +291,8 @@ fi
 
 if command -v spicetify &> /dev/null; then
     if command -v spotify &> /dev/null; then
+        echo "Starting Spotify. Please log in to your account and then close it."
+        spotify
         echo "Equipping Spotify..."
         spicetify backup apply
         spicetify config current_theme Ziro
