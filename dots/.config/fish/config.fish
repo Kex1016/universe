@@ -4,14 +4,7 @@ if status is-interactive
     # pass
 end
 
-# -----------------------
-# ALIASES
-# -----------------------
+fish_config theme choose "Rosé Pine"
 
-#TODO
-
-# -----------------------
-# ENVIRONMENT VARIABLES
-# -----------------------
-
-#TODO
+# Disable fish welcome message
+set -g fish_greeting ""
