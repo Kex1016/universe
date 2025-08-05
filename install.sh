@@ -255,20 +255,10 @@ if [[ "$INSTALL_ADDITIONAL" == "y" || "$INSTALL_ADDITIONAL" == "Y" ]]; then
     ADDITIONAL_PACKAGES=(
         "equibop-bin"
         "spotify"
-        "spicetify-cli"
-        "spicetify-themes-git"
     )
     yay --noconfirm -S --needed "${ADDITIONAL_PACKAGES[@]}"
     if [[ $? -ne 0 ]]; then
         echo "Error: Failed to install additional packages."
-    fi
-
-    echo "Equipping Spotify..."
-    if command -v spicetify &> /dev/null; then
-        spicetify backup apply
-        spicetify config current_theme Ziro
-        spicetify config color_scheme rose-pine
-        spicetify apply
     fi
 else
     echo "Skipping additional packages installation."
@@ -291,8 +281,23 @@ CLI_TOOLS=(
     "fastfetch"
     "btop"
     "zoxide"
+    "spicetify-cli"
+    "spicetify-themes-git"
 )
 yay --noconfirm -S --needed "${CLI_TOOLS[@]}"
+if [[ $? -ne 0 ]]; then
+    echo "Error: Failed to install CLI tools."
+fi
+
+if command -v spicetify &> /dev/null; then
+    if command -v spotify &> /dev/null; then
+        echo "Equipping Spotify..."
+        spicetify backup apply
+        spicetify config current_theme Ziro
+        spicetify config color_scheme rose-pine
+        spicetify apply
+    fi
+fi
 
 # Prompt the user for their preferred shell
 echo "Which shell do you prefer? (bash/zsh/fish)"
