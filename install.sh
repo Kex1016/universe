@@ -88,11 +88,6 @@ fi
 # Set up XDG environment variables
 echo "Setting up XDG environment variables..."
 mkdir -v -p "$HOME/.config/environment.d"
-echo "XDG_CONFIG_HOME=$HOME/.config" > "$HOME/.config/environment.d/xdg.conf"
-echo "XDG_DATA_HOME=$HOME/.local/share" >> "$HOME/.config/environment.d/xdg.conf"
-echo "XDG_CACHE_HOME=$HOME/.cache" >> "$HOME/.config/environment.d/xdg.conf"
-echo "XDG_STATE_HOME=$HOME/.local/state" >> "$HOME/.config/environment.d/xdg.conf"
-echo "XDG_RUNTIME_DIR=$HOME/.local/run" >> "$HOME/.config/environment.d/xdg.conf"
 # Set up home directory environment variables (Desktop, Documents, Downloads, Music, Pictures, Videos)
 echo "Setting up home directory environment variables..."
 echo "XDG_DESKTOP_DIR=$HOME/Desktop" > "$HOME/.config/environment.d/xdg-home.conf"
@@ -109,8 +104,6 @@ SCRIPT_HOME_DIRS=(
     "$HOME/.config"
     "$HOME/.local/share"
     "$HOME/.cache"
-    "$HOME/.local/state"
-    "$HOME/.local/run"
     "$HOME/.local/bin"
     "$HOME/Desktop"
     "$HOME/Documents"
