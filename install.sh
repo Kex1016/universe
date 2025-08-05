@@ -72,6 +72,7 @@ BASE_PACKAGES=(
     "pamixer"
     "pavucontrol"
     "dunst"
+    "nwg-look"
 )
 yay --noconfirm -S --needed "${BASE_PACKAGES[@]}"
 if [[ $? -ne 0 ]]; then
@@ -184,6 +185,7 @@ mkdir -p "$HOME/.icons"
 tar -xzf "rose-pine-icons.tar.gz" -C "$HOME/.icons" --warning=no-unknown-keyword
 mv "$HOME/.icons/icons/rose-pine-icons" "$HOME/.icons/"
 rm -rf "$HOME/.icons/icons"
+mkdir -p "$HOME/.local/share/icons"
 tar -xvf "BreezeX-RosePine-Linux.tar.xz" -C ~/.local/share/icons --warning=no-unknown-keyword
 
 # Install fonts
@@ -255,6 +257,12 @@ if [[ "$INSTALL_ADDITIONAL" == "y" || "$INSTALL_ADDITIONAL" == "Y" ]]; then
     ADDITIONAL_PACKAGES=(
         "equibop-bin"
         "spotify"
+        "zen-browser"
+        "zed"
+        "visual-studio-code-bin"
+        "steam"
+        "steam-native-runtime"
+        "sgdboop"
     )
     yay --noconfirm -S --needed "${ADDITIONAL_PACKAGES[@]}"
     if [[ $? -ne 0 ]]; then
@@ -376,4 +384,5 @@ else
     echo "    spicetify config color_scheme rose-pine"
     echo "    spicetify apply"
     echo "  - Restart Spotify."
+    echo "Be sure to use nwg-look to set the GTK theme and icons if they don't pop up... I'm still working on it."
 fi
