@@ -6,3 +6,5 @@ set -gx NPM_CONFIG_PREFIX "$HOME/.npm-global"
 fish_add_path "$HOME/.local/bin"
 # npm
 fish_add_path "$HOME/.npm-global/bin"
+# emacs
+fish_add_path "$HOME/.config/emacs/bin"

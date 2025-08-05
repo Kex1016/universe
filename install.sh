@@ -216,6 +216,28 @@ done
 echo "Installing Starship..."
 curl -sS https://starship.rs/install.sh | sh
 
+# DOOM Emacs
+echo "Installing DOOM Emacs..."
+if ! command -v emacs &> /dev/null; then
+    yay --noconfirm -S --needed emacs
+else
+    echo "Emacs is already installed."
+fi
+if [[ ! -d "$HOME/.emacs.d" ]]; then
+    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+    if [[ $? -ne 0 ]]; then
+        echo "Error: Failed to clone Doom Emacs repository."
+        exit 1
+    fi
+fi
+# Install Doom Emacs dependencies
+if [[ -f "$HOME/.config/emacs/bin/doom" ]]; then
+    "$HOME/.config/emacs/bin/doom" install
+else
+    echo "Error: Doom Emacs executable not found. Please check the installation."
+    exit 1
+fi
+
 # optional packages
 echo "Do you want to install optional packages? (y/n)"
 read -r INSTALL_ADDITIONAL
