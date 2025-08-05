@@ -69,6 +69,8 @@ BASE_PACKAGES=(
     "kitty"
     "mpv"
     "neovim"
+    "pamixer"
+    "pavucontrol"
 )
 yay --noconfirm -S --needed "${BASE_PACKAGES[@]}"
 if [[ $? -ne 0 ]]; then
