@@ -96,6 +96,15 @@ echo "XDG_DOWNLOAD_DIR=$HOME/Downloads" >> "$HOME/.config/environment.d/xdg-home
 echo "XDG_MUSIC_DIR=$HOME/Music" >> "$HOME/.config/environment.d/xdg-home.conf"
 echo "XDG_PICTURES_DIR=$HOME/Pictures" >> "$HOME/.config/environment.d/xdg-home.conf"
 echo "XDG_VIDEOS_DIR=$HOME/Videos" >> "$HOME/.config/environment.d/xdg-home.conf"
+# Set up XDG environment variables for applications
+echo "Setting up XDG environment variables for applications..."
+echo "XDG_CONFIG_HOME=$HOME/.config" > "$HOME/.config/environment.d/xdg-applications.conf"
+echo "XDG_DATA_HOME=$HOME/.local/share" >> "$HOME/.config/environment.d/xdg-applications.conf"
+echo "XDG_CACHE_HOME=$HOME/.cache" >> "$HOME/.config/environment.d/xdg-applications.conf"
+echo "XDG_RUNTIME_DIR=/run/user/$(id -u)" >> "$HOME/.config/environment.d/xdg-applications.conf"
+echo "XDG_STATE_HOME=$HOME/.local/state" >> "$HOME/.config/environment.d/xdg-applications.conf"
+echo "XDG_CONFIG_DIRS=/etc/xdg" >> "$HOME/.config/environment.d/xdg-applications.conf"
+echo "XDG_DATA_DIRS=/usr/local/share/:/usr/share/" >> "$HOME/.config/environment.d/xdg-applications.conf"
 # Create necessary directories
 SCRIPT_HOME_DIRS=(
     "$HOME/.local/share/applications"
