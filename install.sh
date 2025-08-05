@@ -185,6 +185,23 @@ FONT_PACKAGES=(
     "ttf-twemoji"
     "noto-fonts-cjk"
 )
+# Install font packages
+yay --noconfirm -S --needed "${FONT_PACKAGES[@]}"
+# Download and install fonts
+for url in "${FONT_URLS[@]}"; do
+    FONT_NAME=$(basename "$url")
+    if [[ ! -f "$FONT_NAME" ]]; then
+        echo "Downloading $FONT_NAME..."
+        curl -LO "$url"
+        if [[ $? -ne 0 ]]; then
+            echo "Error: Failed to download $FONT_NAME."
+        fi
+    else
+        echo "$FONT_NAME already exists, skipping download."
+    fi
+    # Extract the font
+    unzip -o "$FONT_NAME" -d "$HOME/.local/share/fonts" && rm "$FONT_NAME"
+done
 
 # Install Starship
 echo "Installing Starship..."
