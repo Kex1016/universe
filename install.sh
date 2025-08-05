@@ -154,20 +154,44 @@ for file in "${RP_GTK_FILES[@]}"; do
     fi
 done
 
-# Extract and install the GTK themes
+RP_CURSOR_URL="https://github.com/rose-pine/cursor/releases/download/v1.1.0/BreezeX-RosePine-Linux.tar.xz"
+# Download and extract the cursor theme
+if [[ ! -f "BreezeX-RosePine-Linux.tar.xz" ]]; then
+    echo "Downloading BreezeX-RosePine cursor theme..."
+    curl -LO "$RP_CURSOR_URL"
+    if [[ $? -ne 0 ]]; then
+        echo "Error: Failed to download BreezeX-RosePine cursor theme."
+        exit 1
+    fi
+else
+    echo "BreezeX-RosePine cursor theme already exists, skipping download."
+fi
+
+# Extract the GTK themes
 mkdir -p "$HOME/.themes"
 tar -xzf "gtk3.tar.gz" -C "$HOME/.themes" --warning=no-unknown-keyword
 mkdir -p "$HOME/.config/gtk-4.0"
 tar -xzf "gtk4.tar.gz" -C "$HOME/.config/gtk-4.0" --warning=no-unknown-keyword
-mv "$HOME/.config/gtk-4.0/rose-pine.css" "$HOME/.config/gtk-4.0/gtk.css"
+mv "$HOME/.config/gtk-4.0/gtk4/rose-pine.css" "$HOME/.config/gtk-4.0/gtk.css"
 mkdir -p "$HOME/.icons"
 tar -xzf "rose-pine-icons.tar.gz" -C "$HOME/.icons" --warning=no-unknown-keyword
-# Set the GTK theme
-echo "Setting GTK theme to Rosé Pine..."
-echo "gtk-theme-name='Rose Pine'" >> "$HOME/.config/gtk-3.0/settings.ini"
-echo "gtk-theme-name='Rose Pine'" >> "$HOME/.config/gtk-4.0/settings.ini"
-echo "gtk-icon-theme-name='Rose Pine'" >> "$HOME/.config/gtk-3.0/settings.ini"
-echo "gtk-icon-theme-name='Rose Pine'" >> "$HOME/.config/gtk-4.0/settings.ini"
+tar -xvf "BreezeX-RosePine-Linux.tar.xz" -C ~/.local/share/icons --warning=no-unknown-keyword
+
+# Install fonts
+FONT_URLS=(
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/DepartureMono.zip"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/IosevkaTermSlab.zip"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/ProggyClean.zip"
+    "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/NerdFontsSymbolsOnly.zip"
+)
+FONT_PACKAGES=(
+    "ttf-dejavu"
+    "ttf-ibm-plex"
+    "ttf-roboto"
+    "ttf-ancient-fonts"
+    "ttf-twemoji"
+    "noto-fonts-cjk"
+)
 
 # Install Starship
 echo "Installing Starship..."
