@@ -23,7 +23,7 @@
 @define-color highlightHigh   #524f67;
 
 * {
-    font-size: 16px;
+    font-size: 14px;
     font-family: "DepartureMono Nerd Font";
 }
 
@@ -36,7 +36,7 @@ window#waybar {
 #custom-left-arrow {
     color: @highlightHigh;
     background: @base;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 #workspaces,
