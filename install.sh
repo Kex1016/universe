@@ -71,6 +71,7 @@ BASE_PACKAGES=(
     "neovim"
     "pamixer"
     "pavucontrol"
+    "dunst"
 )
 yay --noconfirm -S --needed "${BASE_PACKAGES[@]}"
 if [[ $? -ne 0 ]]; then
@@ -174,11 +175,15 @@ fi
 # Extract the GTK themes
 mkdir -p "$HOME/.themes"
 tar -xzf "gtk3.tar.gz" -C "$HOME/.themes" --warning=no-unknown-keyword
+mv "$HOME/.themes/gtk3/*" "$HOME/.themes"
+rm -rf "$HOME/.themes/gtk3"
 mkdir -p "$HOME/.config/gtk-4.0"
 tar -xzf "gtk4.tar.gz" -C "$HOME/.config/gtk-4.0" --warning=no-unknown-keyword
 mv "$HOME/.config/gtk-4.0/gtk4/rose-pine.css" "$HOME/.config/gtk-4.0/gtk.css"
 mkdir -p "$HOME/.icons"
 tar -xzf "rose-pine-icons.tar.gz" -C "$HOME/.icons" --warning=no-unknown-keyword
+mv "$HOME/.icons/icons/*" "$HOME/.icons/"
+rm -rf "$HOME/.icons/icons"
 tar -xvf "BreezeX-RosePine-Linux.tar.xz" -C ~/.local/share/icons --warning=no-unknown-keyword
 
 # Install fonts
@@ -237,8 +242,11 @@ if [[ -f "$HOME/.config/emacs/bin/doom" ]]; then
     "$HOME/.config/emacs/bin/doom" install
 else
     echo "Error: Doom Emacs executable not found. Please check the installation."
-    exit 1
 fi
+
+git clone https://github.com/donniebreve/rose-pine-doom-emacs "$SCRIPT_TMP_DIR/rose-pine-doom-emacs"
+cd "$SCRIPT_TMP_DIR/rose-pine-doom-emacs"
+make install
 
 # optional packages
 echo "Do you want to install optional packages? (y/n)"
@@ -246,8 +254,22 @@ read -r INSTALL_ADDITIONAL
 if [[ "$INSTALL_ADDITIONAL" == "y" || "$INSTALL_ADDITIONAL" == "Y" ]]; then
     ADDITIONAL_PACKAGES=(
         "equibop-bin"
+        "spotify"
+        "spicetify-cli"
+        "spicetify-themes-git"
     )
     yay --noconfirm -S --needed "${ADDITIONAL_PACKAGES[@]}"
+    if [[ $? -ne 0 ]]; then
+        echo "Error: Failed to install additional packages."
+    fi
+
+    echo "Equipping Spotify..."
+    if command -v spicetify &> /dev/null; then
+        spicetify backup apply
+        spicetify config current_theme Ziro
+        spicetify config color_scheme rose-pine
+        spicetify apply
+    fi
 else
     echo "Skipping additional packages installation."
 fi
@@ -323,6 +345,11 @@ case "$SHELL_CHOICE" in
         if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
             echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
         fi
+
+        echo "Installing Fisher..."
+        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+        echo "Installing Rose Pine theme for Fish..."
+        fisher install rose-pine/fish
         ;;
     *)
         echo "Unsupported shell: $SHELL_CHOICE. Please set up Starship manually."
@@ -342,4 +369,9 @@ if [[ "$REBOOT_CHOICE" == "y" || "$REBOOT_CHOICE" == "Y" ]]; then
     sudo reboot
 else
     echo "You can reboot later to apply changes."
+    echo "- To apply the Emacs theme:"
+    echo "  - Add the following to your ~/.doom.d/config.el:"
+    echo "    (setq doom-theme 'doom-rose-pine)"
+    echo "  - Run 'doom sync' in your terminal."
+    echo "  - Restart Emacs."
 fi
