@@ -236,7 +236,6 @@ if [[ ! -d "$HOME/.emacs.d" ]]; then
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
     if [[ $? -ne 0 ]]; then
         echo "Error: Failed to clone Doom Emacs repository."
-        exit 1
     fi
 fi
 # Install Doom Emacs dependencies
