@@ -15,7 +15,7 @@ cd "$SCRIPT_TMP_DIR"
 
 # Set up bare minimum packages
 echo "Setting up bare minimum packages..."
-sudo pacman -S --needed base-devel git rsync
+sudo pacman --noconfirm -S --needed base-devel git rsync
 
 # Set up yay if not already installed
 if ! command -v yay &> /dev/null; then
