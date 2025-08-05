@@ -22,7 +22,7 @@
   ],
 
   "custom/left-arrow": {
-    "format": "",
+    "format": " ",
     "tooltip": false,
   },
   "custom/right-arrow": {
