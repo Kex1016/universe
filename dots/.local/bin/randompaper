@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Randomly select a wallpaper from a specified directory and apply it using Hyprpaper.
 
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers/"
 CURRENT_WALL=$(hyprctl hyprpaper listloaded)

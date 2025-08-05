@@ -37,7 +37,7 @@
       "active": "",
     },
     "persistent-workspaces": {
-      "*": 2,
+      "*": 4,
     },
     "disable-scroll": true,
     "all-outputs": true,
