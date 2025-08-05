@@ -36,6 +36,7 @@ window#waybar {
 #custom-left-arrow {
     color: @highlightHigh;
     background: @base;
+    font-size: 22px;
 }
 
 #workspaces,
