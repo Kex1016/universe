@@ -289,18 +289,6 @@ if [[ $? -ne 0 ]]; then
     echo "Error: Failed to install CLI tools."
 fi
 
-if command -v spicetify &> /dev/null; then
-    if command -v spotify &> /dev/null; then
-        echo "Starting Spotify. Please log in to your account and then close it."
-        spotify
-        echo "Equipping Spotify..."
-        spicetify backup apply
-        spicetify config current_theme Ziro
-        spicetify config color_scheme rose-pine
-        spicetify apply
-    fi
-fi
-
 # Prompt the user for their preferred shell
 echo "Which shell do you prefer? (bash/zsh/fish)"
 read -r SHELL_CHOICE
@@ -354,9 +342,9 @@ case "$SHELL_CHOICE" in
         fi
 
         echo "Installing Fisher..."
-        curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+        fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
         echo "Installing Rose Pine theme for Fish..."
-        fisher install rose-pine/fish
+        fish -c "fisher install rose-pine/fish"
         ;;
     *)
         echo "Unsupported shell: $SHELL_CHOICE. Please set up Starship manually."
@@ -381,4 +369,11 @@ else
     echo "    (setq doom-theme 'doom-rose-pine)"
     echo "  - Run 'doom sync' in your terminal."
     echo "  - Restart Emacs."
+    echo "- To apply the Spotify theme:"
+    echo "  - Run the following commands in your terminal:"
+    echo "    spicetify backup"
+    echo "    spicetify config current_theme Ziro"
+    echo "    spicetify config color_scheme rose-pine"
+    echo "    spicetify apply"
+    echo "  - Restart Spotify."
 fi
