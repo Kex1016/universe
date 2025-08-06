@@ -53,7 +53,7 @@ BASE_PACKAGES=(
     "rofi"
     "copyq"
     "networkmanager"
-    "nm-applet"
+    "network-manager-applet"
     "udiskie"
     "nemo"
     "nemo-fileroller"
