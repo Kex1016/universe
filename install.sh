@@ -311,8 +311,8 @@ case "$SHELL_CHOICE" in
             echo "eval \"\$\(zoxide init --cmd cd bash\)\"" >> "$HOME/.bashrc"
         fi
 
-        if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
-            echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
+        if ! grep -q "shell" "$HOME/.config/kitty/conf.d/shell.conf"; then
+            echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/conf.d/shell.conf"
         fi
         ;;
     zsh)
@@ -333,8 +333,8 @@ case "$SHELL_CHOICE" in
             echo "eval \"\$\(zoxide init --cmd cd zsh\)\"" >> "$HOME/.zshrc"
         fi
 
-        if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
-            echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
+        if ! grep -q "shell" "$HOME/.config/kitty/conf.d/shell.conf"; then
+            echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/conf.d/shell.conf"
         fi
         ;;
     fish)
@@ -344,8 +344,8 @@ case "$SHELL_CHOICE" in
             yay --noconfirm -S --needed fish
         fi
 
-        if ! grep -q "shell" "$HOME/.config/kitty/kitty.conf"; then
-            echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/kitty.conf"
+        if ! grep -q "shell" "$HOME/.config/kitty/conf.d/shell.conf"; then
+            echo "shell $SHELL_CHOICE" >> "$HOME/.config/kitty/conf.d/shell.conf"
         fi
 
         echo "Installing Fisher..."
@@ -354,7 +354,7 @@ case "$SHELL_CHOICE" in
         fish -c "fisher install rose-pine/fish"
         ;;
     *)
-        echo "Unsupported shell: $SHELL_CHOICE. Please set up Starship manually."
+        echo "Unsupported shell: $SHELL_CHOICE. Please set it up manually."
         ;;
 esac
 
