@@ -1,0 +1,27 @@
+#!/bin/bash
+# cakeland_ws - smarter workspace toggler
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PREV_WS_FILE="$SCRIPT_DIR/.prev_ws"
+CURR_WS_FILE="$SCRIPT_DIR/.curr_ws"
+
+# Get current active workspace ID from hyprctl
+ACTIVE_WS="$(hyprctl activeworkspace | awk '/workspace ID/ {print $3}')"
+TARGET_WS="$1"
+
+# Load previous and current workspaces from file (if they exist)
+[[ -f "$CURR_WS_FILE" ]] && STORED_CURR_WS=$(<"$CURR_WS_FILE")
+[[ -f "$PREV_WS_FILE" ]] && STORED_PREV_WS=$(<"$PREV_WS_FILE")
+
+# If target is same as active, switch to previous
+if [[ "$TARGET_WS" == "$ACTIVE_WS" ]]; then
+    if [[ -n "$STORED_PREV_WS" ]]; then
+        hyprctl dispatch workspace "$STORED_PREV_WS"
+    fi
+else
+    hyprctl dispatch workspace "$TARGET_WS"
+fi
+
+# Save workspace history
+echo "$ACTIVE_WS" > "$PREV_WS_FILE"
+echo "$TARGET_WS" > "$CURR_WS_FILE"
