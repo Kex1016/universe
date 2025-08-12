@@ -28,6 +28,35 @@ else
     echo "Yay is already installed."
 fi
 
+echo "Hyprland or Labwc? (H/l)"
+read -r WM_CHOICE
+
+case "${WM_CHOICE,,}" in
+    l)
+        LABWC_PACKAGES=(
+            "labwc"
+        )
+        yay --noconfirm -S --needed "${LABWC_PACKAGES[@]}"
+        ;;
+    *)
+        HYPRLAND_PACKAGES=(
+            "hyprland"
+            "hyprpicker"
+            "hyprpaper"
+            "hyprlock"
+            "hyprcap"
+            "hypridle"
+            "hyprcursor"
+            "hyprsysteminfo"
+            "hyprpolkitagent"
+            "hyprsunset"
+            "xdg-utils"
+            "xdg-desktop-portal-hyprland"
+        )
+        yay --noconfirm -S --needed "${HYPRLAND_PACKAGES[@]}"
+        ;;
+esac
+
 # Install base deps
 echo "Installing dependencies..."
 BASE_PACKAGES=(
