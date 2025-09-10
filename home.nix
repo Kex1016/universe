@@ -16,7 +16,11 @@
 
   home.username = "majo";
   home.homeDirectory = "/home/majo";
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    userName = "cakes";
+    userEmail = "cakes@haiiro.moe";
+  };
   home.stateVersion = "25.05";
   home.sessionPath = [
     "$HOME/.local/bin"
