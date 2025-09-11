@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, catppuccin, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -18,7 +18,19 @@
 
   # Enable the X11 windowing system. lol, lmao.
   # services.xserver.enable = true;
+
+  services.displayManager.ly = {
+    enable = true;
+  };
+
   programs.hyprland.enable = true;
+
+  # i hate this part
+  programs.nautilus-open-any-terminal = {
+    enable = true;
+    terminal = "kitty";
+  };
+  # hatred over
 
   services.printing.enable = true;
 
@@ -44,6 +56,8 @@
     kitty
     git
     wget
+    nautilus
+    code-nautilus
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

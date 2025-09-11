@@ -2,12 +2,19 @@
 
 {
   imports = [
+    # THEME
+    ./modules/catppuccin.nix
+
     # DOTS
     ./modules/symlinks.nix
 
     # WM
     ./modules/hyprland/waybar.nix
     ./modules/hyprland/rofi.nix
+    ./modules/hyprland/kitty.nix
+
+    # SHELLS
+    ./modules/shells/fish.nix
 
     # APPS
     ./modules/apps/neovim.nix

@@ -4,13 +4,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    catppuccin.url = "github:catppuccin/nix/release-25.05";
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, catppuccin, ... }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -22,12 +23,18 @@
           modules = [
             ./system.nix
             home-manager.nixosModules.home-manager
+	    catppuccin.nixosModules.catppuccin
             {
               home-manager = {
                 extraSpecialArgs = { inherit pkgs-unstable; };
                 useGlobalPkgs = true;
                 useUserPackages = true;
-                users.majo = import ./home.nix;
+                users.majo = {
+		  imports = [
+		    ./home.nix
+                    catppuccin.homeModules.catppuccin
+		  ];
+		};
                 backupFileExtension = "backup";
               };
             }
