@@ -9,6 +9,12 @@
     ./hardware-configuration.nix
   ];
 
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+    accent = "flamingo";
+  };
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -24,14 +30,6 @@
   };
 
   programs.hyprland.enable = true;
-
-  # i hate this part
-  programs.nautilus-open-any-terminal = {
-    enable = true;
-    terminal = "kitty";
-  };
-  # hatred over
-
   services.printing.enable = true;
 
   services.pipewire = {
@@ -51,13 +49,8 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    kitty
     git
-    wget
-    nautilus
-    code-nautilus
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];

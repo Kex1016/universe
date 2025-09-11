@@ -2,6 +2,12 @@
 
 {
   imports = [
+    # USERDIRS
+    ./modules/userDirs.nix
+
+    # WM
+    ./modules/hyprland/wm.nix
+
     # THEME
     ./modules/catppuccin.nix
 
