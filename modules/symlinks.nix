@@ -5,8 +5,8 @@ let
   binfiles = "${config.home.homeDirectory}/hyprland/dots/.local/bin";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
   configs = {
-  	hypr = "hypr";
-	rofi = "rofi";
+    hypr = "hypr";
+    #rofi = "rofi";
   };
 in {
   # bins

@@ -22,9 +22,7 @@
     userEmail = "cakes@haiiro.moe";
   };
   home.stateVersion = "25.05";
-  home.sessionPath = [
-    "$HOME/.local/bin"
-  ];
+  home.sessionPath = [ "$HOME/.local/bin" ];
   home.packages = with pkgs; [ ];
   programs.bash = {
     enable = true;

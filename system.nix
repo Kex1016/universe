@@ -18,7 +18,6 @@
 
   # Enable the X11 windowing system. lol, lmao.
   # services.xserver.enable = true;
-  services.displayManager.ly.enable = true;
   programs.hyprland.enable = true;
 
   services.printing.enable = true;

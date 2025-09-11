@@ -20,7 +20,7 @@
         coven = lib.nixosSystem {
           inherit system;
           modules = [
-            ./configuration.nix
+            ./system.nix
             home-manager.nixosModules.home-manager
             {
               home-manager = {
@@ -32,6 +32,7 @@
               };
             }
           ];
+
           specialArgs = { inherit pkgs-unstable; };
         };
       };
