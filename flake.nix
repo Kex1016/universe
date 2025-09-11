@@ -23,18 +23,15 @@
           modules = [
             ./system.nix
             home-manager.nixosModules.home-manager
-	    catppuccin.nixosModules.catppuccin
+            catppuccin.nixosModules.catppuccin
             {
               home-manager = {
                 extraSpecialArgs = { inherit pkgs-unstable; };
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.majo = {
-		  imports = [
-		    ./home.nix
-                    catppuccin.homeModules.catppuccin
-		  ];
-		};
+                  imports = [ ./home.nix catppuccin.homeModules.catppuccin ];
+                };
                 backupFileExtension = "backup";
               };
             }

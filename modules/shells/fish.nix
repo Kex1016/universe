@@ -7,8 +7,6 @@
   };
   programs.fish = {
     enable = true;
-    functions = {
-      fish_greeting = "";
-    };
+    functions = { fish_greeting = ""; };
   };
 }

@@ -23,6 +23,9 @@
     ./modules/shells/fish.nix
 
     # APPS
+    ./modules/apps/cli.nix
+    ./modules/apps/nemo.nix
+    ./modules/apps/vscode.nix
     ./modules/apps/neovim.nix
     ./modules/apps/equibop.nix
   ];

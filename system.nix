@@ -25,9 +25,7 @@
   # Enable the X11 windowing system. lol, lmao.
   # services.xserver.enable = true;
 
-  services.displayManager.ly = {
-    enable = true;
-  };
+  services.displayManager.ly = { enable = true; };
 
   programs.hyprland.enable = true;
   services.printing.enable = true;
@@ -48,10 +46,7 @@
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
-  environment.systemPackages = with pkgs; [
-    wget
-    git
-  ];
+  environment.systemPackages = with pkgs; [ wget git ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

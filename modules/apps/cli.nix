@@ -1,11 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [
-    dust
-    duf
-    nixfmt
-  ];
+  home.packages = with pkgs; [ dust duf nixfmt ];
 
   programs = {
     bat = {
@@ -18,45 +14,42 @@
       colors = "auto";
       icons = "auto";
       git = true;
+      extraOptions = [ "--group-directories-first" "--header" ];
     };
     ripgrep.enable = true;
     zoxide = {
       enable = true;
       enableFishIntegration = true;
-      options = ["--cmd cd"]
+      options = [ "--cmd cd" ];
     };
     fastfetch = {
       enable = true;
       settings = {
-  logo = {
-    source = "nixos_small";
-    padding = {
-      right = 1;
-    };
-  };
-  display = {
-    size = {
-      binaryPrefix = "si";
-    };
-    color = "blue";
-    separator = "  ";
-  };
-  modules = [
-    {
-      type = "datetime";
-      key = "Date";
-      format = "{1}-{3}-{11}";
-    }
-    {
-      type = "datetime";
-      key = "Time";
-      format = "{14}:{17}:{20}";
-    }
-    "break"
-    "player"
-    "media"
-  ];
-};
+        logo = {
+          source = "nixos_small";
+          padding = { right = 1; };
+        };
+        display = {
+          size = { binaryPrefix = "si"; };
+          color = "blue";
+          separator = "  ";
+        };
+        modules = [
+          {
+            type = "datetime";
+            key = "Date";
+            format = "{1}-{3}-{11}";
+          }
+          {
+            type = "datetime";
+            key = "Time";
+            format = "{14}:{17}:{20}";
+          }
+          "break"
+          "player"
+          "media"
+        ];
+      };
     };
   };
 }

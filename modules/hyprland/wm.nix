@@ -39,9 +39,7 @@
       name = "Catppuccin-Mocha-Dark-Cursors";
       package = pkgs.catppuccin-cursors.mochaDark;
     };
-    gtk3 = {
-      extraConfig.gtk-application-prefer-dark-theme = true;
-    };
+    gtk3 = { extraConfig.gtk-application-prefer-dark-theme = true; };
   };
 
   home.pointerCursor = {
@@ -69,8 +67,9 @@
     style.name = "kvantum";
   };
 
-  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
-    General.theme = "Catppuccin-Mocha-Flamingo";
-  };
+  xdg.configFile."Kvantum/kvantum.kvconfig".source =
+    (pkgs.formats.ini { }).generate "kvantum.kvconfig" {
+      General.theme = "Catppuccin-Mocha-Flamingo";
+    };
 
 }
