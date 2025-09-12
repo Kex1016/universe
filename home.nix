@@ -5,7 +5,6 @@
     ./modules/userDirs.nix
     ./modules/symlinks.nix
     ./modules/shells/fish.nix
-    ./modules/system/fonts.nix
 
     # WM
     ./modules/catppuccin.nix
@@ -25,11 +24,6 @@
 
   home.username = "majo";
   home.homeDirectory = "/home/majo";
-  programs.git = {
-    enable = true;
-    userName = "cakes";
-    userEmail = "cakes@haiiro.moe";
-  };
   home.stateVersion = "25.05";
   home.sessionPath = [ "$HOME/.local/bin" ];
   home.packages = with pkgs; [ ];

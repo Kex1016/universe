@@ -8,6 +8,7 @@
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules/system/hypr.nix
+    ./modules/system/fonts.nix
   ];
 
   nix.settings = {
@@ -48,10 +49,6 @@
   };
 
   programs.firefox.enable = true;
-
-  # List packages installed in system profile.
-  # You can use https://search.nixos.org/ to find more packages (and options).
-  environment.systemPackages = with pkgs; [ wget git ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

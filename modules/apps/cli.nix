@@ -1,9 +1,14 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ dust duf nixfmt direnv hyprls pipes ];
+  home.packages = with pkgs; [ dust duf nixfmt direnv hyprls pipes wget git ];
 
   programs = {
+    git = {
+      enable = true;
+      userName = "cakes";
+      userEmail = "cakes@haiiro.moe";
+    };
     bat = {
       enable = true;
       extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
