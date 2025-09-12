@@ -6,8 +6,14 @@
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     hyprland.url = "github:hyprwm/Hyprland";
-    hyprland-dynamic-cursors.url = "github:VirtCode/hypr-dynamic-cursors";
-    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    hyprland-dynamic-cursors = {
+      url = "github:VirtCode/hypr-dynamic-cursors";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
 
     catppuccin.url = "github:catppuccin/nix/release-25.05";
 

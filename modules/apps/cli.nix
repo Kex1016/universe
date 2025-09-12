@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 {
-  home.packages = with pkgs; [ dust duf nixfmt direnv hyprls ];
+  home.packages = with pkgs; [ dust duf nixfmt direnv hyprls pipes ];
 
   programs = {
     bat = {
