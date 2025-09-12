@@ -9,7 +9,7 @@
     enable = true;
     functions = { fish_greeting = ""; };
     shellAliases = {
-      ritual = "sudo nixos-rebuild switch --flake $HOME/hyprland#coven";
+      ritual = "sudo nixos-rebuild switch --flake $HOME/NixOS#coven";
     };
   };
 }

@@ -5,6 +5,7 @@
     ./modules/userDirs.nix
     ./modules/symlinks.nix
     ./modules/shells/fish.nix
+    ./modules/system/fonts.nix
 
     # WM
     ./modules/catppuccin.nix
@@ -15,6 +16,7 @@
 
     # APPS
     ./modules/apps/cli.nix
+    ./modules/apps/essentials.nix
     ./modules/apps/nemo.nix
     ./modules/apps/vscode.nix
     ./modules/apps/neovim.nix

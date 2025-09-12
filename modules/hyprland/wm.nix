@@ -1,23 +1,14 @@
-{ config, hyprland-plugins, hyprland-dynamic-cursors, pkgs, ... }:
+{ config, hyprland-plugins, hyprland-dynamic-cursors, pkgs, pkgs-unstable, ...
+}:
 
 {
-  home.packages = with pkgs; [
-    (catppuccin-kvantum.override {
-      accent = "flamingo";
-      variant = "mocha";
-    })
-    libsForQt5.qtstyleplugin-kvantum
-    libsForQt5.qt5ct
-    papirus-folders
-    hyprpaper
-  ];
+  home.packages = with pkgs-unstable; [ hyprpaper hyprpicker hypridle ];
 
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
     portalPackage = null;
     plugins = [
-      hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
       hyprland-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors
     ];
 
@@ -91,19 +82,19 @@
 
         shadow = { enabled = false; };
 
-        blur = { enabled = false; };
+        blur = { enabled = true; };
       };
 
       animations = {
         enabled = true;
 
-        bezier = "eoq, 0.85, 0, 0.15, 1";
+        bezier = [ "eoq, 0.85, 0, 0.15, 1" "lin, 0, 0, 0, 0" ];
 
         animation = [
-          "windows, 1, 3, eoq"
+          "windows, 1, 3, eoq, slide"
           "border, 1, 5, eoq"
-          "fade, 1, 5, eoq"
-          "workspaces, 1, 3, eoq"
+          "fade, 1, 1, lin"
+          "workspaces, 1, 3, eoq, slidefade 20%"
         ];
       };
 
@@ -239,18 +230,54 @@
       windowrule = [
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "center,class:Codium"
       ];
     };
+  };
+
+  home.file.".cakepics" = {
+    source = "${config.home.homeDirectory}/NixOS/extra/pics";
+    recursive = true;
   };
 
   services.hyprpaper = {
     enable = true;
     settings = {
       preload = [
-        "${config.home.homeDirectory}/Pictures/Wallpapers/wallhaven-qp9dlq.jpg"
+        "${config.home.homeDirectory}/.cakepics/wallhaven-gp9dlq.png"
       ];
       wallpaper = [
-        "DP-1, ${config.home.homeDirectory}/Pictures/Wallpapers/wallhaven-qp9dlq.jpg"
+        "DP-1, ${config.home.homeDirectory}/.cakepics/wallhaven-gp9dlq.png"
+      ];
+    };
+  };
+
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        lock_cmd = "pidof hyprlock || hyprlock";
+        before_sleep_cmd = "loginctl lock-session";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+      };
+
+      listener = [
+        # Lock the screen
+        {
+          timeout = 300;
+          on-timeout = "loginctl lock-session";
+        }
+        # Turn off screen
+        {
+          timeout = 420;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+        # suspend
+        {
+          timeout = 600;
+          on-timeout = "systemctl suspend";
+        }
       ];
     };
   };

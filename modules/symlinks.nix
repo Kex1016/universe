@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
 let
-  dotfiles = "${config.home.homeDirectory}/hyprland/dots/.config";
-  binfiles = "${config.home.homeDirectory}/hyprland/dots/.local/bin";
+  dotfiles = "${config.home.homeDirectory}/NixOS/dots/.config";
+  binfiles = "${config.home.homeDirectory}/NixOS/dots/.local/bin";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
   configs = {
     #hypr = "hypr";
