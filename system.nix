@@ -7,7 +7,14 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./modules/system/hypr.nix
   ];
+
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
 
   catppuccin = {
     enable = true;
@@ -26,8 +33,6 @@
   # services.xserver.enable = true;
 
   services.displayManager.ly = { enable = true; };
-
-  programs.hyprland.enable = true;
   services.printing.enable = true;
 
   services.pipewire = {

@@ -2,25 +2,16 @@
 
 {
   imports = [
-    # USERDIRS
     ./modules/userDirs.nix
-
-    # WM
-    ./modules/hyprland/wm.nix
-
-    # THEME
-    ./modules/catppuccin.nix
-
-    # DOTS
     ./modules/symlinks.nix
+    ./modules/shells/fish.nix
 
     # WM
+    ./modules/catppuccin.nix
+    ./modules/hyprland/wm.nix
     ./modules/hyprland/waybar.nix
     ./modules/hyprland/rofi.nix
     ./modules/hyprland/kitty.nix
-
-    # SHELLS
-    ./modules/shells/fish.nix
 
     # APPS
     ./modules/apps/cli.nix

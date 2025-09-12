@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, hyprland-plugins, hyprland-dynamic-cursors, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -11,12 +11,16 @@
     papirus-folders
   ];
 
-  wayland.windowManager.hyprland.plugins = with pkgs.hyprlandPlugins; [
-    hypr-dynamic-cursors
-    hyprwinwrap
-    hyprfocus
-    hyprexpo
-  ];
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = null;
+    portalPackage = null;
+    plugins = [
+      hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprwinwrap
+      hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprfocus
+      hyprland-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors
+    ];
+  };
 
   gtk = {
     enable = true;
