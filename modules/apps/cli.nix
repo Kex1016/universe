@@ -19,6 +19,7 @@
     nix-tree
     wl-clipboard
     brightnessctl
+    trash-cli
   ];
 
   programs = {
