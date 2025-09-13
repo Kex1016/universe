@@ -54,6 +54,7 @@ in
         "dbus-update-activation-environment --systemd --all &"
         "nm-applet &"
         "steam -silent &"
+        "bash ${config.home.homeDirectory}/.local/bin/cakeland_services"
       ];
 
       workspace = [
