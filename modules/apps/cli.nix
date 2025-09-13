@@ -1,7 +1,22 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
-  home.packages = with pkgs; [ dust duf nixfmt direnv hyprls pipes wget git ];
+  home.packages = with pkgs; [
+    dust
+    duf
+    nixfmt-rfc-style
+    direnv
+    hyprls
+    pipes
+    wget
+    git
+    psmisc
+  ];
 
   programs = {
     git = {
@@ -11,7 +26,12 @@
     };
     bat = {
       enable = true;
-      extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
+      extraPackages = with pkgs.bat-extras; [
+        batdiff
+        batman
+        batgrep
+        batwatch
+      ];
     };
     eza = {
       enable = true;
@@ -19,7 +39,10 @@
       colors = "auto";
       icons = "auto";
       git = true;
-      extraOptions = [ "--group-directories-first" "--header" ];
+      extraOptions = [
+        "--group-directories-first"
+        "--header"
+      ];
     };
     ripgrep.enable = true;
     zoxide = {
@@ -32,7 +55,9 @@
       settings = {
         logo = {
           source = "nixos_small";
-          padding = { right = 1; };
+          padding = {
+            right = 1;
+          };
         };
         display = {
           size = {
@@ -47,9 +72,9 @@
           {
             type = "title";
             color = {
-                user = "green";
-                at = "red";
-                host = "blue";
+              user = "green";
+              at = "red";
+              host = "blue";
             };
           }
           "os"
@@ -61,7 +86,10 @@
             type = "colors";
             key = "Colors";
             block = {
-                range = [1 6];
+              range = [
+                1
+                6
+              ];
             };
           }
         ];
