@@ -19,6 +19,7 @@
     nix-tree
     wl-clipboard
     brightnessctl
+    playerctl
     trash-cli
   ];
 
