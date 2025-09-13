@@ -17,6 +17,7 @@
     git
     psmisc
     nix-tree
+    wl-clipboard
   ];
 
   programs = {
