@@ -1,19 +1,34 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   home.packages = with pkgs; [ waybar ];
 
   programs.waybar = {
     enable = true;
-    systemd.enable = true;
     settings = {
       mainBar = {
         layer = "top";
         position = "bottom";
+        output = [
+          "DP-1"
+          "DP-2"
+        ];
 
-        modules-left = [ "hyprland/workspaces" "custom/right-arrow" ];
-        modules-center =
-          [ "custom/left-arrow" "clock#1" "clock#2" "custom/right-arrow" ];
+        modules-left = [
+          "hyprland/workspaces"
+          "custom/right-arrow"
+        ];
+        modules-center = [
+          "custom/left-arrow"
+          "clock#1"
+          "clock#2"
+          "custom/right-arrow"
+        ];
         modules-right = [
           "custom/left-arrow"
           "pulseaudio"
@@ -40,7 +55,9 @@
             default = "";
             active = "";
           };
-          persistent-workspaces = { "*" = 4; };
+          persistent-workspaces = {
+            "*" = 4;
+          };
           disable-scroll = true;
           all-outputs = true;
           show-special = true;
@@ -62,7 +79,10 @@
           format-muted = "MUTE";
           format-icons = {
             headphones = "";
-            default = [ "" "" ];
+            default = [
+              ""
+              ""
+            ];
           };
           scroll-step = 5;
           on-click = "pamixer -t";
@@ -86,7 +106,13 @@
             critical = 15;
           };
           format = "{icon} {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
 
         disk = {
@@ -95,7 +121,9 @@
           path = "/";
         };
 
-        tray = { icon-size = 20; };
+        tray = {
+          icon-size = 20;
+        };
       };
     };
 

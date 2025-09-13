@@ -51,10 +51,12 @@ in
       ];
 
       exec-once = [
-        "dbus-update-activation-environment --systemd --all"
-        "nm-applet &"
-        "steam -silent &"
-        # "bash ${config.home.homeDirectory}/.local/bin/cakeland_services"
+        "exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XCURSOR_SIZE XCURSOR_THEME"
+        "exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XCURSOR_SIZE XCURSOR_THEME"
+        "nm-applet >/dev/null 2>&1 &"
+        "steam -silent >/dev/null 2>&1 &"
+        "waybar >/dev/null 2>&1 &"
+        "bash ${config.home.homeDirectory}/.local/bin/cakeland_services >/dev/null 2>&1 &"
       ];
 
       workspace = [
