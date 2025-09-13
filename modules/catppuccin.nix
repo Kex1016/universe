@@ -1,15 +1,15 @@
 { config, pkgs, pkgs-unstable, catppuccin, ... }:
 
 {
-  home.packages = with pkgs; [
-    (catppuccin-kvantum.override {
+  home.packages = [
+    (pkgs.catppuccin-kvantum.override {
       accent = "flamingo";
       variant = "mocha";
     })
     pkgs-unstable.libsForQt5.qtstyleplugin-kvantum
-    libsForQt5.qt5ct
-    kdePackages.qt6ct
-    papirus-folders
+    pkgs.libsForQt5.qt5ct
+    pkgs.kdePackages.qt6ct
+    pkgs.papirus-folders
   ];
 
   catppuccin = {
