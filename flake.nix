@@ -23,12 +23,17 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, catppuccin, unstable, ... }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
       # unstable nixpkgs
-      pkgs-unstable = inputs.unstable.legacyPackages.${system};
+      pkgs-unstable = import unstable {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+      };
       # hypr
       hyprland = inputs.hyprland;
       hyprland-dynamic-cursors = inputs.hyprland-dynamic-cursors;
