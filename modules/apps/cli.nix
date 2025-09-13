@@ -35,24 +35,35 @@
           padding = { right = 1; };
         };
         display = {
-          size = { binaryPrefix = "si"; };
+          size = {
+            ndigits = 0;
+            maxPrefix = "MB";
+          };
           color = "blue";
-          separator = "  ";
+          separator = "  ";
+          key.type = "icon";
         };
         modules = [
           {
-            type = "datetime";
-            key = "Date";
-            format = "{1}-{3}-{11}";
+            type = "title";
+            color = {
+                user = "green";
+                at = "red";
+                host = "blue";
+            };
           }
+          "os"
+          "kernel"
+          "memory"
+          "packages"
+          "uptime"
           {
-            type = "datetime";
-            key = "Time";
-            format = "{14}:{17}:{20}";
+            type = "colors";
+            key = "Colors";
+            block = {
+                range = [1 6];
+            };
           }
-          "break"
-          "player"
-          "media"
         ];
       };
     };
