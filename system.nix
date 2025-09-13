@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./modules/system/hypr.nix
     ./modules/system/fonts.nix
+    ./modules/apps/steam.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
