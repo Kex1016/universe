@@ -10,6 +10,7 @@
     ./modules/system/hypr.nix
     ./modules/system/fonts.nix
     ./modules/apps/steam.nix
+    ./modules/system/ananicy.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
