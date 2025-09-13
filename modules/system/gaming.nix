@@ -1,4 +1,4 @@
-{...}: {
+{pkgs, ...}: {
   programs = {
     gamescope = {
       enable = true;
@@ -19,4 +19,6 @@
       };
     };
   };
+
+  # see also apps/gaming.nix
 }
