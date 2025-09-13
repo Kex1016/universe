@@ -2,10 +2,17 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, catppuccin, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  catppuccin,
+  ...
+}:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules/system/hypr.nix
     ./modules/system/fonts.nix
@@ -16,9 +23,9 @@
   nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
   catppuccin = {
@@ -37,7 +44,12 @@
   # Enable the X11 windowing system. lol, lmao.
   # services.xserver.enable = true;
 
-  services.displayManager.ly = { enable = true; };
+  services.displayManager.ly = {
+    enable = true;
+    settings = {
+      login_cmd = "dbus-update-activation-environment --systemd --all";
+    };
+  };
   services.printing.enable = true;
   services.udisks2.enable = true;
 
@@ -46,15 +58,32 @@
     pulse.enable = true;
   };
 
+  services.blueman.enable = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+        FastConnectable = true;
+      };
+      Policy = {
+        AutoEnable = true;
+      };
+    };
+  };
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.majo = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   system.stateVersion = "25.05"; # Did you read the comment?
 
 }
-
