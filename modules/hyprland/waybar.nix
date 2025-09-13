@@ -62,7 +62,7 @@
           timezone = "Asia/Dubai";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           format-alt = " {:%d/%m/%Y}";
-          format = " {:%H:%M}";
+          format = "  {:%H:%M}";
         };
 
         backlight = {
@@ -136,7 +136,7 @@
     style = ''
       * {
         font-family: FantasqueSansM Nerd Font;
-        font-size: 17px;
+        font-size: 16px;
         min-height: 0;
       }
 
@@ -156,7 +156,7 @@
       #workspaces button {
         color: @lavender;
         border-radius: 1rem;
-        padding: 0.4rem;
+        padding: 0.3rem;
       }
 
       #workspaces button.active {
@@ -178,7 +178,7 @@
       #custom-lock,
       #custom-power {
         background-color: @surface0;
-        padding: 0.5rem 1rem;
+        padding: 0.3rem 1rem;
         margin: 5px 0;
       }
 
