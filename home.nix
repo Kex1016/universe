@@ -28,9 +28,4 @@
   home.homeDirectory = "/home/majo";
   home.stateVersion = "25.05";
   home.sessionPath = [ "$HOME/.local/bin" ];
-  home.packages = with pkgs; [ ];
-  programs.bash = {
-    enable = true;
-    shellAliases = { btw = "echo i use nixos, btw"; };
-  };
 }
