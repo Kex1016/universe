@@ -16,6 +16,7 @@
     # APPS
     ./modules/apps/cli.nix
     ./modules/apps/essentials.nix
+    ./modules/apps/gaming.nix
     ./modules/apps/nemo.nix
     ./modules/apps/floorp.nix
     ./modules/apps/obs-studio.nix
