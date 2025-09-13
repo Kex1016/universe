@@ -1,8 +1,14 @@
 { config, hyprland-plugins, hyprland-dynamic-cursors, pkgs, pkgs-unstable, ...
 }:
-
-{
-  home.packages = with pkgs-unstable; [ hyprpaper hyprpicker hypridle ];
+let create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+in {
+  home.packages = with pkgs-unstable; [
+    hyprpaper
+    hyprpicker
+    hypridle
+    hyprlock
+    emojipick
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -236,7 +242,7 @@
   };
 
   home.file.".cakepics" = {
-    source = "${config.home.homeDirectory}/NixOS/extra/pics";
+    source = create_symlink "${config.home.homeDirectory}/NixOS/extra/pics";
     recursive = true;
   };
 
@@ -245,9 +251,11 @@
     settings = {
       preload = [
         "${config.home.homeDirectory}/.cakepics/wallhaven-gp9dlq.png"
+        "${config.home.homeDirectory}/.cakepics/wallhaven-yxkmjx.png"
       ];
       wallpaper = [
         "DP-1, ${config.home.homeDirectory}/.cakepics/wallhaven-gp9dlq.png"
+        "DP-2, ${config.home.homeDirectory}/.cakepics/wallhaven-yxkmjx.png"
       ];
     };
   };
@@ -279,6 +287,49 @@
           on-timeout = "systemctl suspend";
         }
       ];
+    };
+  };
+
+  programs.hyprlock = {
+    enable = true;
+    package = pkgs-unstable.hyprlock;
+    settings = {
+      general = {
+        hide_cursor = true;
+        ignore_empty_input = true;
+      };
+
+      animations = {
+        enabled = true;
+        fade_in = {
+          duration = 300;
+          bezier = "easeOutQuint";
+        };
+        fade_out = {
+          duration = 300;
+          bezier = "easeOutQuint";
+        };
+      };
+
+      background = [{
+        path = "screenshot";
+        blur_passes = 3;
+        blur_size = 8;
+      }];
+
+      input-field = [{
+        size = "200, 50";
+        position = "0, -80";
+        monitor = "";
+        dots_center = true;
+        fade_on_empty = false;
+        font_color = "rgb(202, 211, 245)";
+        inner_color = "rgb(91, 96, 120)";
+        outer_color = "rgb(24, 25, 38)";
+        outline_thickness = 5;
+        placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
+        shadow_passes = 2;
+      }];
     };
   };
 }

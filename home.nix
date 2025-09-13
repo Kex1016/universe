@@ -17,6 +17,8 @@
     ./modules/apps/cli.nix
     ./modules/apps/essentials.nix
     ./modules/apps/nemo.nix
+    ./modules/apps/floorp.nix
+    ./modules/apps/obs-studio.nix
     ./modules/apps/vscode.nix
     ./modules/apps/neovim.nix
     ./modules/apps/equibop.nix

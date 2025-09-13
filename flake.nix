@@ -32,7 +32,7 @@
       # hypr
       hyprland = inputs.hyprland;
       hyprland-dynamic-cursors = inputs.hyprland-dynamic-cursors;
-      hyprland-plugins = inputs.hyprland-plugins;
+      # hyprland-plugins = inputs.hyprland-plugins;
     in {
       nixosConfigurations = {
         coven = lib.nixosSystem {
@@ -49,8 +49,9 @@
                   # hypr
                   inherit hyprland;
                   inherit hyprland-dynamic-cursors;
-                  inherit hyprland-plugins;
+                  # inherit hyprland-plugins;
                 };
+
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.majo = {
@@ -67,7 +68,7 @@
             # hypr
             inherit hyprland;
             inherit hyprland-dynamic-cursors;
-            inherit hyprland-plugins;
+            # inherit hyprland-plugins;
           };
         };
       };

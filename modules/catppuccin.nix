@@ -18,6 +18,7 @@
     accent = "flamingo";
     gtk.icon.enable = false;
     kvantum.enable = false;
+    hyprlock.useDefaultConfig = false;
   };
 
   gtk = {
