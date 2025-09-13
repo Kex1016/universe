@@ -14,206 +14,225 @@
       mainBar = {
         layer = "top";
         position = "bottom";
-        output = [
-          "DP-1"
-          "DP-2"
-        ];
 
         modules-left = [
           "hyprland/workspaces"
-          "custom/right-arrow"
         ];
         modules-center = [
-          "custom/left-arrow"
-          "clock#1"
-          "clock#2"
-          "custom/right-arrow"
+          "custom/music"
         ];
         modules-right = [
-          "custom/left-arrow"
           "pulseaudio"
-          "memory"
-          "cpu"
+          "backlight"
           "battery"
-          "disk"
+          "clock"
           "tray"
+          "custom/lock"
+          "custom/power"
         ];
 
-        "custom/left-arrow" = {
-          format = " ";
-          tooltip = false;
-        };
-
-        "custom/right-arrow" = {
-          format = "";
-          tooltip = false;
-        };
-
         "hyprland/workspaces" = {
-          format = "{icon}";
+          disable-scroll = true;
+          sort-by-name = true;
+          format = " {icon} ";
           format-icons = {
-            default = "";
-            active = "";
+            default = "";
           };
           persistent-workspaces = {
             "*" = 4;
           };
-          disable-scroll = true;
-          all-outputs = true;
-          show-special = true;
         };
 
-        "clock#1" = {
-          format = "{:%a}";
-          tooltip = false;
+        tray = {
+          icon-size = 21;
+          spacing = 10;
         };
 
-        "clock#2" = {
-          format = "{:%H:%M}";
-          tooltip = false;
-        };
-
-        pulseaudio = {
-          format = "{icon} {volume:2}%";
-          format-bluetooth = "{icon}  {volume}%";
-          format-muted = "MUTE";
-          format-icons = {
-            headphones = "";
-            default = [
-              ""
-              ""
-            ];
-          };
-          scroll-step = 5;
-          on-click = "pamixer -t";
-          on-click-right = "pavucontrol";
-        };
-
-        memory = {
+        "custom/music" = {
+          format = "  {}";
+          escape = true;
           interval = 5;
-          format = "Mem {}%";
+          tooltip = false;
+          exec = "playerctl metadata --format='{{ title }}'";
+          on-click = "playerctl play-pause";
+          max-length = 50;
         };
 
-        cpu = {
-          interval = 5;
-          format = "CPU {usage:2}%";
+        clock = {
+          timezone = "Asia/Dubai";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format-alt = " {:%d/%m/%Y}";
+          format = " {:%H:%M}";
+        };
+
+        backlight = {
+          device = "intel_backlight";
+          format = "{icon}";
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
 
         battery = {
           states = {
-            good = 95;
             warning = 30;
             critical = 15;
           };
-          format = "{icon} {capacity}%";
+          format = "{icon}";
+          format-charging = "";
+          format-plugged = "";
+          format-alt = "{icon}";
           format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
+            ""
           ];
         };
 
-        disk = {
-          interval = 5;
-          format = "Disk {percentage_used:2}%";
-          path = "/";
+        pulseaudio = {
+          format = "{icon} {volume}%";
+          format-muted = "";
+          format-icons = {
+            default = [
+              ""
+              ""
+              " "
+            ];
+          };
+          on-click = "pavucontrol";
         };
 
-        tray = {
-          icon-size = 20;
+        "custom/lock" = {
+          tooltip = false;
+          on-click = "loginctl lock-session \${XDG_SESSION_ID-}";
+          format = "";
+        };
+
+        "custom/power" = {
+          tooltip = false;
+          on-click = "rofi -show powermenu -modi powermenu:~/.local/bin/powermenu";
+          format = "⏻";
         };
       };
     };
 
     style = ''
-          /*
-      * Variant: Rosé Pine
-      * Maintainer: DankChoir
-      */
-
-      @define-color base            #191724;
-      @define-color surface         #1f1d2e;
-      @define-color overlay         #26233a;
-
-      @define-color muted           #6e6a86;
-      @define-color subtle          #908caa;
-      @define-color text            #e0def4;
-
-      @define-color love            #eb6f92;
-      @define-color gold            #f6c177;
-      @define-color rose            #ebbcba;
-      @define-color pine            #31748f;
-      @define-color foam            #9ccfd8;
-      @define-color iris            #c4a7e7;
-
-      @define-color highlightLow    #21202e;
-      @define-color highlightMed    #403d52;
-      @define-color highlightHigh   #524f67;
-
       * {
-          font-size: 14px;
-          font-family: "DepartureMono Nerd Font";
+        font-family: FantasqueSansM Nerd Font;
+        font-size: 17px;
+        min-height: 0;
       }
 
-      window#waybar {
-          background: @base;
-          color: @text;
+      #waybar {
+        background: @base;
+        color: @text;
+        margin: 5px 5px;
       }
 
-      #custom-right-arrow,
-      #custom-left-arrow {
-          color: @highlightHigh;
-          background: @base;
-          font-size: 18px;
-      }
-
-      #workspaces,
-      #clock.1,
-      #clock.2,
-      #clock.3,
-      #pulseaudio,
-      #memory,
-      #cpu,
-      #battery,
-      #disk,
-      #tray {
-          background: @highlightHigh;
+      #workspaces {
+        border-radius: 1rem;
+        margin: 5px;
+        background-color: @surface0;
+        margin-left: 1rem;
       }
 
       #workspaces button {
-          padding: 0 2px;
-          color: @text;
-      }
-      #workspaces button.focused {
-          color: @highlightHigh;
-      }
-      #workspaces button:hover {
-          box-shadow: inherit;
-          text-shadow: inherit;
-      }
-      #workspaces button:hover {
-          background: @highlightLow;
-          border: 1px solid @highlightMed;
-          padding: 0 3px;
+        color: @lavender;
+        border-radius: 1rem;
+        padding: 0.4rem;
       }
 
-      #pulseaudio,
-      #memory,
-      #cpu,
-      #battery,
-      #disk {
-          color: @rose;
+      #workspaces button.active {
+        color: @sky;
+        border-radius: 1rem;
       }
 
+      #workspaces button:hover {
+        color: @sapphire;
+        border-radius: 1rem;
+      }
+
+      #custom-music,
+      #tray,
+      #backlight,
       #clock,
-      #pulseaudio,
-      #memory,
-      #cpu,
       #battery,
-      #disk {
-          padding: 0 10px;
+      #pulseaudio,
+      #custom-lock,
+      #custom-power {
+        background-color: @surface0;
+        padding: 0.5rem 1rem;
+        margin: 5px 0;
+      }
+
+      #clock {
+        color: @blue;
+        border-radius: 0px 1rem 1rem 0px;
+        margin-right: 1rem;
+      }
+
+      #battery {
+        color: @green;
+      }
+
+      #battery.charging {
+        color: @green;
+      }
+
+      #battery.warning:not(.charging) {
+        color: @red;
+      }
+
+      #backlight {
+        color: @yellow;
+      }
+
+      #backlight, #battery {
+          border-radius: 0;
+      }
+
+      #pulseaudio {
+        color: @maroon;
+        border-radius: 1rem 0px 0px 1rem;
+        margin-left: 1rem;
+      }
+
+      #custom-music {
+        color: @mauve;
+        border-radius: 1rem;
+      }
+
+      #custom-lock {
+          border-radius: 1rem 0px 0px 1rem;
+          color: @lavender;
+      }
+
+      #custom-power {
+          margin-right: 1rem;
+          border-radius: 0px 1rem 1rem 0px;
+          color: @red;
+      }
+
+      #tray {
+        margin-right: 1rem;
+        border-radius: 1rem;
       }
     '';
 
