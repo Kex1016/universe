@@ -5,7 +5,7 @@
     enable = true;
     package = (pkgs-unstable.floorp.override {
       nativeMessagingHosts = [
-        pkgs.tridactyl-native
+        pkgs-unstable.tridactyl-native
       ];
     });
   };
