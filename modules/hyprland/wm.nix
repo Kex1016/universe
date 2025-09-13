@@ -51,10 +51,10 @@ in
       ];
 
       exec-once = [
-        "dbus-update-activation-environment --systemd --all &"
+        "dbus-update-activation-environment --systemd --all"
         "nm-applet &"
         "steam -silent &"
-        "bash ${config.home.homeDirectory}/.local/bin/cakeland_services"
+        # "bash ${config.home.homeDirectory}/.local/bin/cakeland_services"
       ];
 
       workspace = [
