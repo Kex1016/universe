@@ -12,5 +12,8 @@
     zathura = {
       enable = true;
     };
+    mpv = {
+      enable = true;
+    };
   };
 }
