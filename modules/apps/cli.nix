@@ -18,6 +18,7 @@
     psmisc
     nix-tree
     wl-clipboard
+    brightnessctl
   ];
 
   programs = {
