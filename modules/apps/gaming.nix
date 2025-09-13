@@ -8,5 +8,6 @@
   home.packages = with pkgs; [
     prismlauncher
     pkgs-unstable.r2modman
+    pkgs-unstable.lutris
   ];
 }
