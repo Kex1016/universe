@@ -373,5 +373,11 @@ in
     };
   };
 
-  services.copyq.enable = true;
+  services.copyq = {
+    enable = true;
+  };
+
+  services.blueman-applet = {
+    enable = true;
+  };
 }
