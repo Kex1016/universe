@@ -11,6 +11,7 @@ let
 in
 {
   home.packages = with pkgs-unstable; [
+    libnotify
     hyprpaper
     hyprpicker
     hypridle
@@ -74,7 +75,7 @@ in
 
       general = {
         gaps_in = 5;
-        gaps_out = 20;
+        gaps_out = 10;
 
         border_size = 2;
 
@@ -363,6 +364,11 @@ in
 
   services.dunst = {
     enable = true;
+    settings = {
+      global = {
+        follow = "mouse";
+      };
+    };
   };
 
   services.udiskie = {
