@@ -1,4 +1,4 @@
-{ config, hyprland-plugins, hyprland-dynamic-cursors, pkgs, pkgs-unstable, ...
+{ config, hyprland, hyprland-dynamic-cursors, pkgs, pkgs-unstable, ...
 }:
 let create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 in {
@@ -12,8 +12,8 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = null;
-    portalPackage = null;
+    package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     plugins = [
       hyprland-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors
     ];
