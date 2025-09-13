@@ -10,6 +10,12 @@ in {
     emojipick
   ];
 
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   wayland.windowManager.hyprland = {
     enable = true;
     package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
@@ -38,7 +44,7 @@ in {
         "hyprpaper &"
         "udiskie &"
         "copyq --start-server &"
-        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP &"
+        "dbus-update-activation-environment --systemd --all &"
         "hypridle &"
         ''bash -c "$HOME/.local/bin/randompaper" &''
         "emacs --daemon &"

@@ -1,4 +1,4 @@
-{ config, pkgs, catppuccin, ... }:
+{ config, pkgs, pkgs-unstable, catppuccin, ... }:
 
 {
   home.packages = with pkgs; [
@@ -6,7 +6,7 @@
       accent = "flamingo";
       variant = "mocha";
     })
-    libsForQt5.qtstyleplugin-kvantum
+    pkgs-unstable.libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
     kdePackages.qt6ct
     papirus-folders

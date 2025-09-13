@@ -16,6 +16,7 @@
     wget
     git
     psmisc
+    nix-tree
   ];
 
   programs = {

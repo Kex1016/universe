@@ -1,9 +1,10 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs-unstable, lib, ... }:
 
 {
   programs.obs-studio = {
     enable = true;
-    plugins = with pkgs.obs-studio-plugins; [
+    package = pkgs-unstable.obs-studio;
+    plugins = with pkgs-unstable.obs-studio-plugins; [
       wlrobs
       obs-tuna
       waveform

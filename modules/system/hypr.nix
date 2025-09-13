@@ -1,8 +1,5 @@
 { hyprland, pkgs, ... }:
 {
-  environment.systemPackages = [
-    hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland
-  ];
   programs.hyprland = {
     enable = true;
     package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
