@@ -47,15 +47,19 @@
   services.displayManager.ly = {
     enable = true;
     settings = {
-      login_cmd = "dbus-update-activation-environment --systemd --all";
+      #login_cmd = "dbus-update-activation-environment --systemd --all";
     };
   };
   services.printing.enable = true;
   services.udisks2.enable = true;
 
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
   };
 
   services.blueman.enable = true;
