@@ -1,13 +1,22 @@
-{ config, hyprland, hyprland-dynamic-cursors, pkgs, pkgs-unstable, ...
+{
+  config,
+  hyprland,
+  hyprland-dynamic-cursors,
+  pkgs,
+  pkgs-unstable,
+  ...
 }:
-let create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-in {
+let
+  create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
+in
+{
   home.packages = with pkgs-unstable; [
     hyprpaper
     hyprpicker
     hypridle
     hyprlock
     emojipick
+    networkmanagerapplet
   ];
 
   xdg.portal = {
@@ -36,20 +45,15 @@ in {
         "DP-2, 1920x1080@60, 0x0, 1, transform, 1"
       ];
 
-      env = [ "XCURSOR_SIZE,24" "HYPRCURSOR_SIZE,24" ];
+      env = [
+        "XCURSOR_SIZE,24"
+        "HYPRCURSOR_SIZE,24"
+      ];
 
       exec-once = [
-        "waybar &"
-        "nm-applet &"
-        "hyprpaper &"
-        "udiskie &"
-        "copyq --start-server &"
         "dbus-update-activation-environment --systemd --all &"
-        "hypridle &"
-        ''bash -c "$HOME/.local/bin/randompaper" &''
-        "emacs --daemon &"
-        ''dunst -conf "$HOME/.config/dunst/theme.conf" &''
-        "hyprctl reload"
+        "nm-applet &"
+        "steam -silent &"
       ];
 
       workspace = [
@@ -92,15 +96,22 @@ in {
         active_opacity = 1.0;
         inactive_opacity = 0.9;
 
-        shadow = { enabled = false; };
+        shadow = {
+          enabled = false;
+        };
 
-        blur = { enabled = true; };
+        blur = {
+          enabled = true;
+        };
       };
 
       animations = {
         enabled = true;
 
-        bezier = [ "eoq, 0.85, 0, 0.15, 1" "lin, 0, 0, 0, 0" ];
+        bezier = [
+          "eoq, 0.85, 0, 0.15, 1"
+          "lin, 0, 0, 0, 0"
+        ];
 
         animation = [
           "windows, 1, 3, eoq, slide"
@@ -110,7 +121,9 @@ in {
         ];
       };
 
-      misc = { disable_hyprland_logo = true; };
+      misc = {
+        disable_hyprland_logo = true;
+      };
 
       input = {
         kb_layout = "en";
@@ -120,7 +133,9 @@ in {
         sensitivity = 0;
         accel_profile = "flat";
 
-        touchpad = { natural_scroll = false; };
+        touchpad = {
+          natural_scroll = false;
+        };
       };
 
       plugin = {
@@ -317,25 +332,46 @@ in {
         };
       };
 
-      background = [{
-        path = "screenshot";
-        blur_passes = 3;
-        blur_size = 8;
-      }];
+      background = [
+        {
+          path = "screenshot";
+          blur_passes = 3;
+          blur_size = 8;
+        }
+      ];
 
-      input-field = [{
-        size = "200, 50";
-        position = "0, -80";
-        monitor = "";
-        dots_center = true;
-        fade_on_empty = false;
-        font_color = "rgb(202, 211, 245)";
-        inner_color = "rgb(91, 96, 120)";
-        outer_color = "rgb(24, 25, 38)";
-        outline_thickness = 5;
-        placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
-        shadow_passes = 2;
-      }];
+      input-field = [
+        {
+          size = "200, 50";
+          position = "0, -80";
+          monitor = "";
+          dots_center = true;
+          fade_on_empty = false;
+          font_color = "rgb(202, 211, 245)";
+          inner_color = "rgb(91, 96, 120)";
+          outer_color = "rgb(24, 25, 38)";
+          outline_thickness = 5;
+          placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
+          shadow_passes = 2;
+        }
+      ];
     };
   };
+
+  services.dunst = {
+    enable = true;
+  };
+
+  services.udiskie = {
+    enable = true;
+    settings = {
+      program_options = {
+        udisks_version = 2;
+        tray = true;
+      };
+      icon_names.media = [ "media-optical" ];
+    };
+  };
+
+  services.copyq.enable = true;
 }
