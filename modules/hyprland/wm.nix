@@ -178,6 +178,7 @@ in
         "$mainMod, Q, killactive,"
         "$mainMod, X, exec, rofi -show powermenu -modi powermenu:~/.local/bin/powermenu"
         "$mainMod, F, exec, $fileManager"
+        "$mainMod, F, exec, $fileManager"
         "$mainMod, Space, togglefloating,"
         "$mainMod, D, exec, $menu"
         "$mainMod, B, exec, $browser"
@@ -187,6 +188,7 @@ in
         "$secMod, W, exec, ~/.local/bin/randompaper"
         "$terMod, S, exec, hyprcap shot region -cw"
         "$mainMod, L, exec, loginctl lock-session \${XDG_SESSION_ID-}"
+        "$secMod, F, fullscreen"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
