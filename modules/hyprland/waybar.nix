@@ -34,7 +34,7 @@
         "hyprland/workspaces" = {
           disable-scroll = true;
           sort-by-name = true;
-          format = " {icon} ";
+          format = "{icon} ";
           format-icons = {
             default = "";
           };
@@ -59,7 +59,7 @@
         };
 
         clock = {
-          timezone = "Asia/Dubai";
+          timezone = "Europe/Budapest";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           format-alt = " {:%d/%m/%Y}";
           format = "  {:%H:%M}";
@@ -160,7 +160,7 @@
       }
 
       #workspaces button.active {
-        color: @sky;
+        color: @flamingo;
         border-radius: 1rem;
       }
 
