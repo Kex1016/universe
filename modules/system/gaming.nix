@@ -2,11 +2,11 @@
   programs = {
     gamescope = {
       enable = true;
-      capSysNice = true;
+      capSysNice = false;
     };
     gamemode = {
       enable = true;
-      enableRenice = true;
+      enableRenice = false;
       settings = {
         general = {
           renice = 10;
