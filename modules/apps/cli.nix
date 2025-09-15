@@ -21,6 +21,7 @@
     brightnessctl
     playerctl
     trash-cli
+    efibootmgr
   ];
 
   programs = {
