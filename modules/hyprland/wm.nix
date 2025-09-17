@@ -4,7 +4,7 @@
   hyprland-dynamic-cursors,
   pkgs,
   pkgs-unstable,
-  hostname
+  hostname,
   ...
 }:
 let
