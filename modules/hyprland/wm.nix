@@ -4,6 +4,7 @@
   hyprland-dynamic-cursors,
   pkgs,
   pkgs-unstable,
+  hostname
   ...
 }:
 let
@@ -57,7 +58,7 @@ in
         "nm-applet >/dev/null 2>&1 &"
         "steam -silent >/dev/null 2>&1 &"
         "waybar >/dev/null 2>&1 &"
-        "bash ${config.home.homeDirectory}/.local/bin/cakeland_services >/dev/null 2>&1 &"
+        "bash ${config.home.homeDirectory}/.local/bin/randompaper ${hostname} >/dev/null 2>&1 &"
       ];
 
       workspace = [
@@ -185,8 +186,8 @@ in
         "$mainMod, E, exec, $editor"
         "$secMod, P, pseudo, # dwindle"
         "$secMod, J, togglesplit, # dwindle"
-        "$secMod, W, exec, ~/.local/bin/randompaper"
-        "$terMod, S, exec, hyprcap shot region -cw"
+        "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
+        "$terMod, S, exec, ~/.local/bin/hyprcap shot region -cw"
         "$mainMod, L, exec, loginctl lock-session \${XDG_SESSION_ID-}"
         "$secMod, F, fullscreen"
 
@@ -277,12 +278,12 @@ in
     enable = true;
     settings = {
       preload = [
-        "${config.home.homeDirectory}/.cakepics/wallhaven-gp9dlq.png"
-        "${config.home.homeDirectory}/.cakepics/wallhaven-yxkmjx.png"
+        "${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-gp9dlq.png"
+        "${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-yxkmjx.png"
       ];
       wallpaper = [
-        "DP-1, ${config.home.homeDirectory}/.cakepics/wallhaven-gp9dlq.png"
-        "DP-2, ${config.home.homeDirectory}/.cakepics/wallhaven-yxkmjx.png"
+        "DP-1, ${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-gp9dlq.png"
+        "DP-2, ${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-yxkmjx.png"
       ];
     };
   };

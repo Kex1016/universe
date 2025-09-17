@@ -1,11 +1,41 @@
 #!/usr/bin/env bash
 # Randomly select a wallpaper from a specified directory and apply it using Hyprpaper.
 
-WALLPAPER_DIR="$HOME/.cakepics"
-CURRENT_WALL=$(hyprctl hyprpaper listloaded)
+random_file_from_dir() {
+  local dir="$1"
+  if [[ ! -d "$dir" ]]; then
+    echo "Error: '$dir' is not a directory" >&2
+    return 1
+  fi
 
-# Get a random wallpaper that is not the current one
-WALLPAPER=$(find "$WALLPAPER_DIR" -type f ! -name "$(basename "$CURRENT_WALL")" | shuf -n 1)
+  # Use Bash array
+  local files
+  mapfile -d '' files < <(find "$dir" -maxdepth 1 -type f -print0)
+  if (( ${#files[@]} == 0 )); then
+    echo "No files in directory" >&2
+    return 1
+  fi
 
-# Apply the selected wallpaper
-hyprctl hyprpaper reload ,"$WALLPAPER"
+  # Pick random index
+  local idx=$(( RANDOM % ${#files[@]} ))
+  # Print the file without the null terminator
+  printf '%s\n' "${files[$idx]%%$'\0'}"
+}
+
+WALLPAPER_DIR="$HOME/.cakepics/$1"
+
+if [[ ! -d "$WALLPAPER_DIR" ]]; then
+    echo "Error: '$WALLPAPER_DIR' is not a directory" >&2
+    return 1
+fi
+
+if [[ "$1" -eq "coven" ]]; then
+    WALLPAPER_WIDE=$(random_file_from_dir "$WALLPAPER_DIR/wide")
+    WALLPAPER_TALL=$(random_file_from_dir "$WALLPAPER_DIR/tall")
+    hyprctl hyprpaper reload DP-1,"$WALLPAPER_WIDE"
+    hyprctl hyprpaper reload DP-2,"$WALLPAPER_TALL"
+else
+    WALLPAPER=$(random_file_from_dir "$WALLPAPER_DIR")
+    hyprctl hyprpaper reload ,"$WALLPAPER"
+fi
+

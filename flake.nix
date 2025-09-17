@@ -30,6 +30,8 @@
     }@inputs:
     let
       system = "x86_64-linux";
+      # CHANGE THIS IF ON LAPTOP
+      hostname = "coven";
       lib = nixpkgs.lib;
 
       # PACKAGES
@@ -62,11 +64,12 @@
             {
               home-manager = {
                 extraSpecialArgs = {
-                  inherit pkgs-unstable;
-
-                  # hypr
-                  inherit hyprland;
-                  inherit hyprland-dynamic-cursors;
+                  inherit
+                    pkgs-unstable
+                    hyprland
+                    hyprland-dynamic-cursors
+                    hostname
+                    ;
                 };
 
                 useGlobalPkgs = true;
@@ -84,11 +87,12 @@
           ];
 
           specialArgs = {
-            inherit pkgs-unstable;
-
-            # hypr
-            inherit hyprland;
-            inherit hyprland-dynamic-cursors;
+            inherit
+              pkgs-unstable
+              hyprland
+              hyprland-dynamic-cursors
+              hostname
+              ;
           };
         };
       };
