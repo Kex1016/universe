@@ -391,4 +391,7 @@ in
   services.blueman-applet = {
     enable = true;
   };
+
+  hyprcap.enable = true;
+  hyprcap.includeExtras = with pkgs; [ wl-clipboard libnotify fuzzel ];
 }

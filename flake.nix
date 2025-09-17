@@ -10,10 +10,6 @@
       url = "github:VirtCode/hypr-dynamic-cursors";
       inputs.hyprland.follows = "hyprland";
     };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
 
     catppuccin.url = "github:catppuccin/nix/release-25.05";
 
@@ -23,11 +19,30 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, catppuccin, unstable, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      catppuccin,
+      unstable,
+      ...
+    }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
-      # unstable nixpkgs
+
+      # OVERLAYS
+      hyprcap-overlay = import ./overlays/hyprcap.nix;
+
+      # PACKAGES
+      pkgs = import nixpkgs {
+        inherit system;
+        config = {
+          allowUnfree = true;
+        };
+        overlays = [ hyprcap-overlay ];
+      };
       pkgs-unstable = import unstable {
         inherit system;
         config = {
@@ -37,30 +52,36 @@
       # hypr
       hyprland = inputs.hyprland;
       hyprland-dynamic-cursors = inputs.hyprland-dynamic-cursors;
-      # hyprland-plugins = inputs.hyprland-plugins;
-    in {
+    in
+    {
       nixosConfigurations = {
         coven = lib.nixosSystem {
           inherit system;
+          nixpkgs.config.allowUnfree = true;
+
           modules = [
             ./system.nix
+            ./modules/setups/coven/system.nix
             home-manager.nixosModules.home-manager
             catppuccin.nixosModules.catppuccin
             {
               home-manager = {
                 extraSpecialArgs = {
                   inherit pkgs-unstable;
-                  
+
                   # hypr
                   inherit hyprland;
                   inherit hyprland-dynamic-cursors;
-                  # inherit hyprland-plugins;
                 };
 
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 users.majo = {
-                  imports = [ ./home.nix catppuccin.homeModules.catppuccin ];
+                  imports = [
+                    ./home.nix
+                    ./modules/setups/coven/home.nix
+                    catppuccin.homeModules.catppuccin
+                  ];
                 };
                 backupFileExtension = "backup";
               };
@@ -73,7 +94,6 @@
             # hypr
             inherit hyprland;
             inherit hyprland-dynamic-cursors;
-            # inherit hyprland-plugins;
           };
         };
       };
