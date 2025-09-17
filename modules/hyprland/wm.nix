@@ -173,7 +173,6 @@ in
       "$secMod" = "Super+Shift";
       "$terMod" = "Super+Alt";
 
-      # Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
       bind = [
         "$mainMod, Return, exec, $terminal"
         "$mainMod, Q, killactive,"

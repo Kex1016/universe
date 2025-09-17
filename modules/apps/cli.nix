@@ -23,6 +23,7 @@
     trash-cli
     efibootmgr
     jq
+    tokei
   ];
 
   programs = {
