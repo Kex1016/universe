@@ -38,9 +38,6 @@
       # PACKAGES
       pkgs = import nixpkgs {
         inherit system;
-        config = {
-          allowUnfree = true;
-        };
         overlays = [ hyprcap-overlay ];
       };
       pkgs-unstable = import unstable {
@@ -78,6 +75,7 @@
                 useUserPackages = true;
                 users.majo = {
                   imports = [
+                    ./modules/hyprland/hyprcap.nix
                     ./home.nix
                     ./modules/setups/coven/home.nix
                     catppuccin.homeModules.catppuccin
