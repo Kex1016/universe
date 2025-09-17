@@ -5,14 +5,12 @@
 {
   config,
   lib,
-  pkgs,
   catppuccin,
   ...
 }:
 
 {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules/system/hypr.nix
     ./modules/system/gaming.nix
@@ -20,8 +18,6 @@
     ./modules/apps/steam.nix
     ./modules/system/ananicy.nix
   ];
-
-  nixpkgs.config.allowUnfree = true;
 
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];
@@ -38,7 +34,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "coven";
   networking.networkmanager.enable = true;
   time.timeZone = "Europe/Budapest";
 
