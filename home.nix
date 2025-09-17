@@ -19,7 +19,7 @@
     ./modules/apps/essentials.nix
     ./modules/apps/gaming.nix
     ./modules/apps/nemo.nix
-    ./modules/apps/floorp.nix
+    ./modules/apps/browsers.nix
     ./modules/apps/obs-studio.nix
     ./modules/apps/vscode.nix
     ./modules/apps/neovim.nix
