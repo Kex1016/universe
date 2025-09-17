@@ -22,6 +22,7 @@
     playerctl
     trash-cli
     efibootmgr
+    jq
   ];
 
   programs = {

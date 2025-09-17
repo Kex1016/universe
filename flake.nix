@@ -32,13 +32,12 @@
       system = "x86_64-linux";
       lib = nixpkgs.lib;
 
-      # OVERLAYS
-      hyprcap-overlay = import ./overlays/hyprcap.nix;
-
       # PACKAGES
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [ hyprcap-overlay ];
+        config = {
+          allowUnfree = true;
+        };
       };
       pkgs-unstable = import unstable {
         inherit system;
@@ -53,8 +52,7 @@
     {
       nixosConfigurations = {
         coven = lib.nixosSystem {
-          inherit system;
-          nixpkgs.config.allowUnfree = true;
+          inherit system pkgs;
 
           modules = [
             ./system.nix
@@ -75,7 +73,6 @@
                 useUserPackages = true;
                 users.majo = {
                   imports = [
-                    ./modules/hyprland/hyprcap.nix
                     ./home.nix
                     ./modules/setups/coven/home.nix
                     catppuccin.homeModules.catppuccin

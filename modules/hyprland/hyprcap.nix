@@ -1,26 +1,11 @@
 { config, pkgs, lib, ... }:
 
-let
-  cfg = config.hyprcap or { inherit (lib) mkOption; enable = false; includeExtras = []; };
-in
 {
-  options.hyprcap = {
-    enable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Enable the hyprcap script";
-    };
-    includeExtras = lib.mkOption {
-      type = lib.types.listOf lib.types.package;
-      default = [];
-      description = "Optional extra packages for hyprcap (wl-clipboard, fuzzel, libnotify, hyprpicker, etc.)";
-    };
-  };
+  home.packages = with pkgs; [
+    wf-recorder
+    grim
+    slurp
+  ];
 
-  config = lib.mkIf cfg.enable {
-    home.packages = lib.concatLists [
-      [ pkgs.hyprcap ]
-      (if cfg.includeExtras == [] then [] else cfg.includeExtras)
-    ];
-  };
+  # The rest is done in ~/.local/bin :D
 }
