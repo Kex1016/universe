@@ -8,21 +8,27 @@ random_file_from_dir() {
     return 1
   fi
 
-  # Use Bash array
   local files
-  mapfile -d '' files < <(find "$dir" -maxdepth 1 -type f -print0)
+  # Find: regular files or symlinks to regular files
+  mapfile -d '' files < <(
+    find "$dir" -maxdepth 1 \( -type f -o -type l \) -print0 | while IFS= read -r -d '' f; do
+      if [[ -f "$f" ]]; then
+        printf '%s\0' "$f"
+      fi
+    done
+  )
+
   if (( ${#files[@]} == 0 )); then
-    echo "No files in directory" >&2
+    echo "No regular files or valid symlinks found in '$dir'" >&2
     return 1
   fi
 
-  # Pick random index
   local idx=$(( RANDOM % ${#files[@]} ))
-  # Print the file without the null terminator
   printf '%s\n' "${files[$idx]%%$'\0'}"
 }
 
 WALLPAPER_DIR="$HOME/.cakepics/$1"
+echo "${WALLPAPER_DIR}"
 
 if [[ ! -d "$WALLPAPER_DIR" ]]; then
     echo "Error: '$WALLPAPER_DIR' is not a directory" >&2
