@@ -61,12 +61,12 @@
 
         memory = {
           interval = 2;
-          format = " {used:0.1f}G"
+          format = " {used:0.1f}G";
         };
 
         cpu = {
           interval = 2;
-          format = "󰍛 {usage}%"
+          format = "󰍛 {usage}%";
         };
 
         clock = {
