@@ -58,6 +58,7 @@ in
         "nm-applet >/dev/null 2>&1 &"
         "steam -silent >/dev/null 2>&1 &"
         "waybar >/dev/null 2>&1 &"
+        "bash ${config.home.homeDirectory}/.local/bin/cakeland_services >/dev/null 2>&1 &"
         "bash ${config.home.homeDirectory}/.local/bin/randompaper ${hostname} >/dev/null 2>&1 &"
       ];
 
