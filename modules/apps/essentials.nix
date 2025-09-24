@@ -5,6 +5,9 @@
     zathura
     pavucontrol
     gnome-font-viewer
+    qpwgraph
+    cider
+    spotify
   ];
 
   programs = {
