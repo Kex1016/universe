@@ -23,7 +23,7 @@
         ];
         modules-right = [
           "pulseaudio"
-          "cpu"
+          "disk"
           "memory"
           "battery"
           "clock"
@@ -64,9 +64,9 @@
           format = " {used:0.1f}G";
         };
 
-        cpu = {
-          interval = 2;
-          format = "󰍛 {usage}%";
+        disk = {
+          interval = 10;
+          format = " {percentage_free}%";
         };
 
         clock = {
@@ -168,6 +168,8 @@
       #tray,
       #backlight,
       #clock,
+      #disk,
+      #memory,
       #battery,
       #pulseaudio,
       #custom-lock,
@@ -181,6 +183,14 @@
         color: @blue;
         border-radius: 0px 1rem 1rem 0px;
         margin-right: 1rem;
+      }
+
+      #memory {
+        color: @sapphire;
+      }
+
+      #disk {
+        color: @mauve;
       }
 
       #battery {
