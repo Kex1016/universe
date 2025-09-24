@@ -60,7 +60,7 @@
 
   environment.systemPackages = [
     pkgs.distrobox
-    pkgs-unstable.distroshelf
+    pkgs.distroshelf
   ];
 
   security.rtkit.enable = true;
