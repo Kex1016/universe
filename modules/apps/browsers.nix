@@ -8,7 +8,7 @@
 
   programs.floorp = {
     enable = true;
-    package = (pkgs-unstable.floorp.override {
+    package = (pkgs-unstable.floorp-bin.override {
       nativeMessagingHosts = [
         pkgs-unstable.tridactyl-native
       ];
