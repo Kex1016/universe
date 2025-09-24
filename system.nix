@@ -97,6 +97,11 @@
     ]; # Enable ‘sudo’ for the user.
   };
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+  };
+
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"
