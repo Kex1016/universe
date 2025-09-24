@@ -50,6 +50,18 @@
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 
+  hardware.i2c.enable = true;
+
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+  };
+
+  environment.systemPackages = [
+    pkgs.distrobox
+    pkgs-unstable.distroshelf
+  ];
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -77,7 +89,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.majo = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [
+      "wheel"
+      "i2c"
+    ]; # Enable ‘sudo’ for the user.
   };
 
   nix.settings.experimental-features = [
