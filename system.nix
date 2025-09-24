@@ -7,6 +7,7 @@
   lib,
   catppuccin,
   pkgs,
+  pkgs-unstable,
   ...
 }:
 
@@ -60,7 +61,7 @@
 
   environment.systemPackages = [
     pkgs.distrobox
-    pkgs.distroshelf
+    pkgs-unstable.distroshelf
   ];
 
   security.rtkit.enable = true;
