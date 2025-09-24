@@ -23,7 +23,8 @@
         ];
         modules-right = [
           "pulseaudio"
-          "backlight"
+          "cpu"
+          "memory"
           "battery"
           "clock"
           "tray"
@@ -58,27 +59,21 @@
           max-length = 50;
         };
 
+        memory = {
+          interval = 2;
+          format = " {used:0.1f}G"
+        };
+
+        cpu = {
+          interval = 2;
+          format = "󰍛 {usage}%"
+        };
+
         clock = {
           timezone = "Europe/Budapest";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           format-alt = " {:%d/%m/%Y}";
           format = "  {:%H:%M}";
-        };
-
-        backlight = {
-          device = "intel_backlight";
-          format = "{icon}";
-          format-icons = [
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-            ""
-          ];
         };
 
         battery = {
