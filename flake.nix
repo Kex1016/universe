@@ -59,6 +59,7 @@
           modules = [
             ./system.nix
             ./modules/setups/coven/system.nix
+            # ./modules/setups/balefire/system.nix
             home-manager.nixosModules.home-manager
             catppuccin.nixosModules.catppuccin
             {
@@ -78,6 +79,7 @@
                   imports = [
                     ./home.nix
                     ./modules/setups/coven/home.nix
+                    # ./modules/setups/balefire/home.nix
                     catppuccin.homeModules.catppuccin
                   ];
                 };
