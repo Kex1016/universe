@@ -179,7 +179,6 @@ in
         "$mainMod, Q, killactive,"
         "$mainMod, X, exec, rofi -show powermenu -modi powermenu:~/.local/bin/powermenu"
         "$mainMod, F, exec, $fileManager"
-        "$mainMod, F, exec, $fileManager"
         "$mainMod, Space, togglefloating,"
         "$mainMod, D, exec, $menu"
         "$mainMod, B, exec, $browser"
@@ -231,6 +230,9 @@ in
         "$mainMod, S, togglespecialworkspace, magic"
         "$secMod, S, movetoworkspace, special:magic"
 
+        # Music
+        "$secMod, M, togglespecialworkspace, music"
+
         # Scroll through existing workspaces with mainMod + scroll
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
@@ -269,6 +271,11 @@ in
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
         "center,class:Codium"
+        "workspace special:music,class:Spotify"
+        "workspace special:music,class:Spotify, onworkspace:.*"
+        "float,class:^(one.alynx.showmethekey)$"
+        "pin,class:^(showmethekey-gtk)$"
+        "float,class:^(showmethekey-gtk)$"
       ];
     };
   };
@@ -400,5 +407,10 @@ in
   services.swayosd = {
     enable = true;
     topMargin = 0.9;
+  };
+
+  services.hyprpolkitagent = {
+    enable = true;
+    package = pkgs-unstable.hyprpolkitagent;
   };
 }
