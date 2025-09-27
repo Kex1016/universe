@@ -17,6 +17,7 @@
     # APPS
     ./modules/apps/cli.nix
     ./modules/apps/essentials.nix
+    ./modules/apps/extras.nix
     ./modules/apps/gaming.nix
     ./modules/apps/nemo.nix
     ./modules/apps/browsers.nix
