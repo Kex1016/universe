@@ -6,5 +6,9 @@
     nerd-fonts.symbols-only
     nerd-fonts.fantasque-sans-mono
     noto-fonts
+    roboto-flex
+    roboto-slab
+    roboto-mono
+    nerd-fonts.roboto-mono
   ];
 }
