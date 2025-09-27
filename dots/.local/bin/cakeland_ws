@@ -17,9 +17,11 @@ TARGET_WS="$1"
 if [[ "$TARGET_WS" == "$ACTIVE_WS" ]]; then
     if [[ -n "$STORED_PREV_WS" ]]; then
         hyprctl dispatch workspace "$STORED_PREV_WS"
+		swayosd-client --custom-message "Workspace $STORED_PREV_WS" --custom-icon view-grid-symbolic
     fi
 else
     hyprctl dispatch workspace "$TARGET_WS"
+	swayosd-client --custom-message "Workspace $TARGET_WS" --custom-icon view-grid-symbolic
 fi
 
 # Save workspace history
