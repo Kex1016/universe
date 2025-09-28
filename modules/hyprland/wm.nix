@@ -264,7 +264,8 @@ in
       ];
 
       bindrl = [
-        ",Caps_Lock,exec,swayosd-client --caps-lock-led input19::capslock"
+        # lol this doesnt work for some reason
+        "CAPS, Caps_Lock,exec,swayosd-client --caps-lock"
       ];
 
       windowrule = [
@@ -275,7 +276,8 @@ in
         "workspace special:music,class:Spotify, onworkspace:.*"
         "float,class:^(one.alynx.showmethekey)$"
         "pin,class:^(showmethekey-gtk)$"
-        "float,class:^(showmethekey-gtk)$"
+        "float,class:^(showmethekey-gtk)$" # TODO: put this window at 3390,130
+        "move 100%-260 -45, class:^(showmethekey-gtk)$"
       ];
     };
   };
@@ -333,44 +335,81 @@ in
     enable = true;
     package = pkgs-unstable.hyprlock;
     settings = {
+      animations = {
+        enabled = true;
+        fade_in = {
+          bezier = "easeOutQuint";
+          duration = 300;
+        };
+        fade_out = {
+          bezier = "easeOutQuint";
+          duration = 300;
+        };
+      };
+
+      background = {
+        blur_passes = 3;
+        blur_size = 8;
+        path = "screenshot";
+      };
+
       general = {
         hide_cursor = true;
         ignore_empty_input = true;
       };
 
-      animations = {
-        enabled = true;
-        fade_in = {
-          duration = 300;
-          bezier = "easeOutQuint";
-        };
-        fade_out = {
-          duration = 300;
-          bezier = "easeOutQuint";
-        };
-      };
-
-      background = [
+      label = [
         {
-          path = "screenshot";
-          blur_passes = 3;
-          blur_size = 8;
+          monitor = "DP-2";
+          text = ''<span weight="heavy">$TIME</span>'';
+          halign = "center";
+          valign = "center";
+          position = "0, 50";
+          font_family = "Roboto Flex";
+          font_size = 100;
+        }
+        {
+          monitor = "DP-2";
+          text = ''<span weight="normal">Grimoire sealed. Chant the spell to unlock.</span>'';
+          halign = "center";
+          valign = "center";
+          position = "0, -50";
+          font_family = "Roboto Flex";
+          font_size = 15;
+        }
+        {
+          monitor = "DP-1";
+          text = ''<span weight="heavy">$TIME</span>'';
+          halign = "center";
+          valign = "center";
+          position = "0, 100";
+          font_family = "Roboto Flex";
+          font_size = 100;
+        }
+        {
+          monitor = "DP-1";
+          text = ''<span weight="normal">Grimoire sealed. Chant the spell to unlock.</span>'';
+          halign = "center";
+          valign = "center";
+          position = "0, 0";
+          font_family = "Roboto Flex";
+          font_size = 15;
         }
       ];
 
       input-field = [
         {
-          size = "200, 50";
+          monitor = "DP-1";
+          size = "250, 50";
           position = "0, -80";
-          monitor = "";
           dots_center = true;
           fade_on_empty = false;
-          font_color = "rgb(202, 211, 245)";
-          inner_color = "rgb(91, 96, 120)";
-          outer_color = "rgb(24, 25, 38)";
+          font_color = "$text";
+          inner_color = "$base";
+          outer_color = "$mantle";
           outline_thickness = 5;
           placeholder_text = ''<span foreground="##cad3f5">Password...</span>'';
-          shadow_passes = 2;
+          rounding = 0;
         }
       ];
     };
