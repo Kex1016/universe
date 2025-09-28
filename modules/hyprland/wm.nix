@@ -163,9 +163,7 @@ in
           };
 
           shake = {
-            enabled = true;
-            nearest = true;
-            threshold = 6.0;
+            enabled = false;
           };
         };
       };
