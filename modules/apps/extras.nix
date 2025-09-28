@@ -3,5 +3,6 @@
 {
   home.packages = with pkgs; [
     pkgs-unstable.showmethekey
+    nmap
   ];
 }
