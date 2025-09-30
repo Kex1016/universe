@@ -8,11 +8,14 @@
 
 let
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  catppuccin-kv = (pkgs.catppuccin-kvantum.override {
+  catppuccin-kv = (
+    pkgs.catppuccin-kvantum.override {
       accent = "flamingo";
       variant = "mocha";
-    });
-in {
+    }
+  );
+in
+{
   home.packages = [
     catppuccin-kv
     pkgs-unstable.libsForQt5.qtstyleplugin-kvantum
@@ -29,6 +32,15 @@ in {
     gtk.icon.enable = false;
     kvantum.enable = false;
     hyprlock.useDefaultConfig = false;
+    vscode.profiles.majo = {
+      enable = true;
+      settings = {
+        accent = "flamingo";
+      };
+      icons = {
+        enable = true;
+      };
+    };
   };
 
   gtk = {
@@ -91,7 +103,7 @@ in {
       {
         General.theme = "catppuccin-mocha-flamingo";
       };
-  
+
   xdg.configFile."Kvantum/catppuccin-mocha-flamingo" = {
     source = create_symlink "${catppuccin-kv}/share/Kvantum/catppuccin-mocha-flamingo";
     recursive = true;
