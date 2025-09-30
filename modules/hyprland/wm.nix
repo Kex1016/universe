@@ -274,8 +274,10 @@ in
         "workspace special:music,class:Spotify, onworkspace:.*"
         "float,class:^(one.alynx.showmethekey)$"
         "pin,class:^(showmethekey-gtk)$"
-        "float,class:^(showmethekey-gtk)$" # TODO: put this window at 3390,130
+        "float,class:^(showmethekey-gtk)$"
         "move 100%-260 -45, class:^(showmethekey-gtk)$"
+        "pin,class:^(Proton Pass)$"
+        "float,class:^(Proton Pass)$"
       ];
     };
   };
