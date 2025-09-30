@@ -1,4 +1,7 @@
-{ config, pkgs-unstable, lib, ... }:
+{
+  pkgs-unstable,
+  ...
+}:
 
 {
   home.packages = with pkgs-unstable; [ equibop ];

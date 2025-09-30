@@ -3,9 +3,6 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 {
-  config,
-  lib,
-  catppuccin,
   pkgs,
   pkgs-unstable,
   ...

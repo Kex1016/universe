@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
   dotfiles = "${config.home.homeDirectory}/NixOS/dots/.config";
-  binfiles = "${config.home.homeDirectory}/NixOS/dots/.local/bin";
+  # binfiles = "${config.home.homeDirectory}/NixOS/dots/.local/bin";
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
-  configs = {}; # no need ofr this yet
-in {
+  configs = { }; # no need ofr this yet
+in
+{
   # bins
   home.file.".local/bin" = {
     source = ../dots/.local/bin;

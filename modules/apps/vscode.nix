@@ -1,4 +1,4 @@
-{ config, pkgs-unstable, lib, ... }:
+{ pkgs-unstable, ... }:
 
 {
   programs.vscode = {
@@ -22,7 +22,7 @@
         "nix.serverSettings" = {
           "nil" = {
             "formatting" = {
-              "command" = ["nixfmt"];
+              "command" = [ "nixfmt" ];
             };
           };
         };

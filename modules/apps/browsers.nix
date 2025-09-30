@@ -1,17 +1,19 @@
-{ config, pkgs, pkgs-unstable, lib, ... }:
+{ pkgs-unstable, ... }:
 
 {
-  home.packages = with pkgs; [
-    pkgs-unstable.vivaldi
-    pkgs-unstable.vivaldi-ffmpeg-codecs
+  home.packages = with pkgs-unstable; [
+    vivaldi
+    vivaldi-ffmpeg-codecs
   ];
 
   programs.floorp = {
     enable = true;
-    package = (pkgs-unstable.floorp-bin.override {
-      nativeMessagingHosts = [
-        pkgs-unstable.tridactyl-native
-      ];
-    });
+    package = (
+      pkgs-unstable.floorp-bin.override {
+        nativeMessagingHosts = with pkgs-unstable; [
+          tridactyl-native
+        ];
+      }
+    );
   };
 }

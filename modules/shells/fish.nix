@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, ... }:
 
 {
   programs.starship = {
@@ -7,7 +7,9 @@
   };
   programs.fish = {
     enable = true;
-    functions = { fish_greeting = "fastfetch"; };
+    functions = {
+      fish_greeting = "fastfetch";
+    };
     shellAliases = {
       convene = "cd $HOME/NixOS && nix flake update";
       sacrifice = "sudo nixos-rebuild switch --flake $HOME/NixOS#coven";

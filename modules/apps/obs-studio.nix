@@ -1,4 +1,7 @@
-{ config, pkgs-unstable, lib, ... }:
+{
+  pkgs-unstable,
+  ...
+}:
 
 {
   programs.obs-studio = {
