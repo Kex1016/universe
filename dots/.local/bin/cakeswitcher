@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+hyprctl dispatch focuswindow address:$(hyprctl -j clients | jq -r '
+  sort_by(.focusHistoryID)[] |
+  "∴ \(.workspace.name) ┇ \(.title) ┇ \(.address)"
+  ' | rofi -dmenu | grep -o "0x.*$")
