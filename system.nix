@@ -10,11 +10,8 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
     ./modules/system/hypr.nix
-    ./modules/system/gaming.nix
     ./modules/system/fonts.nix
-    ./modules/apps/steam.nix
     ./modules/system/ananicy.nix
   ];
 

@@ -9,7 +9,7 @@
     # WM
     ./modules/catppuccin.nix
     ./modules/hyprland/wm.nix
-    ./modules/hyprland/waybar.nix
+    #./modules/hyprland/waybar.nix
     ./modules/hyprland/rofi.nix
     ./modules/hyprland/kitty.nix
     ./modules/hyprland/hyprcap.nix
@@ -18,7 +18,6 @@
     ./modules/apps/cli.nix
     ./modules/apps/essentials.nix
     ./modules/apps/extras.nix
-    ./modules/apps/gaming.nix
     ./modules/apps/nemo.nix
     ./modules/apps/browsers.nix
     ./modules/apps/obs-studio.nix
