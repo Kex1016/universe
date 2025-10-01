@@ -11,6 +11,10 @@ let
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
 in
 {
+  imports = [
+    ./hyprpanel-theme.nix
+  ];
+
   home.packages = with pkgs-unstable; [
     libnotify
     hyprpaper
@@ -227,25 +231,20 @@ in
 
       # Laptop multimedia keys for volume and LCD brightness
       bindel = [
-        ",XF86AudioRaiseVolume,exec,swayosd-client --output-volume +5"
-        ",XF86AudioLowerVolume,exec,swayosd-client --output-volume -5"
-        ",XF86AudioMute,exec,swayosd-client --output-volume mute-toggle"
-        ",XF86AudioMicMute,exec,swayosd-client --input-volume mute-toggle"
-        ",XF86MonBrightnessUp, exec, swayosd-client --brightness +5"
-        ",XF86MonBrightnessDown, exec, swayosd-client --brightness -5"
+        ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
+        ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
       ];
 
       # Requires playerctl
       bindl = [
-        ", XF86AudioNext, exec, swayosd-client --player auto --playerctl next"
-        ", XF86AudioPause, exec, swayosd-client --player auto --playerctl play-pause"
-        ", XF86AudioPlay, exec, swayosd-client --player auto --playerctl play-pause"
-        ", XF86AudioPrev, exec, swayosd-client --player auto --playerctl previous"
-      ];
-
-      bindrl = [
-        # lol this doesnt work for some reason
-        "CAPS, Caps_Lock,exec,swayosd-client --caps-lock"
+        ", XF86AudioNext, exec, playerctl next"
+        ", XF86AudioPause, exec, playerctl play-pause"
+        ", XF86AudioPlay, exec, playerctl play-pause"
+        ", XF86AudioPrev, exec, playerctl previous"
       ];
 
       windowrule = [
@@ -332,14 +331,16 @@ in
     };
   };
 
-  /* services.dunst = {
-    enable = true;
-    settings = {
-      global = {
-        follow = "mouse";
+  /*
+    services.dunst = {
+      enable = true;
+      settings = {
+        global = {
+          follow = "mouse";
+        };
       };
     };
-  }; */
+  */
 
   services.udiskie = {
     enable = true;
@@ -360,10 +361,12 @@ in
     enable = true;
   };
 
-  /* services.swayosd = {
-    enable = true;
-    topMargin = 0.9;
-  }; */
+  /*
+    services.swayosd = {
+      enable = true;
+      topMargin = 0.9;
+    };
+  */
 
   programs.hyprpanel = {
     enable = true;
@@ -372,9 +375,16 @@ in
       layout = {
         bar.layouts = {
           "0" = {
-            left = [ "dashboard" "workspaces" ];
+            left = [
+              "dashboard"
+              "workspaces"
+            ];
             middle = [ "media" ];
-            right = [ "volume" "systray" "notifications" ];
+            right = [
+              "volume"
+              "systray"
+              "notifications"
+            ];
           };
         };
       };
@@ -393,12 +403,16 @@ in
       menus.dashboard.directories.enabled = false;
       menus.dashboard.stats.enable_gpu = true;
 
-      theme.bar.transparent = true;
+      menus.dashboard.shortcuts.left.shortcut1.icon = "";
+      menus.dashboard.shortcuts.left.shortcut1.tooltip = "Vivaldi";
+      menus.dashboard.shortcuts.left.shortcut1.command = "vivaldi";
+      menus.dashboard.shortcuts.left.shortcut2.command = "spotify";
+      menus.dashboard.shortcuts.left.shortcut3.command = "equibop";
+      menus.dashboard.shortcuts.right.shortcut3.command =
+        "bash -c \"~/.local/bin/hyprcap shot region -cw\"";
+      menus.dashboard.powermenu.logout = "loginctl terminate-session \${XDG_SESSION_ID-}";
 
-      theme.font = {
-        name = "RobotoMono Nerd Font";
-        size = "16px";
-      };
+      theme.bar.transparent = false;
     };
   };
 
