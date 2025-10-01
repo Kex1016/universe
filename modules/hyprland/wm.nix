@@ -56,7 +56,8 @@ in
         "exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XCURSOR_SIZE XCURSOR_THEME"
         "nm-applet >/dev/null 2>&1 &"
         "steam -silent >/dev/null 2>&1 &"
-        "waybar >/dev/null 2>&1 &"
+        # "waybar >/dev/null 2>&1 &"
+        "hyprpanel >/dev/null 2>&1 &"
         "bash ${config.home.homeDirectory}/.local/bin/cakeland_services >/dev/null 2>&1 &"
         "bash ${config.home.homeDirectory}/.local/bin/randompaper ${hostname} >/dev/null 2>&1 &"
       ];
