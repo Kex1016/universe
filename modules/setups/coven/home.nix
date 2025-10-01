@@ -1,6 +1,6 @@
 {
   config,
-  lib,
+  hostname,
   ...
 }:
 {
@@ -41,7 +41,7 @@
     ];
   };
   # > Hyprlock
-  services.hyprlock.settings = {
+  programs.hyprlock.settings = {
     label = [
       {
         monitor = "DP-2";
