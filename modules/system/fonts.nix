@@ -5,6 +5,7 @@
     nerd-fonts.departure-mono
     nerd-fonts.symbols-only
     nerd-fonts.fantasque-sans-mono
+    nerd-fonts.caskaydia-cove
     noto-fonts
     roboto-flex
     roboto-slab
