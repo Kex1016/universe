@@ -14,6 +14,7 @@
       obs-vaapi
       obs-vkcapture
       input-overlay
+      obs-browser-transition
       # obs-composite-blur
     ];
   };
