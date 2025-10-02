@@ -16,7 +16,7 @@
       ritual = "convene && sacrifice";
       cp = "/run/current-system/sw/bin/cp --reflink=auto -v";
       rm = "trash --trash-dir ${config.home.homeDirectory}/Trash";
-      btw = "echo i use nix btw :3";
+      btw = "fastfetch";
     };
   };
 }
