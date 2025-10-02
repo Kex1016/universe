@@ -9,6 +9,4 @@
   ];
 
   networking.hostName = "balefire";
-  networking.wireless.enable = true;
-  networking.wireless.userControlled.enable = true;
 }
