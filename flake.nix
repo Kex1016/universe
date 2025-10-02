@@ -59,7 +59,6 @@
           modules = [
             ./system.nix
             ./modules/setups/coven/system.nix
-            # ./modules/setups/balefire/system.nix
             home-manager.nixosModules.home-manager
             catppuccin.nixosModules.catppuccin
             {
@@ -79,7 +78,49 @@
                   imports = [
                     ./home.nix
                     ./modules/setups/coven/home.nix
-                    # ./modules/setups/balefire/home.nix
+                    catppuccin.homeModules.catppuccin
+                  ];
+                };
+                backupFileExtension = "backup";
+              };
+            }
+          ];
+
+          specialArgs = {
+            inherit
+              pkgs-unstable
+              hyprland
+              hyprland-dynamic-cursors
+              hostname
+              ;
+          };
+        };
+
+        balefire = lib.nixosSystem {
+          inherit system pkgs;
+
+          modules = [
+            ./system.nix
+            ./modules/setups/balefire/system.nix
+            home-manager.nixosModules.home-manager
+            catppuccin.nixosModules.catppuccin
+            {
+              home-manager = {
+                extraSpecialArgs = {
+                  inherit
+                    pkgs-unstable
+                    hyprland
+                    hyprland-dynamic-cursors
+                    hostname
+                    ;
+                };
+
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.majo = {
+                  imports = [
+                    ./home.nix
+                    ./modules/setups/balefire/home.nix
                     catppuccin.homeModules.catppuccin
                   ];
                 };
