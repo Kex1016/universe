@@ -12,7 +12,6 @@
     #./modules/hyprland/waybar.nix
     ./modules/hyprland/rofi.nix
     ./modules/hyprland/kitty.nix
-    ./modules/hyprland/hyprcap.nix
 
     # APPS
     ./modules/apps/cli.nix
