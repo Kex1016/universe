@@ -23,6 +23,10 @@ in
     hyprlock
     emojipick
     networkmanagerapplet
+    # hyprcap dependencies
+    wf-recorder
+    grim
+    slurp
   ];
 
   xdg.portal = {
