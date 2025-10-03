@@ -11,7 +11,15 @@
   # > Hyprland
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "monitor = , preferred, auto, 1"
+      "eDP-1, 1920x1080@60, 0x0, 1"
+    ];
+
+    input = {
+        kb_layout = "hu";
+    };
+
+    bind = [
+      "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
     ];
   };
 

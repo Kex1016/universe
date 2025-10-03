@@ -15,6 +15,10 @@
       "DP-2, 1920x1080@60, 0x0, 1, transform, 1"
     ];
 
+    exec-once = [
+      "steam -silent >/dev/null 2>&1 &"
+    ];
+
     workspace = [
       "1, monitor:DP-1"
       "2, monitor:DP-1"
@@ -27,6 +31,14 @@
       "9, monitor:DP-1"
       "0, monitor:DP-2"
     ];
+
+    bind = [
+      "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
+    ];
+
+    input = {
+        kb_layout = "en";
+    };
   };
 
   # > Hyprpaper

@@ -59,7 +59,6 @@ in
         "exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XCURSOR_SIZE XCURSOR_THEME"
         "exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XCURSOR_SIZE XCURSOR_THEME"
         "nm-applet >/dev/null 2>&1 &"
-        "steam -silent >/dev/null 2>&1 &"
         # "waybar >/dev/null 2>&1 &"
         "hyprpanel >/dev/null 2>&1 &"
         "bash ${config.home.homeDirectory}/.local/bin/cakeland_services >/dev/null 2>&1 &"
@@ -123,8 +122,6 @@ in
       };
 
       input = {
-        kb_layout = "en";
-
         follow_mouse = 1;
 
         sensitivity = 0;
@@ -174,7 +171,6 @@ in
         "$mainMod, E, exec, $editor"
         "$secMod, P, pseudo, # dwindle"
         "$secMod, J, togglesplit, # dwindle"
-        "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
         "$terMod, S, exec, ~/.local/bin/hyprcap shot region -cw"
         "$mainMod, L, exec, loginctl lock-session \${XDG_SESSION_ID-}"
         "$secMod, F, fullscreen"
