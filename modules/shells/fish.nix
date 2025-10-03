@@ -16,6 +16,8 @@
       cp = "/run/current-system/sw/bin/cp --reflink=auto -v";
       rm = "trash --trash-dir ${config.home.homeDirectory}/Trash";
       btw = "fastfetch";
+      df = "duf";
+      du = "dust";
     };
   };
 }
