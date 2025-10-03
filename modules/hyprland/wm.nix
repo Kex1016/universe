@@ -50,10 +50,6 @@ in
       "$browser" = "firefox";
       "$editor" = "emacs";
 
-      source = [
-        "~/.config/hypr/custom/*"
-      ];
-
       env = [
         "XCURSOR_SIZE,24"
         "HYPRCURSOR_SIZE,24"
