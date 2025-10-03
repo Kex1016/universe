@@ -180,6 +180,8 @@ in
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
+        "$terMod, left, layoutmsg, mfact -0.02"
+        "$terMod, right, layoutmsg, mfact +0.02"
 
         # Move windows on the same workspace
         "$secMod, left, movewindow, l"
