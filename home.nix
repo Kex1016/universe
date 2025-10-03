@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -29,4 +29,16 @@
   home.homeDirectory = "/home/majo";
   home.stateVersion = "25.05";
   home.sessionPath = [ "$HOME/.local/bin" ];
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "vivaldi-stable.desktop";
+      "x-scheme-handler/http" = "vivaldi-stable.desktop";
+      "x-scheme-handler/https" = "vivaldi-stable.desktop";
+      "x-scheme-handler/about" = "vivaldi-stable.desktop";
+      "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+    };
+  };
+  services.gnome-keyring.enable = true;
+  home.packages = [ pkgs.gcr ];
 }
