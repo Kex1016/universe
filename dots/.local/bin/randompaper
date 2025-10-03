@@ -28,14 +28,13 @@ random_file_from_dir() {
 }
 
 WALLPAPER_DIR="$HOME/.cakepics/$1"
-echo "${WALLPAPER_DIR}"
 
 if [[ ! -d "$WALLPAPER_DIR" ]]; then
     echo "Error: '$WALLPAPER_DIR' is not a directory" >&2
     return 1
 fi
 
-if [[ "$1" -eq "coven" ]]; then
+if [[ "$1" == "$HOME/.cakepics/coven" ]]; then
     WALLPAPER_WIDE=$(random_file_from_dir "$WALLPAPER_DIR/wide")
     WALLPAPER_TALL=$(random_file_from_dir "$WALLPAPER_DIR/tall")
     hyprctl hyprpaper reload DP-1,"$WALLPAPER_WIDE"
