@@ -174,6 +174,7 @@ in
         "$terMod, S, exec, ~/.local/bin/hyprcap shot region -cw"
         "$mainMod, L, exec, loginctl lock-session \${XDG_SESSION_ID-}"
         "$secMod, F, fullscreen"
+        "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"

@@ -17,10 +17,6 @@
     input = {
         kb_layout = "hu";
     };
-
-    bind = [
-      "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
-    ];
   };
 
   # > Hyprpaper
