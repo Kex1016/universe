@@ -6,5 +6,6 @@
     nmap
     electron-mail
     pkgs-unstable.proton-pass
+    handbrake
   ];
 }
