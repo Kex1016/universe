@@ -95,6 +95,22 @@
     ]; # Enable ‘sudo’ for the user.
   };
 
+  networking.firewall = {
+    enable = true;
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+  };
+
   nix.gc = {
     automatic = true;
     dates = "weekly";

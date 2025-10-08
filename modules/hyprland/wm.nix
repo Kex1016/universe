@@ -424,4 +424,9 @@ in
     enable = true;
     package = pkgs-unstable.hyprpolkitagent;
   };
+
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
+  };
 }
