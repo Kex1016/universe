@@ -1,6 +1,10 @@
 { pkgs-unstable, ... }:
 
 {
+  home.packages = [
+    pkgs-unstable.biome
+  ];
+
   programs.vscode = {
     enable = true;
     package = pkgs-unstable.vscodium;
