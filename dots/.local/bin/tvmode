@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# tvmode - a script to toggle TV mode on my PC.
+
+# Path to the “state file” (the dotfile) which will store “on” or “off”
+STATEFILE="$HOME/.tvmode"
+
+# Default starting state if file doesn’t exist
+DEFAULT_STATE="on"
+
+# Read the current state (or default)
+if [ -f "$STATEFILE" ]; then
+    STATE=$(<"$STATEFILE")
+else
+    STATE="$DEFAULT_STATE"
+fi
+
+# Function to save a state (“on” or “off”)
+save_state() {
+    echo "$1" > "$STATEFILE"
+}
+
+toggle() {
+    if [ "$STATE" = "on" ]; then
+        echo "Turning off"
+        # call “off” action
+        action_off
+        save_state "off"
+    else
+        echo "Turning on"
+        # call “on” action
+        action_on
+        save_state "on"
+    fi
+}
+
+action_on() {
+	hyprctl keyword monitor HDMI-A-1,1920x1080@50,auto,1
+}
+
+action_off() {
+	hyprctl keyword monitor HDMI-A-1,disable
+}
+
+toggle
