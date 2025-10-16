@@ -30,10 +30,18 @@
       "8, monitor:DP-1"
       "9, monitor:DP-1"
       "0, monitor:DP-2"
+      "10, monitor:HDMI-A-1"
+      "11, monitor:HDMI-A-1"
+      "12, monitor:HDMI-A-1"
+      "13, monitor:HDMI-A-1"
     ];
 
     bind = [
       "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
+      "$terMod, 1, exec, ~/.local/bin/cakeland_ws 10"
+      "$terMod, 2, exec, ~/.local/bin/cakeland_ws 11"
+      "$terMod, 3, exec, ~/.local/bin/cakeland_ws 12"
+      "$terMod, 4, exec, ~/.local/bin/cakeland_ws 13"
     ];
 
     input = {
@@ -46,10 +54,12 @@
     preload = [
       "${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-gp9dlq.png"
       "${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-yxkmjx.png"
+      "${config.home.homeDirectory}/.cakepics/balefire/wallhaven-r2lvlq.jpg"
     ];
     wallpaper = [
       "DP-1, ${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-gp9dlq.png"
       "DP-2, ${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-yxkmjx.png"
+      "HDMI-A-1, ${config.home.homeDirectory}/.cakepics/balefire/wallhaven-r2lvlq.jpg"
     ];
   };
   # > Hyprlock
@@ -113,7 +123,7 @@
   # > Fish
   programs.fish = {
     shellAliases = {
-      sacrifice = "sudo nixos-rebuild switch --flake $HOME/NixOS#balefire";
+      sacrifice = "sudo nixos-rebuild switch --flake $HOME/NixOS#coven";
     };
   };
 }
