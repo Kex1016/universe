@@ -18,6 +18,7 @@
       btw = "fastfetch";
       df = "duf";
       du = "dust";
+      rungame = "gamescope --backend wayland -W 2560 -H 1080 -w 2560 -h 1080 --force-grab-cursor -r 200 --expose-wayland -- ";
     };
   };
 }
