@@ -377,7 +377,17 @@ in
     settings = {
       layout = {
         bar.layouts = {
-          "0" = {
+          "*" = {
+            left = [
+              "dashboard"
+            ];
+            middle = [ "media" ];
+            right = [
+              "systray"
+              "notifications"
+            ];
+          };
+          "DP-1" = {
             left = [
               "dashboard"
               "workspaces"
@@ -385,6 +395,8 @@ in
             middle = [ "media" ];
             right = [
               "volume"
+              "network"
+              "bluetooth"
               "systray"
               "notifications"
             ];
@@ -402,6 +414,9 @@ in
         };
         weather.unit = "metric";
       };
+      bar.clock.format = "%a %d  %H:%M:%S";
+
+      menus.power = { };
 
       menus.dashboard.directories.enabled = false;
       menus.dashboard.stats.enable_gpu = true;
@@ -416,6 +431,13 @@ in
       menus.dashboard.powermenu.logout = "loginctl terminate-session \${XDG_SESSION_ID-}";
 
       theme.bar.transparent = false;
+
+      theme.bar.location = "bottom";
+      theme.osd.orientation = "horizontal";
+      theme.osd.location = "bottom";
+      notifications.position = "bottom right";
+      theme.notification.enableShadow = true;
+      notifications.showActionsOnHover = true;
     };
   };
 
