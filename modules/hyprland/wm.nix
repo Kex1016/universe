@@ -176,6 +176,11 @@ in
         "$secMod, F, fullscreen"
         "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
 
+        # Toggle bar components
+        "$mainMod, N, exec, hyprpanel t notificationsmenu"
+        "$mainMod, M, exec, hyprpanel t mediamenu"
+        "$mainMod, B, exec, hyprpanel t bluetoothmenu"
+
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
