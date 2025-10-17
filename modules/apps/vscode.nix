@@ -39,7 +39,7 @@
             };
           };
         };
-        "[javascript][typescript][json]" = {
+        "[javascript][typescript][json][typescriptreact][css]" = {
           "editor.defaultFormatter" = "esbenp.prettier-vscode";
         };
       };
