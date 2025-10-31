@@ -31,6 +31,17 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
+  networking.firewall = rec {
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
+    allowedTCPPorts = [ 22 80 443 5900 ];
+  };
+  
   time.timeZone = "Europe/Budapest";
 
   # Enable the X11 windowing system. lol, lmao.
@@ -38,9 +49,6 @@
 
   services.displayManager.ly = {
     enable = true;
-    settings = {
-      #login_cmd = "dbus-update-activation-environment --systemd --all";
-    };
   };
   services.printing.enable = true;
   services.udisks2.enable = true;
