@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.packages = with pkgs; [
@@ -8,6 +8,9 @@
     qpwgraph
     cider
     spotify
+    inotify-tools
+    gapless
+    file
   ];
 
   programs = {
@@ -15,10 +18,13 @@
       enable = true;
       settings = {
         general = {
-          overlay = true;
+          overlay = "yes";
         };
         viewer = {
           window = "#1e1e2eff";
+        };
+        "keys.viewer" = {
+          "Y" = ''exec ${config.home.homeDirectory}/.local/bin/hyprimgcpy "%"'';
         };
       };
     };
@@ -27,6 +33,13 @@
     };
     mpv = {
       enable = true;
+    };
+  };
+
+  services = {
+    kdeconnect = {
+      enable = true;
+      indicator = true;
     };
   };
 }
