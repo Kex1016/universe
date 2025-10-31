@@ -174,6 +174,12 @@ in
         "$terMod, S, exec, ~/.local/bin/hyprcap shot region -cw"
         "$mainMod, L, exec, loginctl lock-session \${XDG_SESSION_ID-}"
         "$secMod, F, fullscreen"
+        "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
+
+        # Toggle bar components
+        "$mainMod, N, exec, hyprpanel t notificationsmenu"
+        "$mainMod, M, exec, hyprpanel t mediamenu"
+        "$mainMod, B, exec, hyprpanel t bluetoothmenu"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
@@ -444,5 +450,10 @@ in
   services.hyprpolkitagent = {
     enable = true;
     package = pkgs-unstable.hyprpolkitagent;
+  };
+
+  services.kdeconnect = {
+    enable = true;
+    indicator = true;
   };
 }

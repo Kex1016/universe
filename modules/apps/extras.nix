@@ -7,5 +7,6 @@
     electron-mail
     pkgs-unstable.proton-pass
     wayvnc
+    handbrake
   ];
 }

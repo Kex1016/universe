@@ -100,6 +100,7 @@
     extraGroups = [
       "wheel"
       "i2c"
+      "networkmanager"
     ]; # Enable ‘sudo’ for the user.
   };
 
@@ -121,6 +122,12 @@
     "nix-command"
     "flakes"
   ];
+  
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   system.stateVersion = "25.05"; # Did you read the comment?
 
