@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# safeshot - script that checks your screenshot folder and uploads new stuff to haiiro safe
+
+SCREENSHOT_FOLDER="$HOME/Pictures/Screenshots"
+PWFILE="$HOME/.safepw"
+PASSWORD=$(<"$PWFILE")
+SAFE_URL="https://safe.haiiro.moe"
+UPLOAD_PATH="/users/cakes/s"
+
+inotifywait -m "$SCREENSHOT_FOLDER" -e create -e moved_to |
+	while read dir action file; do
+		echo "The file '$file' appeared in directory '$dir' via '$action'"
+		if [[ $action == "CREATE" ]]; then
+			curl --form f="@${dir}${file}" "${SAFE_URL}${UPLOAD_PATH}?pw=${PASSWORD}&j"
+		fi
+	done

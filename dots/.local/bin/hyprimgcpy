@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+img="$1"
+mimetype=$(file --mime -b "$img" | cut -d';' -f1)
+wl-copy --type "$mimetype" < "$img"
