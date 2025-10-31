@@ -10,6 +10,8 @@
     pkgs-unstable.lutris
     pkgs-unstable.osu-lazer-bin
     pkgs-unstable.xivlauncher
+    pkgs-unstable.protonplus
+    pkgs-unstable.etterna
   ];
 
   # also see system/gaming.nix
