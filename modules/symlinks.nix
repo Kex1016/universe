@@ -14,6 +14,11 @@ in
     executable = true;
   };
 
+  home.file.".local/share/rofi/icons" = {
+    source = ../extra/icons;
+    recursive = true;
+  };
+
   # dots
   xdg.configFile = builtins.mapAttrs (name: subpath: {
     source = create_symlink "${dotfiles}/${subpath}";
