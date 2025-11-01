@@ -11,5 +11,6 @@
     roboto-slab
     roboto-mono
     nerd-fonts.roboto-mono
+    liberation_ttf
   ];
 }
