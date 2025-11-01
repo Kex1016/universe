@@ -8,5 +8,6 @@
     pkgs-unstable.proton-pass
     wayvnc
     handbrake
+    libreoffice-fresh
   ];
 }
