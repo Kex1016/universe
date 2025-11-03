@@ -1,0 +1,4 @@
+#!/bin/sh
+systemctl --user restart hyprpaper &
+systemctl --user restart hypridle &
+systemctl --user restart blueman-applet &
