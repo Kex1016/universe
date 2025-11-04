@@ -22,7 +22,7 @@
     ./modules/apps/obs-studio.nix
     ./modules/apps/vscode.nix
     ./modules/apps/neovim.nix
-    ./modules/apps/equibop.nix
+    ./modules/apps/vesktop.nix
   ];
 
   home.username = "majo";
