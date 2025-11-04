@@ -68,7 +68,7 @@
   # > Fish
   programs.fish = {
     shellAliases = {
-      sacrifice = "sudo nixos-rebuild switch --flake $HOME/NixOS#balefire";
+      sacrifice = "sudo nixos-rebuild switch --flake $HOME/.nixos/universe#balefire";
     };
   };
 }

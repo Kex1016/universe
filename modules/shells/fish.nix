@@ -11,7 +11,7 @@
       fish_greeting = "fastfetch";
     };
     shellAliases = {
-      convene = "cd $HOME/NixOS && nix flake update";
+      convene = "cd $HOME/.nixos/universe && git pull && nix flake update";
       ritual = "convene && sacrifice";
       cp = "/run/current-system/sw/bin/cp --reflink=auto -v";
       rm = "trash --trash-dir ${config.home.homeDirectory}/Trash";
