@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# ffcut.sh – cut a video based on one or two timestamps
+# Usage:
+#   ./ffcut.sh input.mp4 start            # keep from start → end
+#   ./ffcut.sh input.mp4 start end        # keep start → end
+
+set -euo pipefail
+
+if (( $# < 2 || $# > 3 )); then
+    echo "Usage: $0 <input> <start> [<end>]" >&2
+    exit 1
+fi
+
+INPUT=$1
+START=$2
+END=${3:-}
+
+BASE=$(basename "$INPUT" .${INPUT##*.})
+if [[ -z $END ]]; then
+    OUT="${BASE}_${START//:/-}.mp4"
+else
+    OUT="${BASE}_${START//:/-}_to_${END//:/-}.mp4"
+fi
+
+if [[ -z $END ]]; then
+    ffmpeg -hide_banner -loglevel error -ss "$START" -i "$INPUT" -c copy "$OUT"
+else
+    ffmpeg -hide_banner -loglevel error -ss "$START" -to "$END" -i "$INPUT" -c copy "$OUT"
+fi
+
+echo "Created: $OUT"

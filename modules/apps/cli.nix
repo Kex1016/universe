@@ -22,6 +22,7 @@
     efibootmgr
     jq
     tokei
+    ffmpeg
   ];
 
   programs = {
