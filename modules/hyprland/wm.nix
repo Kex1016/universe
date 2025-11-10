@@ -58,6 +58,7 @@ in
       exec-once = [
         "exec systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XCURSOR_SIZE XCURSOR_THEME"
         "exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XCURSOR_SIZE XCURSOR_THEME"
+        "noctalia-shell"
         "nm-applet >/dev/null 2>&1 &"
         # "waybar >/dev/null 2>&1 &"
         "hyprpanel >/dev/null 2>&1 &"
