@@ -2,8 +2,7 @@
   description = "Witchforge Config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland-dynamic-cursors = {
@@ -11,11 +10,21 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    catppuccin.url = "github:catppuccin/nix/release-25.05";
+    catppuccin.url = "github:catppuccin/nix";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    quickshell = {
+      url = "github:outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.quickshell.follows = "quickshell"; # Use same quickshell version
     };
   };
 
@@ -25,13 +34,13 @@
       nixpkgs,
       home-manager,
       catppuccin,
-      unstable,
+      noctalia,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
       # CHANGE THIS IF ON LAPTOP
-      hostname = "coven";
+      hostname = "balefire";
       lib = nixpkgs.lib;
 
       # PACKAGES
@@ -41,15 +50,18 @@
           allowUnfree = true;
         };
       };
-      pkgs-unstable = import unstable {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      };
       # hypr
       hyprland = inputs.hyprland;
       hyprland-dynamic-cursors = inputs.hyprland-dynamic-cursors;
+
+      args = {
+        inherit
+          hyprland
+          hyprland-dynamic-cursors
+          hostname
+          noctalia
+          ;
+      };
     in
     {
       nixosConfigurations = {
@@ -63,14 +75,7 @@
             catppuccin.nixosModules.catppuccin
             {
               home-manager = {
-                extraSpecialArgs = {
-                  inherit
-                    pkgs-unstable
-                    hyprland
-                    hyprland-dynamic-cursors
-                    hostname
-                    ;
-                };
+                extraSpecialArgs = args;
 
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -79,6 +84,7 @@
                     ./home.nix
                     ./modules/setups/coven/home.nix
                     catppuccin.homeModules.catppuccin
+                    noctalia.homeModules.default
                   ];
                 };
                 backupFileExtension = "backup";
@@ -86,14 +92,7 @@
             }
           ];
 
-          specialArgs = {
-            inherit
-              pkgs-unstable
-              hyprland
-              hyprland-dynamic-cursors
-              hostname
-              ;
-          };
+          specialArgs = args;
         };
 
         balefire = lib.nixosSystem {
@@ -106,14 +105,7 @@
             catppuccin.nixosModules.catppuccin
             {
               home-manager = {
-                extraSpecialArgs = {
-                  inherit
-                    pkgs-unstable
-                    hyprland
-                    hyprland-dynamic-cursors
-                    hostname
-                    ;
-                };
+                extraSpecialArgs = args;
 
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -129,14 +121,7 @@
             }
           ];
 
-          specialArgs = {
-            inherit
-              pkgs-unstable
-              hyprland
-              hyprland-dynamic-cursors
-              hostname
-              ;
-          };
+          specialArgs = args;
         };
       };
     };
