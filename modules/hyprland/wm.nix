@@ -27,6 +27,7 @@ in
     wf-recorder
     grim
     slurp
+    swappy
   ];
 
   xdg.portal = {
@@ -60,8 +61,6 @@ in
         "exec dbus-update-activation-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XCURSOR_SIZE XCURSOR_THEME"
         "noctalia-shell >/dev/null 2>&1 &"
         "nm-applet >/dev/null 2>&1 &"
-        # "waybar >/dev/null 2>&1 &"
-        "hyprpanel >/dev/null 2>&1 &"
         "bash ${config.home.homeDirectory}/.local/bin/cakeland_services >/dev/null 2>&1 &"
         "bash ${config.home.homeDirectory}/.local/bin/randompaper ${hostname} >/dev/null 2>&1 &"
       ];
@@ -164,23 +163,26 @@ in
       bind = [
         "$mainMod, Return, exec, $terminal"
         "$mainMod, Q, killactive,"
-        "$mainMod, X, exec, rofi -show powermenu -modi powermenu:~/.local/bin/powermenu"
+        "$mainMod, X, exec, noctalia-shell ipc call sessionMenu toggle"
         "$mainMod, F, exec, $fileManager"
         "$mainMod, Space, togglefloating,"
-        "$mainMod, D, exec, $menu"
+        "$mainMod, D, exec, noctalia-shell ipc call launcher toggle"
         "$mainMod, B, exec, $browser"
         "$mainMod, E, exec, $editor"
-        "$secMod, P, pseudo, # dwindle"
-        "$secMod, J, togglesplit, # dwindle"
-        "$terMod, S, exec, ~/.local/bin/hyprcap shot region -cw"
-        "$mainMod, L, exec, loginctl lock-session \${XDG_SESSION_ID-}"
+        "$terMod, S, exec, ~/.local/bin/hyprcap shot region -zcw"
+        "$mainMod, L, exec, noctalia-shell ipc call lockScreen lock"
         "$secMod, F, fullscreen"
         "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
 
         # Toggle bar components
+        "$mainMod, comma, exec, noctalia-shell ipc call settings toggle"
+        "$mainMod, V, exec, noctalia-shell ipc call launcher clipboard"
+        "$mainMod, N, exec, noctalia-shell ipc call notifications toggleHistory"
         "$mainMod, N, exec, hyprpanel t notificationsmenu"
-        "$mainMod, M, exec, hyprpanel t mediamenu"
-        "$mainMod, B, exec, hyprpanel t bluetoothmenu"
+        "$mainMod, N, exec, hyprpanel t notificationsmenu"
+        "$mainMod, N, exec, hyprpanel t notificationsmenu"
+        "$mainMod, N, exec, hyprpanel t notificationsmenu"
+        "$mainMod, C, exec, noctalia-shell ipc call calendar toggle"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
@@ -241,20 +243,20 @@ in
 
       # Laptop multimedia keys for volume and LCD brightness
       bindel = [
-        ",XF86AudioRaiseVolume, exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
-        ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-        ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
-        ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        ",XF86MonBrightnessUp, exec, brightnessctl -e4 -n2 set 5%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
+        ",XF86AudioRaiseVolume, exec, noctalia-shell ipc call volume increase"
+        ",XF86AudioLowerVolume, exec, noctalia-shell ipc call volume decrease"
+        ",XF86AudioMute, exec, noctalia-shell ipc call volume muteOutput"
+        ",XF86AudioMicMute, exec, noctalia-shell ipc call volume muteInput"
+        ",XF86MonBrightnessUp, exec, noctalia-shell ipc call brightness increase"
+        ",XF86MonBrightnessDown, exec, noctalia-shell ipc call brightness decrease"
       ];
 
       # Requires playerctl
       bindl = [
-        ", XF86AudioNext, exec, playerctl next"
-        ", XF86AudioPause, exec, playerctl play-pause"
-        ", XF86AudioPlay, exec, playerctl play-pause"
-        ", XF86AudioPrev, exec, playerctl previous"
+        ", XF86AudioNext, exec, noctalia-shell ipc call media next"
+        ", XF86AudioPause, exec, noctalia-shell ipc call media playPause"
+        ", XF86AudioPlay, exec, noctalia-shell ipc call media playPause"
+        ", XF86AudioPrev, exec, noctalia-shell ipc call media previous"
       ];
 
       windowrule = [
@@ -312,34 +314,36 @@ in
     };
   };
 
-  programs.hyprlock = {
-    enable = true;
-    package = pkgs.hyprlock;
-    settings = {
-      animations = {
-        enabled = true;
-        fade_in = {
-          bezier = "easeOutQuint";
-          duration = 300;
+  /*
+    programs.hyprlock = {
+      enable = true;
+      package = pkgs.hyprlock;
+      settings = {
+        animations = {
+          enabled = true;
+          fade_in = {
+            bezier = "easeOutQuint";
+            duration = 300;
+          };
+          fade_out = {
+            bezier = "easeOutQuint";
+            duration = 300;
+          };
         };
-        fade_out = {
-          bezier = "easeOutQuint";
-          duration = 300;
+
+        background = {
+          blur_passes = 3;
+          blur_size = 8;
+          path = "screenshot";
         };
-      };
 
-      background = {
-        blur_passes = 3;
-        blur_size = 8;
-        path = "screenshot";
-      };
-
-      general = {
-        hide_cursor = true;
-        ignore_empty_input = true;
+        general = {
+          hide_cursor = true;
+          ignore_empty_input = true;
+        };
       };
     };
-  };
+  */
 
   /*
     services.dunst = {
@@ -367,9 +371,9 @@ in
     enable = true;
   };
 
-  services.blueman-applet = {
+  /* services.blueman-applet = {
     enable = true;
-  };
+  }; */
 
   /*
     services.swayosd = {

@@ -20,4 +20,7 @@
     xdgOpenUsePortal = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
+
+  services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
 }
