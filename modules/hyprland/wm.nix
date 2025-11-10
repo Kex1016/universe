@@ -12,6 +12,7 @@ in
 {
   imports = [
     ./hyprpanel-theme.nix
+    ./noctalia.nix
   ];
 
   home.packages = with pkgs; [
@@ -376,75 +377,77 @@ in
     };
   */
 
-  programs.hyprpanel = {
-    enable = true;
-    package = pkgs-unstable.hyprpanel;
-    settings = {
-      layout = {
-        bar.layouts = {
-          "*" = {
-            left = [
-              "dashboard"
-            ];
-            middle = [ "media" ];
-            right = [
-              "systray"
-              "notifications"
-            ];
-          };
-          "DP-1" = {
-            left = [
-              "dashboard"
-              "workspaces"
-            ];
-            middle = [ "media" ];
-            right = [
-              "volume"
-              "network"
-              "bluetooth"
-              "systray"
-              "notifications"
-            ];
+  /*
+    programs.hyprpanel = {
+      enable = true;
+      package = pkgs-unstable.hyprpanel;
+      settings = {
+        layout = {
+          bar.layouts = {
+            "*" = {
+              left = [
+                "dashboard"
+              ];
+              middle = [ "media" ];
+              right = [
+                "systray"
+                "notifications"
+              ];
+            };
+            "DP-1" = {
+              left = [
+                "dashboard"
+                "workspaces"
+              ];
+              middle = [ "media" ];
+              right = [
+                "volume"
+                "network"
+                "bluetooth"
+                "systray"
+                "notifications"
+              ];
+            };
           };
         };
-      };
 
-      bar.launcher.autoDetectIcon = true;
-      bar.workspaces.show_icons = true;
+        bar.launcher.autoDetectIcon = true;
+        bar.workspaces.show_icons = true;
 
-      menus.clock = {
-        time = {
-          military = true;
-          hideSeconds = true;
+        menus.clock = {
+          time = {
+            military = true;
+            hideSeconds = true;
+          };
+          weather.unit = "metric";
         };
-        weather.unit = "metric";
+        bar.clock.format = "%a %d  %H:%M:%S";
+
+        menus.power = { };
+
+        menus.dashboard.directories.enabled = false;
+        menus.dashboard.stats.enable_gpu = true;
+
+        menus.dashboard.shortcuts.left.shortcut1.icon = "";
+        menus.dashboard.shortcuts.left.shortcut1.tooltip = "Vivaldi";
+        menus.dashboard.shortcuts.left.shortcut1.command = "vivaldi";
+        menus.dashboard.shortcuts.left.shortcut2.command = "spotify";
+        menus.dashboard.shortcuts.left.shortcut3.command = "equibop";
+        menus.dashboard.shortcuts.right.shortcut3.command =
+          "bash -c \"~/.local/bin/hyprcap shot region -cw\"";
+        menus.dashboard.powermenu.logout = "loginctl terminate-session \${XDG_SESSION_ID-}";
+
+        theme.bar.transparent = false;
+
+        theme.bar.location = "bottom";
+        theme.osd.orientation = "horizontal";
+        theme.osd.location = "bottom";
+        notifications.position = "bottom right";
+        theme.notification.enableShadow = true;
+        notifications.showActionsOnHover = true;
       };
-      bar.clock.format = "%a %d  %H:%M:%S";
-
-      menus.power = { };
-
-      menus.dashboard.directories.enabled = false;
-      menus.dashboard.stats.enable_gpu = true;
-
-      menus.dashboard.shortcuts.left.shortcut1.icon = "";
-      menus.dashboard.shortcuts.left.shortcut1.tooltip = "Vivaldi";
-      menus.dashboard.shortcuts.left.shortcut1.command = "vivaldi";
-      menus.dashboard.shortcuts.left.shortcut2.command = "spotify";
-      menus.dashboard.shortcuts.left.shortcut3.command = "equibop";
-      menus.dashboard.shortcuts.right.shortcut3.command =
-        "bash -c \"~/.local/bin/hyprcap shot region -cw\"";
-      menus.dashboard.powermenu.logout = "loginctl terminate-session \${XDG_SESSION_ID-}";
-
-      theme.bar.transparent = false;
-
-      theme.bar.location = "bottom";
-      theme.osd.orientation = "horizontal";
-      theme.osd.location = "bottom";
-      notifications.position = "bottom right";
-      theme.notification.enableShadow = true;
-      notifications.showActionsOnHover = true;
     };
-  };
+  */
 
   services.hyprpolkitagent = {
     enable = true;
