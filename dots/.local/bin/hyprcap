@@ -473,9 +473,9 @@ function trim_slurp_border() {
 # --------------- Notifications --------------
 
 readonly ACTIONS_ARGS=(
-    "-A" "default='Save to file'"
-    "-A" "copy='Copy to clipboard'"
-    "-A" "edit='Edit'"
+    "-A" "default=Save to file"
+    "-A" "copy=Copy to clipboard"
+    "-A" "edit=Edit"
 )
 function notify() {
     NOTIFY=1 # In case it was called for other reasons???
@@ -519,8 +519,8 @@ function act() {
             save_capture;;
         copy)
             copy_capture;;
-        # edit)
-        #     edit_capture;;
+        edit)
+            edit_capture;;
         *)
             Print -E "Error: Unknown action '$1'.\n"
             return 1
@@ -549,9 +549,9 @@ function copy_capture() {
     fi
 }
 
-# function edit_capture() {
-#     swappy -f "$CAPTURE_FULLPATH" -o "$SAVE_FULLPATH"
-# }
+function edit_capture() {
+    swappy -f "$CAPTURE_PATH" -o "$SAVE_PATH"
+}
 
 # --------------- Freezing ---------------
 
