@@ -28,8 +28,12 @@
   programs = {
     git = {
       enable = true;
-      userName = "cakes";
-      userEmail = "cakes@haiiro.moe";
+      settings = {
+        user = {
+          name = "cakes";
+          email = "cakes@haiiro.moe";
+        };
+      };
     };
     bat = {
       enable = true;

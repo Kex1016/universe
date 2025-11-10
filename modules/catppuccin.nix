@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  pkgs-unstable,
   ...
 }:
 
@@ -15,13 +14,13 @@ let
   );
 in
 {
-  home.packages = [
+  home.packages = with pkgs; [
     catppuccin-kv
-    pkgs-unstable.libsForQt5.qtstyleplugin-kvantum
-    pkgs-unstable.qt6Packages.qtstyleplugin-kvantum
-    pkgs.libsForQt5.qt5ct
-    pkgs.kdePackages.qt6ct
-    pkgs.papirus-folders
+    libsForQt5.qtstyleplugin-kvantum
+    qt6Packages.qtstyleplugin-kvantum
+    libsForQt5.qt5ct
+    kdePackages.qt6ct
+    papirus-folders
   ];
 
   catppuccin = {

@@ -4,7 +4,6 @@
 
 {
   pkgs,
-  pkgs-unstable,
   ...
 }:
 
@@ -65,9 +64,9 @@
     dockerCompat = true;
   };
 
-  environment.systemPackages = [
-    pkgs.distrobox
-    pkgs-unstable.distroshelf
+  environment.systemPackages = with pkgs; [
+    distrobox
+    distroshelf
   ];
 
   security.rtkit.enable = true;

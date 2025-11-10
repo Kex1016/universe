@@ -1,4 +1,4 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   programs.steam = {
@@ -10,7 +10,7 @@
     protontricks = {
       enable = true;
     };
-    extraCompatPackages = with pkgs-unstable; [
+    extraCompatPackages = with pkgs; [
       proton-ge-bin
     ];
   };

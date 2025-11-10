@@ -1,15 +1,15 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = [
-    pkgs-unstable.biome
+    pkgs.biome
   ];
 
   programs.vscode = {
     enable = true;
-    package = pkgs-unstable.vscodium;
+    package = pkgs.vscodium;
     profiles.majo = {
-      extensions = with pkgs-unstable.vscode-extensions; [
+      extensions = with pkgs.vscode-extensions; [
         mkhl.direnv
         jnoortheen.nix-ide
         leonardssh.vscord
@@ -26,6 +26,12 @@
         humao.rest-client
         biomejs.biome
         gruntfuggly.todo-tree
+        vscjava.vscode-maven
+        vscjava.vscode-java-debug
+        vscjava.vscode-gradle
+        vscjava.vscode-java-test
+        vscjava.vscode-java-dependency
+        redhat.java
       ];
       userSettings = {
         "editor.fontFamily" = "'RobotoMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";

@@ -1,11 +1,11 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
-    pkgs-unstable.showmethekey
+    showmethekey
     nmap
     electron-mail
-    pkgs-unstable.proton-pass
+    proton-pass
     wayvnc
     handbrake
     libreoffice-fresh

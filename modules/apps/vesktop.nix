@@ -1,5 +1,5 @@
 {
-  pkgs-unstable,
+  pkgs,
   ...
 }:
 
@@ -121,6 +121,6 @@
       };
     };
     # vencord.themes = [ ];
-    package = pkgs-unstable.vesktop;
+    package = pkgs.vesktop;
   };
 }

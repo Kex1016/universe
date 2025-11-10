@@ -1,7 +1,7 @@
-{ pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
-  home.packages = with pkgs-unstable; [
+  home.packages = with pkgs; [
     vivaldi
     vivaldi-ffmpeg-codecs
   ];
@@ -9,8 +9,8 @@
   programs.floorp = {
     enable = true;
     package = (
-      pkgs-unstable.floorp-bin.override {
-        nativeMessagingHosts = with pkgs-unstable; [
+      pkgs.floorp-bin.override {
+        nativeMessagingHosts = with pkgs; [
           tridactyl-native
         ];
       }

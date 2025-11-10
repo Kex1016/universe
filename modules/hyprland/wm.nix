@@ -3,7 +3,6 @@
   hyprland,
   hyprland-dynamic-cursors,
   pkgs,
-  pkgs-unstable,
   hostname,
   ...
 }:
@@ -15,7 +14,7 @@ in
     ./hyprpanel-theme.nix
   ];
 
-  home.packages = with pkgs-unstable; [
+  home.packages = with pkgs; [
     libnotify
     hyprpaper
     hyprpicker
@@ -313,7 +312,7 @@ in
 
   programs.hyprlock = {
     enable = true;
-    package = pkgs-unstable.hyprlock;
+    package = pkgs.hyprlock;
     settings = {
       animations = {
         enabled = true;
@@ -449,7 +448,7 @@ in
 
   services.hyprpolkitagent = {
     enable = true;
-    package = pkgs-unstable.hyprpolkitagent;
+    package = pkgs.hyprpolkitagent;
   };
 
   services.kdeconnect = {
