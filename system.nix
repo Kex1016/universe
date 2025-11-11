@@ -26,7 +26,8 @@
     accent = "flamingo";
   };
 
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.limine.enable = true;
+  boot.loader.limine.maxGenerations = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
