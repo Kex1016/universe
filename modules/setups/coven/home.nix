@@ -125,7 +125,7 @@
   # > Fish
   programs.fish = {
     shellAliases = {
-      sacrifice = "sudo nixos-rebuild switch --flake $HOME/.nixos/universe#coven";
+      sacrifice = "cd $HOME/.nixos/universe && git pull && sudo nixos-rebuild switch --flake $HOME/.nixos/universe#coven";
     };
   };
 }
