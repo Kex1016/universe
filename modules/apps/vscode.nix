@@ -8,6 +8,7 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
+    defaultEditor = true;
     profiles.majo = {
       extensions = with pkgs.vscode-extensions; [
         mkhl.direnv
