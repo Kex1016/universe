@@ -17,7 +17,6 @@ in
 
   home.packages = with pkgs; [
     libnotify
-    hyprpaper
     hyprpicker
     hypridle
     emojipick
@@ -279,10 +278,6 @@ in
     recursive = true;
   };
 
-  services.hyprpaper = {
-    enable = true;
-  };
-
   services.hypridle = {
     enable = true;
     settings = {
@@ -312,48 +307,6 @@ in
     };
   };
 
-  /*
-    programs.hyprlock = {
-      enable = true;
-      package = pkgs.hyprlock;
-      settings = {
-        animations = {
-          enabled = true;
-          fade_in = {
-            bezier = "easeOutQuint";
-            duration = 300;
-          };
-          fade_out = {
-            bezier = "easeOutQuint";
-            duration = 300;
-          };
-        };
-
-        background = {
-          blur_passes = 3;
-          blur_size = 8;
-          path = "screenshot";
-        };
-
-        general = {
-          hide_cursor = true;
-          ignore_empty_input = true;
-        };
-      };
-    };
-  */
-
-  /*
-    services.dunst = {
-      enable = true;
-      settings = {
-        global = {
-          follow = "mouse";
-        };
-      };
-    };
-  */
-
   services.udiskie = {
     enable = true;
     settings = {
@@ -368,89 +321,6 @@ in
   services.copyq = {
     enable = true;
   };
-
-  /* services.blueman-applet = {
-    enable = true;
-  }; */
-
-  /*
-    services.swayosd = {
-      enable = true;
-      topMargin = 0.9;
-    };
-  */
-
-  /*
-    programs.hyprpanel = {
-      enable = true;
-      package = pkgs-unstable.hyprpanel;
-      settings = {
-        layout = {
-          bar.layouts = {
-            "*" = {
-              left = [
-                "dashboard"
-              ];
-              middle = [ "media" ];
-              right = [
-                "systray"
-                "notifications"
-              ];
-            };
-            "DP-1" = {
-              left = [
-                "dashboard"
-                "workspaces"
-              ];
-              middle = [ "media" ];
-              right = [
-                "volume"
-                "network"
-                "bluetooth"
-                "systray"
-                "notifications"
-              ];
-            };
-          };
-        };
-
-        bar.launcher.autoDetectIcon = true;
-        bar.workspaces.show_icons = true;
-
-        menus.clock = {
-          time = {
-            military = true;
-            hideSeconds = true;
-          };
-          weather.unit = "metric";
-        };
-        bar.clock.format = "%a %d  %H:%M:%S";
-
-        menus.power = { };
-
-        menus.dashboard.directories.enabled = false;
-        menus.dashboard.stats.enable_gpu = true;
-
-        menus.dashboard.shortcuts.left.shortcut1.icon = "";
-        menus.dashboard.shortcuts.left.shortcut1.tooltip = "Vivaldi";
-        menus.dashboard.shortcuts.left.shortcut1.command = "vivaldi";
-        menus.dashboard.shortcuts.left.shortcut2.command = "spotify";
-        menus.dashboard.shortcuts.left.shortcut3.command = "equibop";
-        menus.dashboard.shortcuts.right.shortcut3.command =
-          "bash -c \"~/.local/bin/hyprcap shot region -cw\"";
-        menus.dashboard.powermenu.logout = "loginctl terminate-session \${XDG_SESSION_ID-}";
-
-        theme.bar.transparent = false;
-
-        theme.bar.location = "bottom";
-        theme.osd.orientation = "horizontal";
-        theme.osd.location = "bottom";
-        notifications.position = "bottom right";
-        theme.notification.enableShadow = true;
-        notifications.showActionsOnHover = true;
-      };
-    };
-  */
 
   services.hyprpolkitagent = {
     enable = true;

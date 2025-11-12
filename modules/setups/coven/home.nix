@@ -1,6 +1,4 @@
 {
-  config,
-  hostname,
   ...
 }:
 {
@@ -39,7 +37,6 @@
     ];
 
     bind = [
-      "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
       "$terMod, 1, exec, ~/.local/bin/cakeland_ws 10"
       "$terMod, 2, exec, ~/.local/bin/cakeland_ws 11"
       "$terMod, 3, exec, ~/.local/bin/cakeland_ws 12"
@@ -47,23 +44,10 @@
     ];
 
     input = {
-        kb_layout = "en";
+      kb_layout = "en";
     };
   };
 
-  # > Hyprpaper
-  services.hyprpaper.settings = {
-    preload = [
-      "${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-gp9dlq.png"
-      "${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-yxkmjx.png"
-      "${config.home.homeDirectory}/.cakepics/balefire/wallhaven-r2lvlq.jpg"
-    ];
-    wallpaper = [
-      "DP-1, ${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-gp9dlq.png"
-      "DP-2, ${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-yxkmjx.png"
-      "HDMI-A-1, ${config.home.homeDirectory}/.cakepics/balefire/wallhaven-r2lvlq.jpg"
-    ];
-  };
   # > Hyprlock
   programs.hyprlock.settings = {
     label = [

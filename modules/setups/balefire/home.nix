@@ -1,6 +1,4 @@
 {
-  config,
-  hostname,
   ...
 }:
 {
@@ -15,19 +13,10 @@
     ];
 
     input = {
-        kb_layout = "hu";
+      kb_layout = "hu";
     };
   };
 
-  # > Hyprpaper
-  services.hyprpaper.settings = {
-    preload = [
-      "${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-g76rkd.jpg"
-    ];
-    wallpaper = [
-      ", ${config.home.homeDirectory}/.cakepics/${hostname}/wallhaven-g76rkd.jpg"
-    ];
-  };
   # > Hyprlock
   programs.hyprlock.settings = {
     label = [
