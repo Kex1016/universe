@@ -3,7 +3,6 @@
   hyprland,
   hyprland-dynamic-cursors,
   pkgs,
-  hostname,
   ...
 }:
 let
@@ -60,7 +59,6 @@ in
         "noctalia-shell >/dev/null 2>&1 &"
         "nm-applet >/dev/null 2>&1 &"
         "bash ${config.home.homeDirectory}/.local/bin/cakeland_services >/dev/null 2>&1 &"
-        "bash ${config.home.homeDirectory}/.local/bin/randompaper ${hostname} >/dev/null 2>&1 &"
       ];
 
       general = {
@@ -170,7 +168,6 @@ in
         "$terMod, S, exec, ~/.local/bin/hyprcap shot region -zcw"
         "$mainMod, L, exec, noctalia-shell ipc call lockScreen lock"
         "$secMod, F, fullscreen"
-        "$secMod, W, exec, ~/.local/bin/randompaper ${hostname}"
 
         # Toggle bar components
         "$mainMod, comma, exec, noctalia-shell ipc call settings toggle"

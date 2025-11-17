@@ -39,8 +39,6 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      # CHANGE THIS IF ON LAPTOP
-      hostname = "balefire";
       lib = nixpkgs.lib;
 
       # PACKAGES
@@ -58,7 +56,6 @@
         inherit
           hyprland
           hyprland-dynamic-cursors
-          hostname
           noctalia
           ;
       };
