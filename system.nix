@@ -31,7 +31,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
-  networking.firewall = rec {
+  networking.firewall = {
     allowedTCPPortRanges = [
       {
         from = 1714;
@@ -44,18 +44,31 @@
         to = 1764;
       }
       {
-	from = 7777;
-	to = 7779;
+        from = 7777;
+        to = 7779;
       }
       {
-      	from = 27031;
-	to = 27036;
+        from = 27031;
+        to = 27036;
       }
     ];
-    allowedTCPPorts = [ 22 80 443 5900 27960 27015 7777 ];
-    allowedUDPPorts = [ 27960 27900 27015 27036 ];
+    allowedTCPPorts = [
+      22
+      80
+      443
+      5900
+      27960
+      27015
+      7777
+    ];
+    allowedUDPPorts = [
+      27960
+      27900
+      27015
+      27036
+    ];
   };
-  
+
   time.timeZone = "Europe/Budapest";
 
   # Enable the X11 windowing system. lol, lmao.
@@ -136,7 +149,7 @@
     "nix-command"
     "flakes"
   ];
-  
+
   services.avahi = {
     enable = true;
     nssmdns4 = true;
