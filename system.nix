@@ -38,8 +38,22 @@
         to = 1764;
       }
     ];
-    allowedUDPPortRanges = allowedTCPPortRanges;
-    allowedTCPPorts = [ 22 80 443 5900 ];
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+      {
+	from = 7777;
+	to = 7779;
+      }
+      {
+      	from = 27031;
+	to = 27036;
+      }
+    ];
+    allowedTCPPorts = [ 22 80 443 5900 27960 27015 7777 ];
+    allowedUDPPorts = [ 27960 27900 27015 27036 ];
   };
   
   time.timeZone = "Europe/Budapest";
