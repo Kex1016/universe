@@ -255,17 +255,17 @@ in
       ];
 
       windowrule = [
-        "suppressevent maximize, class:.*"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-        "center,class:Codium"
-        "workspace special:music,class:Spotify"
-        "workspace special:music,class:Spotify, onworkspace:.*"
-        "float,class:^(one.alynx.showmethekey)$"
-        "pin,class:^(showmethekey-gtk)$"
-        "float,class:^(showmethekey-gtk)$"
-        "move 100%-260 -45, class:^(showmethekey-gtk)$"
-        "pin,class:^(Proton Pass)$"
-        "float,class:^(Proton Pass)$"
+        "suppress_event maximize,              match:class .*"
+        "no_focus on,                          match:class ^$,match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
+        "move (monitor_w*0.5) (monitor_h*0.5), match:class Codium"
+        "workspace special:music,              match:class Spotify"
+        "workspace special:music,              match:class Spotify, match:workspace .*"
+        "float on,                             match:class ^(one.alynx.showmethekey)$"
+        "pin on,                               match:class ^(showmethekey-gtk)$"
+        "float on,                             match:class ^(showmethekey-gtk)$"
+        "move 100%-260 -45,                    match:class ^(showmethekey-gtk)$"
+        "pin on,                               match:class ^(Proton Pass)$"
+        "float on,                             match:class ^(Proton Pass)$"
       ];
     };
   };
