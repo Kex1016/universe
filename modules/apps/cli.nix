@@ -5,6 +5,7 @@
 
 {
   home.packages = with pkgs; [
+    bun
     dust
     duf
     nixfmt-rfc-style
