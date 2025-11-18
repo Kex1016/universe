@@ -26,6 +26,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.quickshell.follows = "quickshell"; # Use same quickshell version
     };
+
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
   outputs =
@@ -35,12 +37,11 @@
       home-manager,
       catppuccin,
       noctalia,
+      spicetify-nix,
       ...
     }@inputs:
     let
       system = "x86_64-linux";
-      # CHANGE THIS IF ON LAPTOP
-      hostname = "balefire";
       lib = nixpkgs.lib;
 
       # PACKAGES
@@ -54,12 +55,14 @@
       hyprland = inputs.hyprland;
       hyprland-dynamic-cursors = inputs.hyprland-dynamic-cursors;
 
+      #spicetify = spicetify-nix.lib.mkSpicetify pkgs { };
+
       args = {
         inherit
           hyprland
           hyprland-dynamic-cursors
-          hostname
           noctalia
+          spicetify-nix
           ;
       };
     in
@@ -73,6 +76,7 @@
             ./modules/setups/coven/system.nix
             home-manager.nixosModules.home-manager
             catppuccin.nixosModules.catppuccin
+            (spicetify-nix.nixosModules.spicetify)
             {
               home-manager = {
                 extraSpecialArgs = args;
@@ -85,6 +89,7 @@
                     ./modules/setups/coven/home.nix
                     catppuccin.homeModules.catppuccin
                     noctalia.homeModules.default
+                    (spicetify-nix.homeManagerModules.default)
                   ];
                 };
                 backupFileExtension = "backup";

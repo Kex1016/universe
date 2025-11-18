@@ -18,14 +18,4 @@
   };
 
   networking.hostName = "coven";
-
-  services.ollama = {
-    enable = true;
-    acceleration = "rocm";
-  };
-
-  services.open-webui = {
-    enable = true;
-    port = 9090;
-  };
 }

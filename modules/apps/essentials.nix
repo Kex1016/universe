@@ -1,13 +1,19 @@
-{ pkgs, config, ... }:
-
 {
+  pkgs,
+  spicetify-nix,
+  config,
+  ...
+}:
+
+let
+  spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.system};
+in {
   home.packages = with pkgs; [
     zathura
     pavucontrol
     gnome-font-viewer
     qpwgraph
     cider
-    spotify
     inotify-tools
     gapless
     file
@@ -33,6 +39,17 @@
     };
     mpv = {
       enable = true;
+    };
+
+    spicetify = {
+      enable = true;
+      enabledExtensions = with spicePkgs.extensions; [
+        adblockify
+        hidePodcasts
+        shuffle
+      ];
+      theme = spicePkgs.themes.catppuccin;
+      colorScheme = "mocha";
     };
   };
 
