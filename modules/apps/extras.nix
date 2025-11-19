@@ -9,5 +9,6 @@
     wayvnc
     handbrake
     libreoffice-fresh
+    teams-for-linux
   ];
 }
