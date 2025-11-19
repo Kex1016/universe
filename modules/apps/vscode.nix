@@ -49,6 +49,7 @@
         "[javascript][typescript][json][typescriptreact][css][html]" = {
           "editor.defaultFormatter" = "biomejs.biome";
         };
+        "git.autofetch" = true;
       };
     };
   };
