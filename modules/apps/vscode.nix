@@ -32,6 +32,7 @@
         vscjava.vscode-java-test
         vscjava.vscode-java-dependency
         redhat.java
+	ms-vscode.live-server
       ];
       userSettings = {
         "editor.fontFamily" = "'RobotoMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
@@ -45,8 +46,8 @@
             };
           };
         };
-        "[javascript][typescript][json][typescriptreact][css]" = {
-          "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        "[javascript][typescript][json][typescriptreact][css][html]" = {
+          "editor.defaultFormatter" = "biomejs.biome";
         };
       };
     };

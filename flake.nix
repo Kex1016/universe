@@ -108,6 +108,7 @@
             ./modules/setups/balefire/system.nix
             home-manager.nixosModules.home-manager
             catppuccin.nixosModules.catppuccin
+            (spicetify-nix.nixosModules.spicetify)
             {
               home-manager = {
                 extraSpecialArgs = args;
@@ -119,6 +120,7 @@
                     ./home.nix
                     ./modules/setups/balefire/home.nix
                     catppuccin.homeModules.catppuccin
+                    (spicetify-nix.homeManagerModules.default)
                   ];
                 };
                 backupFileExtension = "backup";
