@@ -6,7 +6,7 @@
     vivaldi-ffmpeg-codecs
   ];
 
-  programs.floorp = {
+  /* programs.floorp = {
     enable = true;
     package = (
       pkgs.floorp-bin.override {
@@ -15,5 +15,5 @@
         ];
       }
     );
-  };
+  }; */
 }
