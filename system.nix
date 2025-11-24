@@ -71,6 +71,7 @@
       27015
       27036
       # END games
+      3000 # usually my web testing port
     ];
   };
 
