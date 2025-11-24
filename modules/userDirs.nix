@@ -1,8 +1,12 @@
-{ ... }:
+{
+  ...
+}:
 
 {
   xdg.userDirs = {
-    enable = true;
-    createDirectories = false;
+    enable =
+      true;
+    createDirectories =
+      false;
   };
 }
