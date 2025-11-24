@@ -90,7 +90,7 @@
       "audio/x-mod" = "com.github.neithern.g4music.desktop";
       "audio/x-it" = "com.github.neithern.g4music.desktop";
       "audio/x-s3m" = "com.github.neithern.g4music.desktop";
-
+      "inode/directory" = "nemo.desktop";
     };
   };
   services.gnome-keyring.enable = true;
