@@ -15,9 +15,21 @@
   ];
 
   nix.settings = {
-    substituters = [ "https://hyprland.cachix.org" ];
-    trusted-substituters = [ "https://hyprland.cachix.org" ];
-    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    substituters = [
+        "https://cache.nixos.org"
+        "https://hyprland.cachix.org"
+        "https://nix-community.cachix.org"
+    ];
+    trusted-substituters = [
+        "https://cache.nixos.org"
+        "https://hyprland.cachix.org"
+        "https://nix-community.cachix.org"
+    ];
+    trusted-public-keys = [ 
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
   };
 
   catppuccin = {
@@ -56,16 +68,22 @@
       22
       80
       443
+      # START games
       5900
       27960
       27015
       7777
+      # END games
+      3000 # usually my web testing port
     ];
     allowedUDPPorts = [
+      # START games
       27960
       27900
       27015
       27036
+      # END games
+      3000 # usually my web testing port
     ];
   };
 

@@ -7,7 +7,8 @@
 
 let
   spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.system};
-in {
+in
+{
   home.packages = with pkgs; [
     zathura
     pavucontrol

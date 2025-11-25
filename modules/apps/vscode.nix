@@ -32,7 +32,7 @@
         vscjava.vscode-java-test
         vscjava.vscode-java-dependency
         redhat.java
-	ms-vscode.live-server
+        ms-vscode.live-server
       ];
       userSettings = {
         "editor.fontFamily" = "'RobotoMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
@@ -50,6 +50,7 @@
           "editor.defaultFormatter" = "biomejs.biome";
         };
         "git.autofetch" = true;
+        "diffEditor.ignoreTrimWhitespace" = false;
       };
     };
   };
