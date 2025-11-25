@@ -10,7 +10,7 @@
       arRPC = true;
       checkUpdates = false;
       splashTheming = true;
-      discordBranch = "canary";
+      discordBranch = "stable";
       hardwareAcceleration = true;
       minimizeToTray = false;
     };
