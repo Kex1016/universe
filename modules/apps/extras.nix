@@ -10,5 +10,6 @@
     handbrake
     libreoffice-fresh
     teams-for-linux
+    plexamp
   ];
 }
