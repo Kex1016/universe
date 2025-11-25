@@ -75,6 +75,16 @@
       "application/vnd.apple.mpegurl" = "mpv.desktop";
       "video/x-f4v" = "mpv.desktop";
       "video/x-smv" = "mpv.desktop";
+      "audio/midi" = "g4music.desktop";
+      "audio/mpeg" = "g4music.desktop";
+      "audio/ogg" = "g4music.desktop";
+      "audio/x-wav" = "g4music.desktop";
+      "audio/flac" = "g4music.desktop";
+      "audio/aac" = "g4music.desktop";
+      "audio/webm" = "g4music.desktop";
+      "audio/mp4" = "g4music.desktop";
+      "audio/x-aiff" = "g4music.desktop";
+      "audio/x-ms-wma" = "g4music.desktop";
     };
   };
   services.gnome-keyring.enable = true;
