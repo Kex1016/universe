@@ -158,12 +158,18 @@
     magicOrExtension = ''\x7fELF....AI\x02'';
   };
 
-  nix.optimise.automatic = true;
   nix.settings.auto-optimise-store = true;
+  nix.optimise = {
+    automatic = true;
+    dates = [ "Sun 03:00" ];
+    persistent = true;
+  };
 
   nix.gc = {
     automatic = true;
-    dates = "weekly";
+    dates = [ "Sun 03:00" ];
+    persistent = true;
+    options = "--delete-older-than 5d";
   };
 
   nix.settings.experimental-features = [
