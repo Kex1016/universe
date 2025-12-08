@@ -118,7 +118,7 @@ in
       };
 
       input = {
-        follow_mouse = 1;
+        follow_mouse = 2;
 
         sensitivity = 0;
         accel_profile = "flat";
