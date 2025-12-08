@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# Usage: ./beback <minutes>
+# Example: ./beback 5   # writes "be back in 5 minutes" while counting down every minute
+
+x=$1
+
+# Validate input
+if [[ -z "$x" || ! "$x" =~ ^[0-9]+$ ]]; then
+    echo "Error: please provide a positive integer for minutes."
+    exit 1
+fi
+
+target_dir="$HOME/.cakemisc"
+mkdir -p "$target_dir"
+
+output_file="$target_dir/back.txt"
+
+while true; do
+    echo "be back in around $x minutes" > "$output_file"
+    x=$((x - 1))
+    sleep 60
+done
