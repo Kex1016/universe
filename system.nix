@@ -12,6 +12,7 @@
     ./modules/system/hypr.nix
     ./modules/system/fonts.nix
     ./modules/system/ananicy.nix
+    ./modules/system/updater.nix
   ];
 
   nix.settings = {

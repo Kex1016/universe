@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# updatecheck
+# ------------------------------------------------------------
+# Sends a desktop notification when the file
+#   ~/.cakemisc/version
+# has been updated within the last 10 minutes.
+# Intended for use as an update‑check helper (e.g. run
+# from a cron job or systemd timer).
+# ------------------------------------------------------------
+
+set -euo pipefail
+
+FILE="$HOME/.cakemisc/version"
+MAX_AGE=$((10 * 60))
+
+[[ -e "$FILE" ]] || exit 0
+
+mod_time=$(stat -c %Y "$FILE")
+now=$(date +%s)
+
+age=$((now - mod_time))
+
+if ((age < MAX_AGE)); then
+    ts=$(date -d @"$mod_time" '+%Y-%m-%d %H:%M:%S')
+    notify-send "Update available" \
+        "Version file was updated $((age / 60)) min ago (at $ts)."
+fi
