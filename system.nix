@@ -13,6 +13,7 @@
     ./modules/system/fonts.nix
     ./modules/system/ananicy.nix
     ./modules/system/updater.nix
+    ./modules/system/boot.nix
   ];
 
   nix.settings = {
