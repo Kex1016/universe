@@ -27,6 +27,11 @@
       inputs.quickshell.follows = "quickshell"; # Use same quickshell version
     };
 
+    nvf = {
+      url = "github:NotAShelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
@@ -38,6 +43,7 @@
       catppuccin,
       noctalia,
       spicetify-nix,
+      nvf,
       ...
     }@inputs:
     let
@@ -85,11 +91,12 @@
                 useUserPackages = true;
                 users.majo = {
                   imports = [
-                    ./home.nix
-                    ./modules/setups/coven/home.nix
+                    nvf.homeManagerModules.default
                     catppuccin.homeModules.catppuccin
                     noctalia.homeModules.default
                     (spicetify-nix.homeManagerModules.default)
+                    ./home.nix
+                    ./modules/setups/coven/home.nix
                   ];
                 };
                 backupFileExtension = "backup";
@@ -117,10 +124,12 @@
                 useUserPackages = true;
                 users.majo = {
                   imports = [
-                    ./home.nix
-                    ./modules/setups/balefire/home.nix
+                    nvf.homeManagerModules.default
+                    noctalia.homeModules.default
                     catppuccin.homeModules.catppuccin
                     (spicetify-nix.homeManagerModules.default)
+                    ./home.nix
+                    ./modules/setups/balefire/home.nix
                   ];
                 };
                 backupFileExtension = "backup";
