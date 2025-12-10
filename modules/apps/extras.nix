@@ -11,5 +11,6 @@
     libreoffice-fresh
     teams-for-linux
     plexamp
+    gitkraken
   ];
 }
