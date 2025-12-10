@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 
 let
   create_symlink = path: config.lib.file.mkOutOfStoreSymlink path;
@@ -47,9 +43,7 @@ in
     theme = {
       name = "catppuccin-mocha-flamingo-standard";
       package = pkgs.catppuccin-gtk.override {
-        accents = [
-          "flamingo"
-        ];
+        accents = [ "flamingo" ];
         size = "standard";
         variant = "mocha";
       };
@@ -101,9 +95,7 @@ in
 
   xdg.configFile."Kvantum/kvantum.kvconfig".source =
     (pkgs.formats.ini { }).generate "kvantum.kvconfig"
-      {
-        General.theme = "catppuccin-mocha-flamingo";
-      };
+      { General.theme = "catppuccin-mocha-flamingo"; };
 
   xdg.configFile."Kvantum/catppuccin-mocha-flamingo" = {
     source = create_symlink "${catppuccin-kv}/share/Kvantum/catppuccin-mocha-flamingo";
