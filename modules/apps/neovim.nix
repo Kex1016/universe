@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -16,11 +13,49 @@
     nodejs
   ];
 
-  programs.neovim = {
+  programs.nvf = {
     enable = true;
-    viAlias = true;
-    vimAlias = true;
-  };
 
-  #plugins = with pkgs.vimPlugins; [];
+    settings = {
+      vim.viAlias = true;
+      vim.vimAlias = true;
+
+      vim.lsp = {
+        enable = true;
+      };
+
+      vim.languages = {
+        rust = {
+          enable = true;
+        };
+        nix = {
+          enable = true;
+        };
+        sql = {
+          enable = true;
+        };
+        clang = {
+          enable = true;
+        };
+        ts = {
+          enable = true;
+        };
+        python = {
+          enable = true;
+        };
+        markdown = {
+          enable = true;
+        };
+        html = {
+          enable = true;
+        };
+        lua = {
+          enable = true;
+        };
+        php = {
+          enable = true;
+        };
+      };
+    };
+  };
 }
