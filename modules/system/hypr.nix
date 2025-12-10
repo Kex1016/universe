@@ -5,9 +5,7 @@
   ...
 }:
 {
-  environment.systemPackages = [
-    noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
-  ];
+  environment.systemPackages = [ noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
   programs.hyprland = {
     enable = true;

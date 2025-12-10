@@ -1,9 +1,7 @@
 { pkgs, ... }:
 
 {
-  home.packages = [
-    pkgs.biome
-  ];
+  home.packages = [ pkgs.biome ];
 
   programs.vscode = {
     enable = true;

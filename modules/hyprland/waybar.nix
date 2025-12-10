@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 {
   home.packages = with pkgs; [ waybar ];
@@ -13,12 +10,8 @@
         layer = "top";
         position = "bottom";
 
-        modules-left = [
-          "hyprland/workspaces"
-        ];
-        modules-center = [
-          "custom/music"
-        ];
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ "custom/music" ];
         modules-right = [
           "pulseaudio"
           "disk"

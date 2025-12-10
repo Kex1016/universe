@@ -1,10 +1,6 @@
+{ ... }:
 {
-  ...
-}:
-{
-  imports = [
-    ../../apps/gaming.nix
-  ];
+  imports = [ ../../apps/gaming.nix ];
 
   # > Hyprland
   wayland.windowManager.hyprland.settings = {
@@ -15,9 +11,7 @@
       "DP-1, 2560x1080@200, 3000x180, 1"
     ];
 
-    exec-once = [
-      "steam -silent >/dev/null 2>&1 &"
-    ];
+    exec-once = [ "steam -silent >/dev/null 2>&1 &" ];
 
     workspace = [
       "1, monitor:DP-1"
