@@ -21,7 +21,7 @@
     ./modules/apps/browsers.nix
     ./modules/apps/obs-studio.nix
     ./modules/apps/vscode.nix
-    ./modules/apps/neovim.nix
+    ./modules/apps/editors.nix
     ./modules/apps/vesktop.nix
   ];
 
