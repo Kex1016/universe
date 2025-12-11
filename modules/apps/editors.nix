@@ -61,6 +61,6 @@
 
   programs.doom-emacs = {
     enable = true;
-    doomDir = "./doom.d";
+    doomDir = ./doom.d;
   };
 }
