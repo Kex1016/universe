@@ -12,11 +12,11 @@
       command_not_found_handler = {
         onEvent = "fish_command_not_found";
         body = ''
-            # $argv[1] is the command the user typed
-            set -l cmd $argv[1]
+          # $argv[1] is the command the user typed
+          set -l cmd $argv[1]
 
-            # Append the command name to the log file
-            echo $cmd >> ~/.cakemisc/failed_commands.log
+          # Append the command name to the log file
+          echo $cmd >> ~/.cakemisc/failed_commands.log
         '';
       };
     };
