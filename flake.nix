@@ -33,8 +33,6 @@
     };
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
-
-    nix-doom-emacs-unstraightened.url = "github:marienz/nix-doom-emacs-unstraightened";
   };
 
   outputs =
@@ -97,7 +95,6 @@
                     catppuccin.homeModules.catppuccin
                     noctalia.homeModules.default
                     (spicetify-nix.homeManagerModules.default)
-                    inputs.nix-doom-emacs-unstraightened.homeModule
                     ./home.nix
                     ./modules/setups/coven/home.nix
                   ];
@@ -131,7 +128,6 @@
                     noctalia.homeModules.default
                     catppuccin.homeModules.catppuccin
                     (spicetify-nix.homeManagerModules.default)
-                    inputs.nix-doom-emacs-unstraightened.homeModule
                     ./home.nix
                     ./modules/setups/balefire/home.nix
                   ];

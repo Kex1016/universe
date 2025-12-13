@@ -13,6 +13,7 @@
     nodejs
   ];
 
+  # Neovim
   programs.nvf = {
     enable = true;
 
@@ -57,10 +58,5 @@
         };
       };
     };
-  };
-
-  programs.doom-emacs = {
-    enable = true;
-    doomDir = ./doom.d;
   };
 }
