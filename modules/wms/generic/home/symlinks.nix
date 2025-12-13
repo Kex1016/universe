@@ -9,13 +9,13 @@ in
 {
   # bins
   home.file.".local/bin" = {
-    source = ../dots/.local/bin;
+    source = ../../../../dots/.local/bin;
     recursive = true;
     executable = true;
   };
 
   home.file.".local/share/rofi/icons" = {
-    source = ../extra/icons;
+    source = ../../../../extra/icons;
     recursive = true;
   };
 
