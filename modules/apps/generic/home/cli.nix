@@ -7,7 +7,6 @@
     duf
     nixfmt-rfc-style
     direnv
-    hyprls
     pipes
     wget
     git

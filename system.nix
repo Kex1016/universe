@@ -5,14 +5,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./modules/system/hypr.nix
-    ./modules/system/fonts.nix
-    ./modules/system/ananicy.nix
-    ./modules/system/updater.nix
-    ./modules/system/boot.nix
-  ];
-
   nix.settings = {
     substituters = [
       "https://cache.nixos.org"
@@ -29,13 +21,6 @@
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
-  };
-
-  catppuccin = {
-    enable = true;
-    cache.enable = true;
-    flavor = "mocha";
-    accent = "flamingo";
   };
 
   boot.loader.limine.enable = true;
@@ -92,9 +77,6 @@
   # Enable the X11 windowing system. lol, lmao.
   # services.xserver.enable = true;
 
-  services.displayManager.ly = {
-    enable = true;
-  };
   services.printing.enable = true;
   services.udisks2.enable = true;
   services.gvfs.enable = true;
@@ -146,7 +128,8 @@
       "wheel"
       "i2c"
       "networkmanager"
-    ]; # Enable ‘sudo’ for the user.
+    ];
+    initialPassword = "changeme";
   };
 
   boot.binfmt.registrations.appimage = {

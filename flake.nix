@@ -79,7 +79,7 @@
 
           modules = [
             ./system.nix
-            ./modules/setups/coven/system.nix
+            ./setups/coven/system.nix
             home-manager.nixosModules.home-manager
             catppuccin.nixosModules.catppuccin
             (spicetify-nix.nixosModules.spicetify)
@@ -96,7 +96,7 @@
                     noctalia.homeModules.default
                     (spicetify-nix.homeManagerModules.default)
                     ./home.nix
-                    ./modules/setups/coven/home.nix
+                    ./setups/coven/home.nix
                   ];
                 };
                 backupFileExtension = "backup";
@@ -112,7 +112,9 @@
 
           modules = [
             ./system.nix
-            ./modules/setups/balefire/system.nix
+            ./modules/wms/hyprland/system.nix
+            ./modules/apps/hyprland/system.nix
+            ./setups/balefire/system.nix
             home-manager.nixosModules.home-manager
             catppuccin.nixosModules.catppuccin
             (spicetify-nix.nixosModules.spicetify)
@@ -129,7 +131,9 @@
                     catppuccin.homeModules.catppuccin
                     (spicetify-nix.homeManagerModules.default)
                     ./home.nix
-                    ./modules/setups/balefire/home.nix
+                    ./modules/wms/hyprland/home.nix
+                    ./modules/apps/hyprland/home.nix
+                    ./setups/balefire/home.nix
                   ];
                 };
                 backupFileExtension = "backup";

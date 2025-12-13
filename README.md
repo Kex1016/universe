@@ -33,6 +33,27 @@ ARCANE PROJECTIONS
 
 Soon(tm)
 
+## The structure
+
+<div align="center">
+
+```ocaml
+HERETICAL BUILD
+```
+
+</div>
+
+- `dots`: Some static files, for now only scripts that go into `~/.local/bin`
+- `extra`: Right now it's just some icons and wallpapers that I use or used to use. Needs cleaning.
+- `modules`: The main parts of my config.
+  - `apps`: WM specific set of apps, and generics (ones that I use everywhere)
+  - `shells`: Fish. That's all I need to configure for now.
+  - `wms`: Configuration files for the window managers I use.
+  - `apps` and `wms` all have a WM folder, and inside those folders `home` and `system` folders, for... home and system configs.....
+    - *Where there is a `home` and `system` folder, in the parent folder there will always be a `home.nix` and a `system.nix` as well.*
+- `setups`: Mainly just imports from modules, but setup specific configs as well.
+- `root`: This is obsolete and will eventually be deleted.
+
 ## Inspirations and credits
 
 <div align="center">

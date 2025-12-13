@@ -10,7 +10,6 @@ let
 in
 {
   imports = [
-    ./hyprpanel-theme.nix
     ./noctalia.nix
   ];
 

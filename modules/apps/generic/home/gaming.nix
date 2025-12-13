@@ -9,6 +9,4 @@
     protonplus
     etterna
   ];
-
-  # also see system/gaming.nix
 }
