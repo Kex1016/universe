@@ -1,16 +1,10 @@
-{
-  pkgs,
-  spicetify-nix,
-  config,
-  ...
-}:
+{ pkgs, spicetify-nix, ... }:
 
 let
   spicePkgs = spicetify-nix.legacyPackages.${pkgs.stdenv.system};
 in
 {
   home.packages = with pkgs; [
-    zathura
     pavucontrol
     gnome-font-viewer
     qpwgraph
@@ -21,23 +15,6 @@ in
   ];
 
   programs = {
-    swayimg = {
-      enable = true;
-      settings = {
-        general = {
-          overlay = "yes";
-        };
-        viewer = {
-          window = "#1e1e2eff";
-        };
-        "keys.viewer" = {
-          "Y" = ''exec ${config.home.homeDirectory}/.local/bin/hyprimgcpy "%"'';
-        };
-      };
-    };
-    zathura = {
-      enable = true;
-    };
     mpv = {
       enable = true;
     };
@@ -51,6 +28,10 @@ in
       ];
       theme = spicePkgs.themes.catppuccin;
       colorScheme = "mocha";
+    };
+
+    zathura = {
+      enable = true;
     };
   };
 

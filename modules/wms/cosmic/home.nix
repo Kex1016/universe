@@ -1,4 +1,4 @@
 { ... }:
 {
-
+  imports = [ ../../shells/fish.nix ];
 }

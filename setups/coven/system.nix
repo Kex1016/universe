@@ -1,10 +1,6 @@
 { ... }:
 {
-  imports = [
-    ./hardware.nix
-    ../../system/gaming.nix
-    ../../apps/steam.nix
-  ];
+  imports = [ ./hardware.nix ];
 
   fileSystems."/nas/m" = {
     device = "192.168.1.5:/volume1/docker/media/jelly/mus";

@@ -1,7 +1,5 @@
 { ... }:
 {
-  imports = [ ../../apps/gaming.nix ];
-
   # > Hyprland
   wayland.windowManager.hyprland.settings = {
     monitor = [

@@ -79,6 +79,8 @@
 
           modules = [
             ./system.nix
+            ./modules/wms/cosmic/system.nix
+            ./modules/apps/cosmic/system.nix
             ./setups/coven/system.nix
             home-manager.nixosModules.home-manager
             catppuccin.nixosModules.catppuccin
@@ -96,6 +98,8 @@
                     noctalia.homeModules.default
                     (spicetify-nix.homeManagerModules.default)
                     ./home.nix
+                    ./modules/wms/cosmic/home.nix
+                    ./modules/apps/cosmic/home.nix
                     ./setups/coven/home.nix
                   ];
                 };
