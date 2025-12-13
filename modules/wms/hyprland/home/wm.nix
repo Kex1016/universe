@@ -267,11 +267,6 @@ in
     };
   };
 
-  home.file.".cakepics" = {
-    source = create_symlink "${config.home.homeDirectory}/NixOS/extra/pics";
-    recursive = true;
-  };
-
   services.hypridle = {
     enable = true;
     settings = {

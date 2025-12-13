@@ -19,6 +19,11 @@ in
     recursive = true;
   };
 
+  home.file.".cakepics" = {
+    source = ../../../../extra/pics;
+    recursive = true;
+  };
+
   # dots
   xdg.configFile = builtins.mapAttrs (name: subpath: {
     source = create_symlink "${dotfiles}/${subpath}";
