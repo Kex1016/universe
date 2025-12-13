@@ -6,6 +6,7 @@
     ../generic/system/fonts.nix
     ../generic/system/gaming.nix
     ../generic/system/updater.nix
+    ../generic/system/userDirs.nix
     ./system/catppuccin.nix
     ./system/hypr.nix
     ./system/login.nix

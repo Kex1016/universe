@@ -1,4 +1,7 @@
 { ... }:
 {
-  imports = [ ../../shells/fish.nix ];
+  imports = [ 
+    ../../shells/fish.nix
+    ../generic/home/symlinks.nix
+  ];
 }
