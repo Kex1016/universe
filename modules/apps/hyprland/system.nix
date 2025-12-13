@@ -1,5 +1,4 @@
-{...}: {
-  imports = [
-    ../generic/system/steam.nix
-  ];
+{ ... }:
+{
+  imports = [ ../generic/system/steam.nix ];
 }

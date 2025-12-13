@@ -1,10 +1,6 @@
+{ pkgs, config, ... }:
 {
-  pkgs,
-  config,
-  ...
-}:
-{
-  imports = [];
+  imports = [ ];
 
   home.packages = with pkgs; [
     zathura

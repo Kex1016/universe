@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ../../shells/fish.nix
     ../generic/home/kitty.nix

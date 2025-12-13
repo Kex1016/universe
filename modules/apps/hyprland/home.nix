@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ../generic/home/browsers.nix
     ../generic/home/cli.nix

@@ -1,4 +1,5 @@
-{...}: {
+{ ... }:
+{
   imports = [
     ../generic/system/ananicy.nix
     ../generic/system/boot.nix

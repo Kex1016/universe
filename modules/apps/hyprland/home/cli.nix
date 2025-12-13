@@ -1,6 +1,4 @@
 { pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    hyprls
-  ];
+  home.packages = with pkgs; [ hyprls ];
 }
