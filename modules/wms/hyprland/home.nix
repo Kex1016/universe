@@ -8,5 +8,6 @@
     ./home/catppuccin.nix
     ./home/noctalia.nix
     ./home/wm.nix
+    ./home/xdg.nix
   ];
 }
