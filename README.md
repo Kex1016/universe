@@ -31,7 +31,9 @@ ARCANE PROJECTIONS
 
 </div>
 
-Soon(tm)
+![Screenshot](./assets/screenshot_2512151000.png)
+
+![Screenshot](./assets/screenshot_2512151004.png)
 
 ## The structure
 
