@@ -12,5 +12,6 @@
     teams-for-linux
     plexamp
     gitkraken
+    drawio
   ];
 }
