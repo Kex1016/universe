@@ -12,6 +12,7 @@ in
     gapless
     file
     jetbrains.idea-community-bin
+    yubioath-flutter
   ];
 
   programs = {

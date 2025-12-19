@@ -121,6 +121,17 @@
     };
   };
 
+  # YubiKey
+  services.udev.packages = [ pkgs.yubikey-personalization ];
+  hardware.gpgSmartcards.enable = true;
+
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+  };
+
+  services.pcscd.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.majo = {
     isNormalUser = true;
