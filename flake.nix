@@ -71,40 +71,43 @@
           spicetify-nix
           ;
       };
+
+      commonHomeModules = [
+        nvf.homeManagerModules.default
+        catppuccin.homeModules.default
+        (spicetify-nix.homeManagerModules.default)
+        ./home.nix
+      ];
+      commonSystemModules = [
+        ./system.nix
+        home-manager.nixosModules.home-manager
+        catppuccin.nixosModules.catppuccin
+        (spicetify-nix.nixosModules.spicetify)
+        {
+          home-manager = {
+            extraSpecialArgs = args;
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            backupFileExtension = "backup";
+          };
+        }
+      ];
     in
     {
       nixosConfigurations = {
         coven = lib.nixosSystem {
           inherit system pkgs;
 
-          modules = [
-            ./system.nix
+          modules = commonSystemModules ++ [
             ./modules/wms/hyprland/system.nix
             ./modules/apps/hyprland/system.nix
             ./setups/coven/system.nix
-            home-manager.nixosModules.home-manager
-            catppuccin.nixosModules.catppuccin
-            (spicetify-nix.nixosModules.spicetify)
             {
-              home-manager = {
-                extraSpecialArgs = args;
-
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.majo = {
-                  imports = [
-                    nvf.homeManagerModules.default
-                    catppuccin.homeModules.catppuccin
-                    noctalia.homeModules.default
-                    (spicetify-nix.homeManagerModules.default)
-                    ./home.nix
-                    ./modules/wms/hyprland/home.nix
-                    ./modules/apps/hyprland/home.nix
-                    ./setups/coven/home.nix
-                  ];
-                };
-                backupFileExtension = "backup";
-              };
+              home-manager.users.majo.imports = commonHomeModules ++ [
+                ./modules/wms/hyprland/home.nix
+                ./modules/apps/hyprland/home.nix
+                ./setups/coven/home.nix
+              ];
             }
           ];
 
@@ -114,34 +117,16 @@
         balefire = lib.nixosSystem {
           inherit system pkgs;
 
-          modules = [
-            ./system.nix
+          modules = commonSystemModules ++ [
             ./modules/wms/hyprland/system.nix
             ./modules/apps/hyprland/system.nix
             ./setups/balefire/system.nix
-            home-manager.nixosModules.home-manager
-            catppuccin.nixosModules.catppuccin
-            (spicetify-nix.nixosModules.spicetify)
             {
-              home-manager = {
-                extraSpecialArgs = args;
-
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                users.majo = {
-                  imports = [
-                    nvf.homeManagerModules.default
-                    noctalia.homeModules.default
-                    catppuccin.homeModules.catppuccin
-                    (spicetify-nix.homeManagerModules.default)
-                    ./home.nix
-                    ./modules/wms/hyprland/home.nix
-                    ./modules/apps/hyprland/home.nix
-                    ./setups/balefire/home.nix
-                  ];
-                };
-                backupFileExtension = "backup";
-              };
+              home-manager.users.majo.imports = commonHomeModules ++ [
+                ./modules/wms/hyprland/home.nix
+                ./modules/apps/hyprland/home.nix
+                ./setups/balefire/home.nix
+              ];
             }
           ];
 
