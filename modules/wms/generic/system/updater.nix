@@ -14,6 +14,7 @@
   systemd.services.nixos-upgrade = {
     description = "Weekly NixOS system upgrade";
     after = [ "network-online.target" ];
+    requires = [ "network-online.target" ];
     serviceConfig = {
       Type = "oneshot";
       Environment = "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus";
