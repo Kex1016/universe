@@ -1,7 +1,7 @@
 {
   config,
   hyprland,
-  hyprland-dynamic-cursors,
+  # hyprland-dynamic-cursors,
   pkgs,
   ...
 }:
@@ -32,7 +32,7 @@
     package = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
     plugins = [
-      hyprland-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors
+      # hyprland-dynamic-cursors.packages.${pkgs.stdenv.hostPlatform.system}.hypr-dynamic-cursors
     ];
 
     settings = {
