@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# hidraw-watcher.sh – prints a line whenever a hidraw device is added or removed
+# Requires: inotify-tools (inotifywait)
+
+WATCH_DIR="/dev"
+PATTERN="hidraw*"
+
+# Print a timestamped message
+log_msg() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') $*"
+}
+
+# Initial snapshot – useful for knowing the state at startup
+log_msg "Starting hidraw watcher (monitoring $WATCH_DIR/$PATTERN)"
+log_msg "Current devices: $(ls $WATCH_DIR/$PATTERN 2>/dev/null | tr '\n' ' ')"
+
+# Use inotifywait in a loop; it exits after each event, so we restart it
+while true; do
+    inotifywait -e create -e delete --format '%e %f' "$WATCH_DIR" 2>/dev/null |
+    while read -r event file; do
+        # Only act on hidraw* entries
+        [[ $file == $PATTERN ]] || continue
+
+        case $event in
+            CREATE)
+                log_msg "Device added: /dev/$file"
+                sleep 0.25
+                hyprctl reload
+                ;;
+            DELETE)
+                log_msg "Device removed: /dev/$file"
+                sleep 0.25
+                hyprctl reload
+                ;;
+        esac
+    done
+done

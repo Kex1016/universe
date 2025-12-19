@@ -53,6 +53,7 @@
         "noctalia-shell >/dev/null 2>&1 &"
         "nm-applet >/dev/null 2>&1 &"
         "bash ${config.home.homeDirectory}/.local/bin/cakeland_services >/dev/null 2>&1 &"
+        "bash ${config.home.homeDirectory}/.local/bin/hidrawchecker >/dev/null 2>&1 &"
       ];
 
       general = {
@@ -112,6 +113,11 @@
       };
 
       input = {
+        kb_variant = "";
+        kb_model = "";
+        kb_rules = "";
+        kb_options = "";
+
         follow_mouse = 1;
 
         sensitivity = 0;
