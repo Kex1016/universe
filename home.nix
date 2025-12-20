@@ -47,6 +47,6 @@
       "application/pdf" = "zathura.desktop";
     };
   };
-  services.gnome-keyring.enable = true;
+
   home.packages = [ pkgs.gcr ];
 }

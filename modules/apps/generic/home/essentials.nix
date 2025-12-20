@@ -15,6 +15,8 @@ in
     yubioath-flutter
   ];
 
+  xdg.autostart.enable = true;
+
   programs = {
     mpv = {
       enable = true;
@@ -33,6 +35,11 @@ in
 
     zathura = {
       enable = true;
+    };
+
+    keepassxc = {
+      enable = true;
+      autostart = true;
     };
   };
 
