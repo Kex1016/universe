@@ -131,6 +131,19 @@
   };
 
   services.pcscd.enable = true;
+  
+  security.pam.services = {
+    login.u2fAuth = true;
+    sudo.u2fAuth = true;
+  };
+
+  services.udev.extraRules = ''
+    ACTION=="remove",\
+      ENV{ID_BUS}=="0407",\
+      ENV{ID_MODEL_ID}=="1050",\
+      ENV{ID_VENDOR}=="Yubico",\
+      RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+  '';
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.majo = {
