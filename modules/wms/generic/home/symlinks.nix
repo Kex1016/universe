@@ -23,6 +23,10 @@ in
     source = ../../../../extra/pics;
     recursive = true;
   };
+  
+  home.file.".bashrc" = {
+    source = ../../../../dots/.bashrc;
+  };
 
   # dots
   xdg.configFile = builtins.mapAttrs (name: subpath: {
