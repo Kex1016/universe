@@ -128,6 +128,11 @@
         };
       };
 
+      device = {
+        name = "yubico-yubikey-otp+fido+ccid";
+        enabled = false;
+      };
+
       plugin = {
         dynamic-cursors = {
           enabled = true;
@@ -178,6 +183,9 @@
         "$mainMod, N, exec, hyprpanel t notificationsmenu"
         "$mainMod, N, exec, hyprpanel t notificationsmenu"
         "$mainMod, C, exec, noctalia-shell ipc call calendar toggle"
+        
+        # Reload hyprland
+        "$terMod, R, exec, hyprctl reload"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
