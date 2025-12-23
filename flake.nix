@@ -83,7 +83,7 @@
 
       commonHomeModules = [
         nvf.homeManagerModules.default
-        stylix.homeModules.stylix
+        # stylix.homeModules.stylix
         # inputs.niri-flake.homeModules.niri
         (spicetify-nix.homeManagerModules.default)
         ./home.nix
