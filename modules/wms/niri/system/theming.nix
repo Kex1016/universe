@@ -2,7 +2,15 @@
 {
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/everforest-dark-medium.yaml";
+    
+    base16Scheme = builtins.toPath ./themes/everforest-dark-hard.yml;
+    image = ../../../../extra/pics/coven/w_elaina2.jpg;
+
+    cursor = {
+      name = "DMZ-White";
+      size = 24;
+      package = pkgs.vanilla-dmz;
+    };
     fonts = {
       sansSerif = {
         package = pkgs.roboto;

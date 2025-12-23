@@ -111,12 +111,12 @@
 
           modules = commonSystemModules ++ [
             ./modules/wms/niri/system.nix
-            ./modules/apps/hyprland/system.nix
+            ./modules/apps/niri/system.nix
             ./setups/coven/system.nix
             {
               home-manager.users.majo.imports = commonHomeModules ++ [
                 ./modules/wms/niri/home.nix
-                ./modules/apps/hyprland/home.nix
+                ./modules/apps/niri/home.nix
                 ./setups/coven/home.nix
               ];
             }
