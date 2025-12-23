@@ -4,13 +4,20 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
     # hyprland-dynamic-cursors = {
     #   url = "github:VirtCode/hypr-dynamic-cursors";
     #   inputs.hyprland.follows = "hyprland";
     # };
 
-    catppuccin.url = "github:catppuccin/nix";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -40,7 +47,7 @@
       self,
       nixpkgs,
       home-manager,
-      catppuccin,
+      stylix,
       noctalia,
       spicetify-nix,
       nvf,
@@ -56,16 +63,18 @@
         config = {
           allowUnfree = true;
         };
+        overlays = [ inputs.niri-flake.overlays.niri ];
       };
+
       # hypr
-      hyprland = inputs.hyprland;
+      # hyprland = inputs.hyprland;
       # hyprland-dynamic-cursors = inputs.hyprland-dynamic-cursors;
 
       #spicetify = spicetify-nix.lib.mkSpicetify pkgs { };
 
       args = {
         inherit
-          hyprland
+          # hyprland
           # hyprland-dynamic-cursors
           noctalia
           spicetify-nix
@@ -74,14 +83,16 @@
 
       commonHomeModules = [
         nvf.homeManagerModules.default
-        catppuccin.homeModules.default
+        stylix.homeModules.stylix
+        # inputs.niri-flake.homeModules.niri
         (spicetify-nix.homeManagerModules.default)
         ./home.nix
       ];
       commonSystemModules = [
         ./system.nix
         home-manager.nixosModules.home-manager
-        catppuccin.nixosModules.catppuccin
+        stylix.nixosModules.stylix
+        inputs.niri-flake.nixosModules.niri
         (spicetify-nix.nixosModules.spicetify)
         {
           home-manager = {
@@ -99,12 +110,12 @@
           inherit system pkgs;
 
           modules = commonSystemModules ++ [
-            ./modules/wms/hyprland/system.nix
+            ./modules/wms/niri/system.nix
             ./modules/apps/hyprland/system.nix
             ./setups/coven/system.nix
             {
               home-manager.users.majo.imports = commonHomeModules ++ [
-                ./modules/wms/hyprland/home.nix
+                ./modules/wms/niri/home.nix
                 ./modules/apps/hyprland/home.nix
                 ./setups/coven/home.nix
               ];
