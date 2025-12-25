@@ -2,9 +2,10 @@
 {
   stylix = {
     enable = true;
-    
+
     base16Scheme = builtins.toPath ./themes/everforest-dark-hard.yml;
     image = ../../../../extra/pics/coven/w_elaina2.jpg;
+    polarity = "dark";
 
     cursor = {
       name = "DMZ-White";
