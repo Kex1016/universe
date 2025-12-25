@@ -5,7 +5,10 @@
   ...
 }:
 {
-  environment.systemPackages = [ noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default pkgs.xwayland-satellite ];
+  environment.systemPackages = [
+    noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    pkgs.xwayland-satellite
+  ];
 
   programs.niri = {
     enable = true;
