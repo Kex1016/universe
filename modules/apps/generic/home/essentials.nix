@@ -11,7 +11,7 @@ in
     inotify-tools
     gapless
     file
-    jetbrains.idea-community-bin
+    jetbrains.idea-oss
     yubioath-flutter
   ];
 
