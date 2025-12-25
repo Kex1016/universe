@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}:
+{ config, pkgs, ... }:
 {
   imports = [ ./noctalia.nix ];
 
@@ -16,10 +12,24 @@
     swappy
   ];
 
-  xdg.portal = {
-    enable = true;
-    xdgOpenUsePortal = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg = {
+    portal = {
+      enable = true;
+      config.niri = {
+        default = [
+          "gnome"
+          "gtk"
+        ];
+        "org.freedesktop.impl.portal.Access" = "gtk";
+        "org.freedesktop.impl.portal.FileChooser" = "gtk";
+        "org.freedesktop.impl.portal.ScreenCast" = "gnome";
+        "org.freedesktop.impl.portal.Secret" = "gnome-keyring";
+      };
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gnome
+        xdg-desktop-portal-gtk
+      ];
+    };
   };
 
   programs.niri = {
@@ -28,7 +38,7 @@
       environment = {
         NIXOS_OZONE_WL = "1"; # support electron and chromium based apps
         DISPLAY = ":0"; # important for xwayland-satellite
-        # QT_QPA_PLATFORM = "wayland"; # optional: force QT apps to always use wayland
+        QT_QPA_PLATFORM = "wayland"; # force QT apps to always use wayland
       };
 
       screenshot-path = "~/Pictures/Screenshots/%Y-%m/%d_%H%M%S";
@@ -37,6 +47,33 @@
         { command = [ "xwayland-satellite" ]; }
         { command = [ "noctalia-shell" ]; }
       ];
+
+      outputs = {
+        "DP-1" = {
+          enable = true;
+          mode = {
+            width = 2560;
+            height = 1080;
+            refresh = 200.007;
+          };
+          position.x = 3000;
+          position.y = 180;
+          focus-at-startup = true;
+        };
+        "DP-2" = {
+          enable = true;
+          mode = {
+            width = 1920;
+            height = 1080;
+            refresh = 60.0;
+          };
+          position.x = 1920;
+          position.y = 0;
+          transform.rotation = 90;
+        };
+      };
+
+      layout.center-focused-column = "always";
 
       input = {
         keyboard.xkb = {
@@ -47,7 +84,6 @@
           accel-profile = "flat";
         };
 
-        warp-mouse-to-focus.enable = true;
         workspace-auto-back-and-forth = true;
       };
 
@@ -188,8 +224,6 @@
           ];
         };
 
-        # TODO: HOW THE FUCK DO I SCREENSHOT
-
         ## BAR
         "Mod+comma" = {
           action.spawn = [
@@ -227,21 +261,58 @@
             "toggle"
           ];
         };
+        "Mod+S" = {
+          action.spawn = [
+            "~/.local/bin/hyprcap"
+            "shot"
+            "region"
+            "-zcw"
+          ];
+        };
 
         "Mod+WheelScrollDown" = {
-          cooldown-ms = 150;
-          action = focus-workspace-down;
-        };
-        "Mod+WheelScrollUp" = {
-          cooldown-ms = 150;
-          action = focus-workspace-up;
-        };
-        "Mod+WheelScrollLeft" = {
-          action = focus-column-left;
-        };
-        "Mod+WheelScrollRight" = {
           action = focus-column-right;
         };
+        "Mod+WheelScrollUp" = {
+          action = focus-column-left;
+        };
+        "Mod+Shift+WheelScrollDown" = {
+          action = focus-workspace-down;
+        };
+        "Mod+Shift+WheelScrollUp" = {
+          action = focus-workspace-up;
+        };
+
+        "Mod+Down" = {
+          action = focus-workspace-down;
+        };
+        "Mod+Up" = {
+          action = focus-workspace-up;
+        };
+        "Mod+Left" = {
+          action = focus-column-left;
+        };
+        "Mod+Right" = {
+          action = focus-column-right;
+        };
+
+        "Mod+Shift+Down" = {
+          action = move-workspace-down;
+        };
+        "Mod+Shift+Up" = {
+          action = move-workspace-up;
+        };
+        "Mod+Shift+Left" = {
+          action = move-column-left-or-to-monitor-left;
+        };
+        "Mod+Shift+Right" = {
+          action = move-column-right-or-to-monitor-right;
+        };
+
+        "Mod+1".action.focus-workspace = 1;
+        "Mod+2".action.focus-workspace = 2;
+        "Mod+3".action.focus-workspace = 3;
+        "Mod+4".action.focus-workspace = 4;
       };
     };
   };
