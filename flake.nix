@@ -4,12 +4,6 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    # hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland-dynamic-cursors = {
-    #   url = "github:VirtCode/hypr-dynamic-cursors";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-
     stylix = {
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,16 +79,8 @@
 
       ffaddons = pkgs.callPackage firefox-addons { };
 
-      # hypr
-      # hyprland = inputs.hyprland;
-      # hyprland-dynamic-cursors = inputs.hyprland-dynamic-cursors;
-
-      #spicetify = spicetify-nix.lib.mkSpicetify pkgs { };
-
       args = {
         inherit
-          # hyprland
-          # hyprland-dynamic-cursors
           noctalia
           spicetify-nix
           ffaddons
@@ -149,13 +135,13 @@
           inherit system pkgs;
 
           modules = commonSystemModules ++ [
-            ./modules/wms/hyprland/system.nix
-            ./modules/apps/hyprland/system.nix
+            ./modules/wms/niri/system.nix
+            ./modules/apps/niri/system.nix
             ./setups/balefire/system.nix
             {
               home-manager.users.majo.imports = commonHomeModules ++ [
-                ./modules/wms/hyprland/home.nix
-                ./modules/apps/hyprland/home.nix
+                ./modules/wms/niri/home.nix
+                ./modules/apps/niri/home.nix
                 ./setups/balefire/home.nix
               ];
             }
