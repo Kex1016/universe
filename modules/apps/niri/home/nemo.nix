@@ -2,8 +2,9 @@
 
 {
   home.packages = with pkgs; [
-    nemo-with-extensions
+    nautilus
+    code-nautilus
+    nautilus-open-any-terminal
     file-roller # this is here because its very relevant to the above pkg
-    nemo-preview
   ];
 }

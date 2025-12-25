@@ -11,7 +11,7 @@ in
     inotify-tools
     gapless
     file
-    jetbrains.idea-community-bin
+    jetbrains.idea-oss
     yubioath-flutter
   ];
 
@@ -29,8 +29,6 @@ in
         hidePodcasts
         shuffle
       ];
-      theme = spicePkgs.themes.catppuccin;
-      colorScheme = "mocha";
     };
 
     zathura = {

@@ -17,7 +17,7 @@ POWERED BY HORRIBLE DECISIONS AND LOTS OF COFFEE
 
 </div>
 
-As this repo contains my dotfiles for my systems, it's always WIP. I use NixOS with Hyprland on both my main PC, and my work laptop. I am new to the whole flake thing, but I think I did a relatively decent job with making a "good enough" system.
+As this repo contains my dotfiles for my systems, it's always WIP. I use NixOS with Niri on both my main PC, and my work laptop. I am new to the whole flake thing, but I think I did a relatively decent job with making a "good enough" system.
 
 My initial thoughts were to make a system that's components are relatively easy to read, but still modular enough to modify per hardware. Initially when I started using Nix for the very first time I didn't even know about flakes, so compared to that what I have now is way better.
 

@@ -1,6 +1,6 @@
 { ... }:
 {
-  services.displayManager.ly = {
+  services.displayManager.gdm = {
     enable = true;
   };
 }

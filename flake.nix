@@ -4,13 +4,14 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    # hyprland-dynamic-cursors = {
-    #   url = "github:VirtCode/hypr-dynamic-cursors";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    catppuccin.url = "github:catppuccin/nix";
+    niri-flake = {
+      url = "github:sodiboo/niri-flake";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -32,6 +33,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+        # to have it up-to-date or simply don't specify the nixpkgs input
+        nixpkgs.follows = "nixpkgs";
+        home-manager.follows = "home-manager";
+      };
+    };
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
   };
 
@@ -40,10 +56,12 @@
       self,
       nixpkgs,
       home-manager,
-      catppuccin,
+      stylix,
       noctalia,
       spicetify-nix,
       nvf,
+      firefox-addons,
+      zen-browser,
       ...
     }@inputs:
     let
@@ -56,32 +74,31 @@
         config = {
           allowUnfree = true;
         };
+        overlays = [ inputs.niri-flake.overlays.niri ];
       };
-      # hypr
-      hyprland = inputs.hyprland;
-      # hyprland-dynamic-cursors = inputs.hyprland-dynamic-cursors;
 
-      #spicetify = spicetify-nix.lib.mkSpicetify pkgs { };
+      ffaddons = pkgs.callPackage firefox-addons { };
 
       args = {
         inherit
-          hyprland
-          # hyprland-dynamic-cursors
           noctalia
           spicetify-nix
+          ffaddons
+          zen-browser
           ;
       };
 
       commonHomeModules = [
         nvf.homeManagerModules.default
-        catppuccin.homeModules.default
+        inputs.zen-browser.homeModules.beta
         (spicetify-nix.homeManagerModules.default)
         ./home.nix
       ];
       commonSystemModules = [
         ./system.nix
         home-manager.nixosModules.home-manager
-        catppuccin.nixosModules.catppuccin
+        stylix.nixosModules.stylix
+        inputs.niri-flake.nixosModules.niri
         (spicetify-nix.nixosModules.spicetify)
         {
           home-manager = {
@@ -99,13 +116,13 @@
           inherit system pkgs;
 
           modules = commonSystemModules ++ [
-            ./modules/wms/hyprland/system.nix
-            ./modules/apps/hyprland/system.nix
+            ./modules/wms/niri/system.nix
+            ./modules/apps/niri/system.nix
             ./setups/coven/system.nix
             {
               home-manager.users.majo.imports = commonHomeModules ++ [
-                ./modules/wms/hyprland/home.nix
-                ./modules/apps/hyprland/home.nix
+                ./modules/wms/niri/home.nix
+                ./modules/apps/niri/home.nix
                 ./setups/coven/home.nix
               ];
             }
@@ -118,13 +135,13 @@
           inherit system pkgs;
 
           modules = commonSystemModules ++ [
-            ./modules/wms/hyprland/system.nix
-            ./modules/apps/hyprland/system.nix
+            ./modules/wms/niri/system.nix
+            ./modules/apps/niri/system.nix
             ./setups/balefire/system.nix
             {
               home-manager.users.majo.imports = commonHomeModules ++ [
-                ./modules/wms/hyprland/home.nix
-                ./modules/apps/hyprland/home.nix
+                ./modules/wms/niri/home.nix
+                ./modules/apps/niri/home.nix
                 ./setups/balefire/home.nix
               ];
             }
