@@ -86,6 +86,8 @@
     };
   };
 
+  stylix.targets.zen-browser.profileNames = [ "default" ];
+
   xdg.mimeApps =
     let
       value =
