@@ -13,5 +13,6 @@
     plexamp
     gitkraken
     drawio
+    blockbench
   ];
 }
