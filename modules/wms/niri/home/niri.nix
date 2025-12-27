@@ -76,10 +76,6 @@
       layout.center-focused-column = "always";
 
       input = {
-        keyboard.xkb = {
-          layout = "us";
-        };
-
         mouse = {
           accel-profile = "flat";
         };
