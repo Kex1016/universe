@@ -114,7 +114,7 @@ in
               app-id = "zen-beta";
             }
           ];
-          is-floating = true;
+          open-floating = true;
         }
       ];
 
