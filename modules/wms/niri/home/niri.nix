@@ -48,6 +48,28 @@
         { command = [ "noctalia-shell" ]; }
       ];
 
+      window-rules = [
+        {
+          matches = [ ];
+          geometry-corner-radius = {
+            bottom-left = 15.0;
+            bottom-right = 15.0;
+            top-left = 15.0;
+            top-right = 15.0;
+          };
+          clip-to-geometry = true;
+        }
+        {
+          matches = [
+            {
+              title = "Picture-in-Picture";
+              app-id = "zen-beta";
+            }
+          ];
+          is-floating = true;
+        }
+      ];
+
       outputs = {
         "DP-1" = {
           enable = true;
@@ -73,8 +95,6 @@
         };
       };
 
-      layout.center-focused-column = "always";
-
       input = {
         mouse = {
           accel-profile = "flat";
@@ -83,232 +103,157 @@
         workspace-auto-back-and-forth = true;
       };
 
-      binds = with config.lib.niri.actions; {
-        ## XF86
-        "XF86AudioRaiseVolume" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "volume"
-            "increase"
-          ];
-        };
-        "XF86AudioLowerVolume" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "volume"
-            "decrease"
-          ];
-        };
-        "XF86AudioMute" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "volume"
-            "muteOutput"
-          ];
-        };
-        "XF86AudioMicMute" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "volume"
-            "muteInput"
-          ];
-        };
-        "XF86MonBrightnessUp" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "brightness"
-            "increase"
-          ];
-        };
-        "XF86MonBrightnessDown" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "brightness"
-            "decrease"
-          ];
-        };
-        "XF86AudioNext" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "media"
-            "next"
-          ];
-        };
-        "XF86AudioPause" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "media"
-            "playPause"
-          ];
-        };
-        "XF86AudioPlay" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "media"
-            "playPause"
-          ];
-        };
-        "XF86AudioPrev" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "media"
-            "previous"
-          ];
-        };
+      binds =
+        with config.lib.niri.actions;
+        let
+          sh = spawn "sh" "-c";
+        in
+        lib.attrsets.mergeAttrsList [
+          ## XF86
+          {
+            "XF86AudioRaiseVolume".action = sh "noctalia-shell ipc call volume increase";
+            "XF86AudioLowerVolume".action = sh "noctalia-shell ipc call volume decrease";
+            "XF86AudioMute".action = sh "noctalia-shell ipc call volume muteOutput";
+            "XF86AudioMicMute".action = sh "noctalia-shell ipc call volume muteInput";
+            "XF86MonBrightnessUp".action = sh "noctalia-shell ipc call brightness increase";
+            "XF86MonBrightnessDown".action = sh "noctalia-shell ipc call brightness decrease";
+            "XF86AudioNext".action = sh "noctalia-shell ipc call media next";
+            "XF86AudioPause".action = sh "noctalia-shell ipc call media playPause";
+            "XF86AudioPlay".action = sh "noctalia-shell ipc call media playPause";
+            "XF86AudioPrev".action = sh "noctalia-shell ipc call media previous";
+          }
+          # Other
+          {
+            "Mod+colon".action = show-hotkey-overlay;
+            "Mod+Q".action = close-window;
+          }
+          # Window binds
+          (binds {
+            suffixes = {
+              "Left" = "column-left";
+              "Down" = "window-down";
+              "Up" = "window-up";
+              "Right" = "column-right";
+              "J" = "column-left";
+              "K" = "window-down";
+              "L" = "window-up";
+              "M" = "column-right";
+            };
 
-        ## APPS
-        "Mod+Return" = {
-          action.spawn = "kitty";
-        };
-        "Mod+Q" = {
-          action = close-window;
-        };
-        "Mod+X" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "sessionMenu"
-            "toggle"
-          ];
-        };
-        "Mod+F" = {
-          action.spawn = "nautilus";
-        };
-        "Mod+D" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "launcher"
-            "toggle"
-          ];
-        };
-        "Mod+B" = {
-          action.spawn = "vivaldi";
-        };
-        "Mod+E" = {
-          action.spawn = "codium";
-        };
-        "Mod+L" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "lockScreen"
-            "lock"
-          ];
-        };
+            prefixes = {
+              "Mod" = "focus";
+              "Mod+Ctrl" = "move";
+              "Mod+Shift" = "focus-monitor";
+              "Mod+Shift+Ctrl" = "move-window-to-monitor";
+            };
+            substitutions = {
+              "monitor-column" = "monitor";
+              "monitor-window" = "monitor";
+            };
+          })
+          {
+            "Mod+G".action = switch-focus-between-floating-and-tiling;
+            "Mod+Shift+G".action = toggle-window-floating;
+          }
+          (binds {
+            suffixes = {
+              "Home" = "first";
+              "End" = "last";
+            };
+            prefixes = {
+              "Mod" = "focus-column";
+              "Mod+Ctrl" = "move-column-to";
+            };
+          })
+          (binds {
+            suffixes = {
+              "U" = "workspace-down";
+              "Page_Down" = "workspace-down";
+              "WheelScrollDown" = "workspace-down";
+              "I" = "workspace-up";
+              "WheelScrollUp" = "workspace-up";
+              "Page_Up" = "workspace-up";
+            };
+            prefixes = {
+              "Mod" = "focus";
+              "Mod+Ctrl" = "move-window-to";
+              "Mod+Shift" = "move";
+            };
+          })
+          (binds {
+            suffixes = builtins.listToAttrs (
+              map (n: {
+                name = toString (toAzerty (toString n) azerty);
+                value = [
+                  "workspace"
+                  n
+                ];
+              }) (range 1 9)
+            );
+            prefixes = {
+              "Mod" = "focus";
+              "Mod+Shift" = "move-window-to";
+            };
+          })
+          {
+            ## APPS
+            "Mod+Q".action = close-window;
+            "Mod+Return".action.spawn = "kitty";
+            "Mod+D".action = sh "noctalia-shell ipc call launcher toggle";
+            "Mod+T".action.spawn = "nautilus";
+            "Mod+B".action.spawn = "zen-beta";
+            "Mod+E".action.spawn = "codium";
+            "Mod+Backspace".action = sh "noctalia-shell ipc call lockScreen lock";
+          }
+          {
+            # Move columns
+            "Mod+Comma".action = consume-window-into-column;
+            "Mod+semicolon".action = expel-window-from-column;
+            "Mod+Space".action = toggle-column-tabbed-display;
+            "Mod+C".action = center-column;
 
-        ## BAR
-        "Mod+comma" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "settings"
-            "toggle"
-          ];
-        };
-        "Mod+V" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "launcher"
-            "clipboard"
-          ];
-        };
-        "Mod+N" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "notifications"
-            "toggleHistory"
-          ];
-        };
-        "Mod+C" = {
-          action.spawn = [
-            "noctalia-shell"
-            "ipc"
-            "call"
-            "calendar"
-            "toggle"
-          ];
-        };
-        "Mod+S" = {
-          action.spawn = [
-            "~/.local/bin/hyprcap"
-            "shot"
-            "region"
-            "-zcw"
-          ];
-        };
+            # Resize columns
+            "Mod+R".action = switch-preset-column-width;
+            "Mod+Shift+R".action = switch-preset-window-height;
+            "Mod+Ctrl+R".action = reset-window-height;
+            "Mod+Ctrl+F".action = expand-column-to-available-width;
+            "Mod+F".action = maximize-column;
+            "Mod+Shift+F".action = fullscreen-window;
+            "Mod+KP_5".action = set-column-width "-10%";
+            "Mod+KP_6".action = set-column-width "+10%";
+            "Mod+Shift+KP_5".action = set-window-height "-10%";
+            "Mod+Shift+KP_6".action = set-window-height "+10%";
 
-        "Mod+WheelScrollDown" = {
-          action = focus-column-right;
-        };
-        "Mod+WheelScrollUp" = {
-          action = focus-column-left;
-        };
-        "Mod+Shift+WheelScrollDown" = {
-          action = focus-workspace-down;
-        };
-        "Mod+Shift+WheelScrollUp" = {
-          action = focus-workspace-up;
-        };
+            # Misc
+            "Mod+A".action = toggle-overview;
+            "Mod+X".action = sh "noctalia-shell ipc call sessionMenu toggle"; # Session menu
+            "Mod+V".action = sh "noctalia-shell ipc call launcher clipboard"; # Clipboard
+            "Mod+N".action = sh "noctalia-shell ipc call notifications toggleHistory"; # Notifications
+            "Mod+S".action = sh "~/.local/bin/hyprcap shot region -zcw"; # Screenshot
+          }
+        ];
 
-        "Mod+Down" = {
-          action = focus-workspace-down;
-        };
-        "Mod+Up" = {
-          action = focus-workspace-up;
-        };
-        "Mod+Left" = {
-          action = focus-column-left;
-        };
-        "Mod+Right" = {
-          action = focus-column-right;
-        };
+      layout = {
+        always-center-single-column = true;
+        center-focused-column = "on-overflow";
+        empty-workspace-above-first = true;
 
-        "Mod+Shift+Down" = {
-          action = move-workspace-down;
+        preset-column-widths = [
+          { proportion = 1.0 / 3.0; }
+          { proportion = 1.0 / 2.0; }
+          { proportion = 2.0 / 3.0; }
+        ];
+        default-column-width = {
+          proportion = 1.0 / 2.0;
         };
-        "Mod+Shift+Up" = {
-          action = move-workspace-up;
+        tab-indicator = {
+          position = "top";
+          gaps-between-tabs = 10;
+          place-within-column = true;
         };
-        "Mod+Shift+Left" = {
-          action = move-column-left-or-to-monitor-left;
-        };
-        "Mod+Shift+Right" = {
-          action = move-column-right-or-to-monitor-right;
-        };
-
-        "Mod+1".action.focus-workspace = 1;
-        "Mod+2".action.focus-workspace = 2;
-        "Mod+3".action.focus-workspace = 3;
-        "Mod+4".action.focus-workspace = 4;
+      };
+      overview = {
+        backdrop-color = "#000000";
       };
     };
   };
