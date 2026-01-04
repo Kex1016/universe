@@ -8,5 +8,6 @@
     xivlauncher
     protonplus
     etterna
+    nexusmods-app
   ];
 }
