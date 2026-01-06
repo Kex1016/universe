@@ -9,5 +9,6 @@
     protonplus
     etterna
     nexusmods-app
+    ocelot-desktop
   ];
 }
