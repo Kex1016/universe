@@ -30,6 +30,9 @@
       vscjava.vscode-java-dependency
       redhat.java
       ms-vscode.live-server
+      rust-lang.rust-analyzer
+      tamasfe.even-better-toml
+      fill-labs.dependi
     ];
     # profiles.default.userSettings = {
     #   "editor.fontFamily" = "'RobotoMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
