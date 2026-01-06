@@ -20,6 +20,7 @@
     jq
     tokei
     ffmpeg
+    rustup
   ];
 
   programs = {
