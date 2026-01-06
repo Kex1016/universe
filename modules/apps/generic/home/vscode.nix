@@ -33,6 +33,7 @@
       rust-lang.rust-analyzer
       tamasfe.even-better-toml
       fill-labs.dependi
+      sumneko.lua
     ];
     # profiles.default.userSettings = {
     #   "editor.fontFamily" = "'RobotoMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
