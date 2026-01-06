@@ -22,7 +22,6 @@
     ffmpeg
     rustup
     clang
-    llvmPackages_20.bintools
   ];
 
   programs = {
