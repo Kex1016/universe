@@ -22,6 +22,8 @@
     ffmpeg
     rustup
     clang
+    android-tools
+    scrcpy
   ];
 
   programs = {
