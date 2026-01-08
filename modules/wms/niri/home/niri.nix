@@ -94,6 +94,7 @@ in
       spawn-at-startup = [
         { command = [ "xwayland-satellite" ]; }
         { command = [ "noctalia-shell" ]; }
+        { sh = "QT_STYLE_OVERRIDE=Fusion QT_QPA_PLATFORM=xcb synology-drive autostart"; }
       ];
 
       window-rules = [
