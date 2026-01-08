@@ -14,5 +14,6 @@
     gitkraken
     drawio
     blockbench
+    synology-drive-client
   ];
 }
