@@ -24,6 +24,7 @@
     clang
     android-tools
     scrcpy
+    _7zz
   ];
 
   programs = {
