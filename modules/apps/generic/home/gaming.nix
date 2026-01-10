@@ -8,7 +8,7 @@
     xivlauncher
     protonplus
     etterna
-    nexusmods-app
+    (pkgs.nexusmods-app.override { _7zz = pkgs._7zz-rar; })
     ocelot-desktop
   ];
 }
