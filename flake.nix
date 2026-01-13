@@ -51,6 +51,8 @@
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     nix-alien.url = "github:thiagokokada/nix-alien";
+
+    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
   };
 
   outputs =
@@ -65,6 +67,7 @@
       firefox-addons,
       zen-browser,
       nix-alien,
+      hytale-launcher,
       ...
     }@inputs:
     let
@@ -111,6 +114,7 @@
           spicetify-nix
           ffaddons
           zen-browser
+          hytale-launcher
           ;
       };
 

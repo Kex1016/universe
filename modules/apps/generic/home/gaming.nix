@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, hytale-launcher, ... }:
 {
   home.packages = with pkgs; [
     prismlauncher
@@ -10,5 +10,6 @@
     etterna
     (pkgs.nexusmods-app.override { _7zz = pkgs._7zz-rar; })
     ocelot-desktop
+    hytale-launcher.packages.${pkgs.system}.default
   ];
 }
