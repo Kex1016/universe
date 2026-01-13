@@ -52,7 +52,7 @@
 
     nix-alien.url = "github:thiagokokada/nix-alien";
 
-    hytale-launcher.url = "github:TNAZEP/HytaleLauncherFlake";
+    hytale-launcher.url = "github:Kex1016/HytaleLauncherFlake";
   };
 
   outputs =
