@@ -162,6 +162,8 @@
     magicOrExtension = ''\x7fELF....AI\x02'';
   };
 
+  programs.nix-ld.enable = true;
+
   nix.settings.auto-optimise-store = true;
   nix.optimise = {
     automatic = true;

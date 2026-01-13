@@ -25,6 +25,7 @@
     android-tools
     scrcpy
     _7zz
+    nix-alien
   ];
 
   programs = {

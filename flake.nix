@@ -49,6 +49,8 @@
     };
 
     spicetify-nix.url = "github:Gerg-L/spicetify-nix";
+
+    nix-alien.url = "github:thiagokokada/nix-alien";
   };
 
   outputs =
@@ -62,6 +64,7 @@
       nvf,
       firefox-addons,
       zen-browser,
+      nix-alien
       ...
     }@inputs:
     let
@@ -75,6 +78,7 @@
           allowUnfree = true;
         };
         overlays = [
+          nix-alien.overlays.default
           inputs.niri-flake.overlays.niri
           (final: prev: {
             vesktop = prev.vesktop.overrideAttrs (old: {
