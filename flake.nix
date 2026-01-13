@@ -64,7 +64,7 @@
       nvf,
       firefox-addons,
       zen-browser,
-      nix-alien
+      nix-alien,
       ...
     }@inputs:
     let
