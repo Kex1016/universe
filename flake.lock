@@ -258,15 +258,15 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1768285987,
-        "narHash": "sha256-LZTP/tY4zbpfAIR+aWbgtSW13d4zAipvTl/mEMzwkLo=",
-        "owner": "TNAZEP",
+        "lastModified": 1768327385,
+        "narHash": "sha256-BBdd2MsfpeNhVu6nHbwh0HOI0dliSuZYGprerITy2xs=",
+        "owner": "Kex1016",
         "repo": "HytaleLauncherFlake",
-        "rev": "70411c7c83927b12d14e48835cc973b3fddf8b77",
+        "rev": "064ee76256f5b7fc947ae060de5570d3e0c331ba",
         "type": "github"
       },
       "original": {
-        "owner": "TNAZEP",
+        "owner": "Kex1016",
         "repo": "HytaleLauncherFlake",
         "type": "github"
       }
