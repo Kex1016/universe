@@ -79,6 +79,9 @@
         inherit system;
         config = {
           allowUnfree = true;
+          permittedInsecurePackages = [
+            "nexusmods-app-0.21.1" # fuck you nexus
+          ];
         };
         overlays = [
           nix-alien.overlays.default
