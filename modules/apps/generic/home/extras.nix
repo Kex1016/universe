@@ -15,5 +15,6 @@
     drawio
     blockbench
     synology-drive-client
+    sgdboop
   ];
 }
