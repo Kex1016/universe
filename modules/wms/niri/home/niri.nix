@@ -83,6 +83,7 @@ in
   programs.niri = {
     package = pkgs.niri-unstable;
     settings = {
+      prefer-no-csd = true; # fuck you niri
       environment = {
         NIXOS_OZONE_WL = "1"; # support electron and chromium based apps
         DISPLAY = ":0"; # important for xwayland-satellite
