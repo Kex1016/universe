@@ -31,9 +31,7 @@ ARCANE PROJECTIONS
 
 </div>
 
-![Screenshot](./assets/screenshot_2512151000.png)
-
-![Screenshot](./assets/screenshot_2512151004.png)
+![Screenshot](./assets/2026-01-21-200917_hyprcap.png)
 
 ## The structure
 
@@ -68,11 +66,11 @@ DEFINITELY NO R/UNIXPORN HERE
 
 No, really. I wanted something more practical than flashy so I avoided looking at r/unixporn...
 
-The current version is based on a previous set of dots I made for Arch Linux but never published, and that version was based off [Speyll's dotfiles](https://github.com/Speyll/dotfiles/). Obviously huge shoutout to the people working on the [Catppuccin Nix flakes](https://nix.catppuccin.com), they are the real heroes in my dotfiles, 99% of my theming was done with it. Some other notable mentions:
+The current version is based on a previous set of dots I made for Arch Linux but never published, and that version was based off [Speyll's dotfiles](https://github.com/Speyll/dotfiles/). Obviously huge shoutout to the people working on the [Catppuccin Nix flakes](https://nix.catppuccin.com), they are the real heroes in my dotfiles, 99% of my theming was done with it at first. Some other notable mentions:
 
+- [Stylix](https://nix-community.github.io/stylix/) - all my new new themes are done with it. It's awesome.
 - [UBlue's (and specifically Bazzite's) boot-windows](https://github.com/ublue-os/bazzite/blob/main/system_files/desktop/shared/usr/bin/boot-windows)
 - [hyprcap](https://github.com/alonso-herreros/Hyprcap)
-- A rofi based power menu that I got from Reddit, don't remember from where exactly...
 - [The NixOS Discord](https://discord.gg/BqdJJFER4H)
 
 ## How-to?
