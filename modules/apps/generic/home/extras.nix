@@ -7,7 +7,7 @@
     electron-mail
     proton-pass
     wayvnc
-    handbrake
+    /* handbrake */
     libreoffice-fresh
     teams-for-linux
     plexamp
