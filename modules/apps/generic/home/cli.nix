@@ -26,6 +26,7 @@
     scrcpy
     _7zz
     nix-alien
+    gpu-screen-recorder
   ];
 
   programs = {
