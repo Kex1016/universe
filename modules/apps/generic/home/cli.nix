@@ -27,6 +27,7 @@
     _7zz
     nix-alien
     gpu-screen-recorder
+    docker-compose
   ];
 
   programs = {
