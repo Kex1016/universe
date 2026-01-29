@@ -34,6 +34,7 @@
       tamasfe.even-better-toml
       fill-labs.dependi
       sumneko.lua
+      humao.rest-client
     ];
     # profiles.default.userSettings = {
     #   "editor.fontFamily" = "'RobotoMono Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace";
