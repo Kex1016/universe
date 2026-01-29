@@ -16,5 +16,6 @@
     blockbench
     synology-drive-client
     sgdboop
+    karere
   ];
 }
