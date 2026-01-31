@@ -229,12 +229,10 @@ in
             suffixes = {
               "U" = "workspace-down";
               "Page_Down" = "workspace-down";
-              "Down" = "workspace-down";
               "WheelScrollDown" = "workspace-down";
               "I" = "workspace-up";
               "WheelScrollUp" = "workspace-up";
               "Page_Up" = "workspace-up";
-              "Up" = "workspace-up";
             };
             prefixes = {
               "Mod" = "focus";
